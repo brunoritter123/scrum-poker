@@ -1,0 +1,65 @@
+<form #f="ngForm">
+    <po-login
+      class="po-sm-12"
+      p-label="Usuário"
+      p-placeholder="Informe se usuário"
+      name="userLogin"
+      [(ngModel)]="userLogin"
+      p-clean p-maxlength="20"
+      p-required>
+    </po-login>
+
+    <po-password
+      class="po-sm-12"
+      p-label="Senha"
+      p-placeholder="Informe a senha"
+      name="senha"
+      [(ngModel)]="userPass"
+      p-clean (keyup.enter)="keyUpPass()"
+      p-required>
+    </po-password>
+
+    <po-divider class="po-sm-12"></po-divider>
+
+    <po-button
+      (p-click)="logar()"
+      class="po-md-12 po-mb-1"
+      p-label="Entrar"
+      p-type="primary" >
+    </po-button>
+
+    <po-button
+      (p-click)="cadastrar()"
+      class="po-md-12 po-mb-1"
+      p-label="Cadastrar"
+      p-type="default" >
+    </po-button>
+
+    <po-button
+      (p-click)="esqueceuSenha()"
+      class="po-md-12 po-mb-1"
+      p-label="Esqueceu a senha?"
+      p-type="default" >
+    </po-button>
+</form>
+
+<po-modal
+  #modalEsqueceuSenha
+  p-click-out="true"
+  p-hide-close="false"
+  [p-primary-action]="confirmModal"
+  [p-secondary-action]="closeModal"
+  p-size="sm"
+  p-title="Recuperar Senha">
+
+  <p class="po-mb-1">Para recuperar sua senha vamos enviar um e-mail com instruções. </p>
+
+  <po-email
+    class="po-mb-1"
+    name="email"
+    p-label="Insira seu e-mail"
+    p-clean="true">
+  </po-email>
+
+  <p class="po-mb-1">Se não tiver acesso ao e-mail contacte o suporte . </p>
+  </po-modal>

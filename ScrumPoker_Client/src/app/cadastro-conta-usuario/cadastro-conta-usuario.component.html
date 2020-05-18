@@ -1,0 +1,45 @@
+<po-page-default>
+
+  <div class="po-sm-12 po-md-6 po-offset-md-3 po-lg-5 po-offset-lg-3 po-xl-4 po-offset-xl-3">
+
+    <h1 class="po-font-title po-mb-2">Crie sua Conta</h1>
+
+    <po-login
+      class="po-mb-2"
+      p-label="Usuário"
+      p-placeholder="Informe se usuário"
+      name="userLogin"
+      [(ngModel)]="login"
+      p-clean p-maxlength="20"
+      p-required>
+    </po-login>
+
+    <po-email
+      class="po-mb-2"
+      name="email"
+      p-label="E-mail"
+      p-clean="true">
+    </po-email>
+
+    <po-password
+      class="po-mb-2"
+      p-label="Senha"
+      p-placeholder="Informe a senha"
+      name="senha"
+      [(ngModel)]="senha"
+      p-clean (keyup.enter)="cadastrarConta()"
+      p-required>
+    </po-password>
+
+    <po-divider></po-divider>
+
+    <po-button
+      (p-click)="cadastrarConta()"
+      class="po-mb-2 po-sm-12 po-md-12 po-lg-12 po-xl-12"
+      p-label="Cadastrar Conta"
+      p-type="primary" >
+    </po-button>
+</div>
+
+
+</po-page-default>

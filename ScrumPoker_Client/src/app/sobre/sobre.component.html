@@ -1,0 +1,23 @@
+<div class="po-row">
+  <po-widget
+    class="po-sm-12 po-md-12 po-lg-12"
+    p-title="Contato"
+    p-primary-label="Enviar e-mail"
+    (p-primary-action)="sendContact(contact.email)"
+    p-secondary-label="Apoiar"
+    (p-secondary-action)="apoiar()">
+
+    <po-avatar
+      class="po-sm-12 po-md-4 po-lg-4"
+      p-size="lg"
+      p-src="../../assets/eu.jpg">
+    </po-avatar>
+
+    <div class="po-sm-12 po-md-8 po-lg-8">
+      <p><strong>Autor:</strong> {{ contact.name }}</p>
+      <p><strong>E-mail:</strong> {{ contact.email }}</p>
+      <p><strong>Versão:</strong> v3.0</p>
+    </div>
+
+  </po-widget>
+</div>
