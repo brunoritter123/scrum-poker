@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { PoNotificationService, PoDialogService, PoSwitchLabelPosition } from '@po-ui/ng-components';
 
 
@@ -57,9 +57,5 @@ export class CriarSalaComponent implements OnInit {
         [`/${local}/${this.idSala.toUpperCase()}`]
       );
     }
-  }
-
-  changeEvent(event: string) {
-    console.log(event);
   }
 }

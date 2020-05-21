@@ -22,7 +22,6 @@ namespace ScrumPoker.Data.Maps
 
             builder
                 .Property(x => x.SalaId)
-
                 .IsRequired();
 
             builder

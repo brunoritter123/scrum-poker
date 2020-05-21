@@ -1,22 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PoModule, PoDialogService } from '@po-ui/ng-components';
 import { CookieService } from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SobreComponent } from './sobre/sobre.component';
+import { SobreComponent } from './components/sobre/sobre.component';
 import { AuthService } from './services/auth.service';
-import { CriarSalaComponent } from './home/criar-sala/criar-sala.component';
-import { ConfigurarSalaComponent } from './configurar-sala/configurar-sala.component';
+import { CriarSalaComponent } from './components/home/criar-sala/criar-sala.component';
+import { ConfigurarSalaComponent } from './components/configurar-sala/configurar-sala.component';
 import { SalaService } from './services/sala.service';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './home/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/home/login/login.component';
 import { SalaResolver } from './guards/sala.resolver';
-import { CadastroContaUsuarioComponent } from './cadastro-conta-usuario/cadastro-conta-usuario.component';
+import { CadastroContaUsuarioComponent } from './components/cadastro-conta-usuario/cadastro-conta-usuario.component';
+import { ConfirmarEmailComponent } from './components/confirmar-email/confirmar-email.component';
+import { ConfirmarResetarSenhaComponent } from './components/confirmar-resetar-senha/confirmar-resetar-senha.component';
 
 @NgModule({
   declarations: [
@@ -26,14 +28,17 @@ import { CadastroContaUsuarioComponent } from './cadastro-conta-usuario/cadastro
     ConfigurarSalaComponent,
     HomeComponent,
     LoginComponent,
-    CadastroContaUsuarioComponent
+    CadastroContaUsuarioComponent,
+    ConfirmarEmailComponent,
+    ConfirmarResetarSenhaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     PoModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     AuthService,

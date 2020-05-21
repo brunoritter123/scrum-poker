@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Sala } from '../models/sala.model';
+import { Sala } from '../../models/sala.model';
 import { PoDialogService } from '@po-ui/ng-components';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SalaService } from '../services/sala.service';
+import { SalaService } from '../../services/sala.service';
 import { Subscription } from 'rxjs';
 
 @Component({

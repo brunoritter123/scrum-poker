@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using ScrumPoker.Domain.Interfaces.Repositories;
@@ -48,10 +49,12 @@ namespace ScrumPoker.API.Controllers
         public async Task<ActionResult<SalaDto>> AlterarAsync([FromBody] SalaDto salaDto)
         {
             var sala = await _repo.BuscarPorIdAsync(salaDto.Id);
-            if (sala is null)
-                return NotFound();
+            if (sala is null) return NotFound();
 
-            sala = await _repo.AlterarAsync(_mapper.Map(salaDto, sala));
+            sala.Cartas = sala.Cartas.ToList();
+            _mapper.Map(salaDto, sala);
+            await _repo.AlterarAsync(sala);
+
             return Ok(_mapper.Map<SalaDto>(sala));
         }
 

@@ -4,6 +4,7 @@ import { PoMenuItem, PoModalComponent, PoModalAction, PoToolbarAction, PoToolbar
 import { SignalRService } from './services/signal-r.service';
 
 import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,34 +12,29 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  @ViewChild('modalLogin', { static: true }) modalLogin: PoModalComponent;
   @ViewChild('modalSobre', { static: true }) modalSobre: PoModalComponent;
 
-  private newAuth;
-  private conectarJira;
+  private inscricaoLogin;
+  private inscricaoLogout;
 
   public title = 'Scrum Poker';
-  private profActLogin: PoToolbarAction = { icon: 'po-icon-user', label: 'Login', action: () => this.modalLogin.open() };
+  private profActLogin: PoToolbarAction = {
+    icon: 'po-icon-user',
+    label: 'Login',
+    separator: true,
+    action: () => this.router.navigate([''])
+  };
   private profActSair: PoToolbarAction = {
     icon: 'po-icon-exit',
     label: 'Sair',
     type: 'danger',
     separator: true,
-    action: () => this.authService.sairConta()
+    action: () => this.authService.logout()
   };
-  public profileActions: Array<PoToolbarAction> = [this.profActLogin];
-  public profile: PoToolbarProfile = {
-    avatar: '',
-    subtitle: '',
-    title: ''
-  };
+  public profileActions: Array<PoToolbarAction> = [];
+  public profile: PoToolbarProfile = undefined;
 
-  public primaryActionLogin: PoModalAction = {
-    action: () => {
-      this.authService.conectarConta()
-    },
-    label: 'Conectar'
-  };
+
 
   public primaryActionSobre: PoModalAction = {
     action: () => {
@@ -47,39 +43,37 @@ export class AppComponent implements OnInit, OnDestroy {
     label: 'Fechar'
   };
 
-  public secondaryActionLogin: PoModalAction = {
-    action: () => {
-      this.modalLogin.close()
-    },
-    label: 'Cancelar'
-  }
-
-
   constructor(
     private authService: AuthService,
+    private router: Router,
     public signalRService: SignalRService
     ) {
   }
 
   ngOnInit(){
-    this.newAuth = this.authService.emitirAuth.subscribe((newProfile) => {
-      this.profile = newProfile;
-      if (this.profile.title > '') {
-        this.profileActions = [this.profActSair];
-        this.modalLogin.close();
-      } else {
-        this.profileActions = [this.profActLogin];
-      }
-    });
+    if (this.authService.logado()) {
+      this.eventLogin(this.authService.getProfile())
+    } else {
+      this.eventLogout();
+    }
 
-    this.conectarJira = this.authService.emitirConectarJira.subscribe(() => {
-      this.openLogin()
-    });
+    this.inscricaoLogin = this.authService.eventLogin.subscribe( profile => this.eventLogin(profile));
+    this.inscricaoLogout = this.authService.eventLogout.subscribe(() => this.eventLogout());
   }
 
   ngOnDestroy() {
-    this.newAuth.unsubscribe();
-    this.conectarJira.unsubscribe();
+    this.inscricaoLogin.unsubscribe();
+    this.inscricaoLogout.unsubscribe();
+  }
+
+  private eventLogin(newProfile: PoToolbarProfile) {
+    this.profile = newProfile;
+    this.profileActions = [this.profActSair];
+  }
+
+  private eventLogout() {
+    this.profile = undefined;
+    this.profileActions = [this.profActLogin];
   }
 
   public menus: Array<PoMenuItem> = [
@@ -90,11 +84,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public openModal(): boolean {
     this.modalSobre.open();
-    return true;
-  }
-
-  public openLogin(): boolean {
-    this.modalLogin.open();
     return true;
   }
 }

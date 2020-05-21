@@ -32,6 +32,7 @@ namespace ScrumPoker.API.Configurations
             builder.AddRoleValidator<RoleValidator<Role>>();
             builder.AddRoleManager<RoleManager<Role>>();
             builder.AddSignInManager<SignInManager<User>>();
+            builder.AddDefaultTokenProviders();
 
             // services.AddAuthorization(options =>
             // {

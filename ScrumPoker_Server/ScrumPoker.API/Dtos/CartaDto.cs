@@ -4,8 +4,6 @@ namespace ScrumPoker.API.Dtos
 {
     public class CartaDto
     {
-
-        [Required]
         public int Id { get; set; }
 
         [Required]
@@ -18,8 +16,6 @@ namespace ScrumPoker.API.Dtos
         [Required]
         public bool Especial { get; set;}
 
-
-        [Required]
         public string SalaId { get; set; }
     }
 }

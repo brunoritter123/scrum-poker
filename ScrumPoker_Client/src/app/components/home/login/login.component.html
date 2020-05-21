@@ -2,9 +2,9 @@
     <po-login
       class="po-sm-12"
       p-label="Usuário"
-      p-placeholder="Informe se usuário"
+      p-placeholder="Informe seu usuário"
       name="userLogin"
-      [(ngModel)]="userLogin"
+      [(ngModel)]="authLogin.userName"
       p-clean p-maxlength="20"
       p-required>
     </po-login>
@@ -12,17 +12,20 @@
     <po-password
       class="po-sm-12"
       p-label="Senha"
-      p-placeholder="Informe a senha"
+      p-placeholder="Informe sua senha"
       name="senha"
-      [(ngModel)]="userPass"
-      p-clean (keyup.enter)="keyUpPass()"
+      [(ngModel)]="authLogin.password"
+      p-minlength = "4"
+      p-maxlength="10"
+      p-clean
+      (keyup.enter)="login()"
       p-required>
     </po-password>
 
     <po-divider class="po-sm-12"></po-divider>
 
     <po-button
-      (p-click)="logar()"
+      (p-click)="login()"
       class="po-md-12 po-mb-1"
       p-label="Entrar"
       p-type="primary" >
@@ -54,12 +57,21 @@
 
   <p class="po-mb-1">Para recuperar sua senha vamos enviar um e-mail com instruções. </p>
 
-  <po-email
-    class="po-mb-1"
-    name="email"
-    p-label="Insira seu e-mail"
-    p-clean="true">
-  </po-email>
+    <po-login
+      class="po-sm-12"
+      p-label="Usuário"
+      p-placeholder="Informe seu usuário"
+      name="userLogin"
+      [(ngModel)]="userNameEsqueceuSenha"
+      p-clean p-maxlength="20"
+      (keyup.enter)="enviarEmailEsqueceuSenha()"
+      p-required>
+    </po-login>
 
-  <p class="po-mb-1">Se não tiver acesso ao e-mail contacte o suporte . </p>
+  <p class="po-mb-1">Se não tiver acesso ao e-mail contacte o suporte.</p>
   </po-modal>
+
+<po-loading-overlay *ngIf="carregando"
+  p-screen-lock="true"
+  p-text="Aguarde..." >
+</po-loading-overlay>

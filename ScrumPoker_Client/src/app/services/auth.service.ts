@@ -1,7 +1,15 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { PoToolbarProfile, PoNotificationService } from '@po-ui/ng-components';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { PoToolbarProfile } from '@po-ui/ng-components';
+import { environment } from 'src/environments/environment';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { map } from 'rxjs/operators'
+import { AuthRegistrar } from '../interfaces/authRegistrar.interface';
+import { AuthLogin } from '../interfaces/authLogin.interface';
+import { TokenJwt } from '../interfaces/tokenJwt.interface';
+import { Observable } from 'rxjs';
+import { AuthResetarSenha } from '../interfaces/authResetarSenha.interface';
 
 @Injectable()
 export class AuthService {
@@ -9,17 +17,23 @@ export class AuthService {
   public isJogador: boolean = true;
   public id: string = '';
   public name: string = '';
-  public httpOptions: any;
-  public emitirAuth = new EventEmitter<PoToolbarProfile>();
-  public emitirConectarJira = new EventEmitter<void>();
+  public eventLogin = new EventEmitter<PoToolbarProfile>();
+  public eventLogout = new EventEmitter();
+
+  private readonly jwtHelper = new JwtHelperService();
+  private readonly url: string = environment.API + '/auth';
+  private decodedToken: TokenJwt;
 
   constructor(
     private cookieService: CookieService,
-    private http: HttpClient,
-    private poNotification: PoNotificationService
+    private http: HttpClient
   ) {
     this.getConfig()
-    this.poNotification.setDefaultDuration(5000)
+    const token = localStorage.getItem('token');
+
+    if (this.logado){
+      this.decodedToken = this.jwtHelper.decodeToken(token)
+    }
   }
 
   public getConfig(): void {
@@ -36,15 +50,6 @@ export class AuthService {
         this.cookieService.set(this.idSala.toUpperCase(), this.id);
       }
     }
-  }
-
-  public getProfile(imageUrl: string, subtitle: string, name: string): PoToolbarProfile {
-    const newProfile: PoToolbarProfile = {
-      avatar: imageUrl,
-      subtitle: subtitle,
-      title: name
-    };
-    return newProfile;
   }
 
   public saveConfig(idSala: string, nome: string, isJogador: boolean, isIntegraJira: boolean): void {
@@ -82,11 +87,81 @@ export class AuthService {
     this.cookieService.set(nameCokie, valorCookie, new Date(2100, 1, 1))
   }
 
-  public conectarConta(): void{
-
+  public login(model: AuthLogin){
+    return this.http
+      .post(`${this.url}/login`, model).pipe(
+        this.pipeLogin()
+    )
   }
 
-  public sairConta(): void{
-
+  public cadastrarConta(model: AuthRegistrar) {
+    return this.http.post(`${this.url}/registrar`, model, {
+      params: {
+        "urlConfirmaEmail": `${location.origin}/confirmar-email`
+      }})
   }
+
+  public enviarConfirmacaoEmail(userName: string) {
+    return this.http.post(`${this.url}/enviar-confirmacao-email/${userName}`, null, {
+      params: {
+        "urlConfirmaEmail": `${location.origin}/confirmar-email`
+      }})
+  }
+
+  public solicitacaoResetarSenha(userName: string) {
+    return this.http.post(`${this.url}/solicitacao-resetar-senha/${userName}`, null, {
+      params: {
+        "urlResetarSenha": `${location.origin}/confirmar-resetar-senha`
+      }})
+  }
+
+  public resetarSenha(userName: string, authResetarSenha: AuthResetarSenha) {
+    return this.http.post(`${this.url}/resetar-senha/`, authResetarSenha)
+  }
+
+  public confirmarEmail(token: string, userName: string) {
+    return this.http.post(`${this.url}/confirmar-email`, {
+      "token": token,
+      "userName": userName
+    }).pipe(this.pipeLogin());
+  }
+
+  private pipeLogin() {
+    return map( (respose: any) => {
+      const user = respose;
+      if (user) {
+        localStorage.setItem('token', user.token);
+        this.decodedToken = this.jwtHelper.decodeToken(user.token);
+        this.eventLogin.emit(this.getProfile());
+      }
+    })
+  }
+
+
+
+  public logado(): boolean {
+    const token = localStorage.getItem('token');
+    return !this.jwtHelper.isTokenExpired(token);
+  }
+
+  public logout() {
+    localStorage.removeItem('token');
+    this.eventLogout.emit();
+  }
+
+  public getProfile() {
+    let profile: PoToolbarProfile = null;
+
+    if (this.decodedToken)
+    {
+      profile = {
+        //avatar: string
+        title: this.decodedToken.unique_name,
+        subtitle: this.decodedToken.email
+      }
+    }
+
+    return profile
+  }
+
 }

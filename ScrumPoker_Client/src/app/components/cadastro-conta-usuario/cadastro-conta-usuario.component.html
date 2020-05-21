@@ -1,0 +1,73 @@
+<po-page-default>
+
+  <form
+    [formGroup]="registrarForm"
+    class="po-sm-12 po-md-6 po-offset-md-3 po-lg-5 po-offset-lg-3 po-xl-4 po-offset-xl-3">
+
+    <h1 class="po-font-title po-mb-2">Crie sua Conta</h1>
+
+    <po-login
+      class="po-mb-2"
+      p-label="Usuário"
+      p-placeholder="Nome de usuário"
+      formControlName="login"
+      p-clean="true"
+      p-maxlength="20"
+      p-no-autocomplete="true"
+      p-required = "true">
+    </po-login>
+
+      <po-email
+        class="po-mb-2"
+        formControlName="email"
+        p-placeholder="Seu e-mail"
+        p-label="E-mail"
+        p-clean="true"
+        p-no-autocomplete="true"
+        p-required = "true">
+      </po-email>
+
+    <div formGroupName="senhas">
+      <po-password
+        class="po-mb-2"
+        p-label="Senha"
+        p-placeholder="Informe a senha"
+        formControlName="senha"
+        p-clean = "true"
+        p-minlength = "4"
+        p-maxlength="10"
+        p-no-autocomplete="boolean"
+        p-required = "true">
+      </po-password>
+
+    <po-password
+      class="po-mb-2"
+      p-label="Confirmar Senha"
+      p-placeholder="Confirme a senha"
+      formControlName="confirmaSenha"
+      p-clean = "true"
+      p-minlength = "4"
+      p-maxlength= "10"
+      (keyup.enter)="cadastrarConta()"
+      [p-error-pattern] = "getErroForm(confirmaSenha)"
+      p-no-autocomplete="boolean"
+      p-required = "true">
+    </po-password>
+  </div>
+
+    <po-divider></po-divider>
+
+    <po-button
+      (p-click)="cadastrarConta()"
+      [p-disabled]="!registrarForm.valid"
+      class="po-mb-2 po-sm-12 po-md-12 po-lg-12 po-xl-12"
+      p-label="Cadastrar Conta"
+      p-type="primary" >
+    </po-button>
+  </form>
+</po-page-default>
+
+<po-loading-overlay *ngIf="carregando"
+    p-screen-lock="true"
+    p-text="Salvado..." >
+</po-loading-overlay>

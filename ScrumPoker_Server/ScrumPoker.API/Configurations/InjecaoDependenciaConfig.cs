@@ -3,6 +3,8 @@ using ScrumPoker.Domain.Interfaces.Repositories;
 using ScrumPoker.Domain.Models;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using ScrumPoker.CrossCutting.Services;
 
 namespace ScrumPoker.API.Configurations
 {
@@ -12,8 +14,10 @@ namespace ScrumPoker.API.Configurations
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 
-            services.AddTransient<ISalaRepository, SalaRepository>();
+            services.AddScoped<ISalaRepository, SalaRepository>();
             services.AddScoped<ICartaRepository, CartaRepository>();
+
+            services.AddTransient<IEmailSender, EmailSender>();
         }
     }
 }

@@ -1,0 +1,43 @@
+<po-page-default>
+
+  <form #f="ngForm"
+    class="po-sm-12 po-md-6 po-offset-md-3 po-lg-5 po-offset-lg-3 po-xl-4 po-offset-xl-3">
+
+    <h1 class="po-font-title po-mb-2">Confirmação de E-mail</h1>
+
+    <p>Foi enviado um e-mail para confirmar sua conta.</p>
+    <p>Não esqueça de verificar na sua caixa de
+      <span class="po-font-text-large-bold">spam</span> ou
+      <span class="po-font-text-large-bold">lixo eletrônico</span>
+      .
+    </p>
+
+    <po-divider></po-divider>
+
+    <po-login
+      class="po-sm-12"
+      p-help="Informe seu usuário para receber um novo e-mail"
+      p-label="Usuário"
+      p-placeholder="Seu usuário"
+      name="userLogin"
+      [(ngModel)]="userName"
+      p-clean
+      p-maxlength="20"
+      (keyup.enter)="reenviarEmail()"
+      p-required>
+    </po-login>
+
+    <po-button
+      (p-click)="reenviarEmail()"
+      [p-disabled]="!userName"
+      class="po-mb-2 po-sm-12 po-md-12 po-lg-12 po-xl-12"
+      p-label="Reenviar e-mail"
+      p-type="primary" >
+    </po-button>
+  </form>
+</po-page-default>
+
+<po-loading-overlay *ngIf="carregando"
+    p-screen-lock="true"
+    p-text="Aguarde..." >
+</po-loading-overlay>

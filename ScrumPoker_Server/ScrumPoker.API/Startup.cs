@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using ScrumPoker.API.Configurations;
 using ScrumPoker.API.AutoMapper;
+using ScrumPoker.CrossCutting.Services;
 
 namespace ScrumPoker.API
 {
@@ -50,6 +51,7 @@ namespace ScrumPoker.API
             services.AddDbContext<ScrumPokerContext>(options =>
                 options.UseSqlite(Configuration["ConnStr"]));
 
+            services.Configure<EmailConfig>(Configuration.GetSection("EmailConfig"));
             services.AddAutoMapper(typeof(AutoMapperConfig));
             services.AdicionarInjecaoDependenciaConfig();
             services.AdicionarIdentityConfig(Configuration);
@@ -73,6 +75,7 @@ namespace ScrumPoker.API
             app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

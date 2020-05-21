@@ -35,7 +35,6 @@ export class SalaService {
         if (erro.status == 404) {
           return this.incluiSala(new Sala(salaId))
                      .catch(erro => {
-
                       this.poNotification.error('Houve um erro ao tentar incluir uma sala default.');
                       console.log(erro);
                       throw erro;
@@ -53,10 +52,10 @@ export class SalaService {
     return this.http.put(`${this.url}/sala/`, sala)
     .toPromise()
     .then( () => this.poNotification.success('Sala salva com sucesso.'))
-    .catch( (err) => {
+    .catch( (erro) => {
       this.poNotification.error('Houve um erro ao tentar salvar a sala.');
-      console.log(err);
-      throw err
+      console.log(erro);
+      throw erro
     })
   }
 

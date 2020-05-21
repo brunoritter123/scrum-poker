@@ -3,7 +3,10 @@
     <app-criar-sala></app-criar-sala>
   </po-widget>
 
-  <po-widget p-title="Login" class="po-sm-12 po-md-6 po-lg-4 po-xl-3">
+  <po-widget
+    *ngIf="!logado"
+    p-title="Login"
+    class="po-sm-12 po-md-6 po-lg-4 po-xl-3">
     <app-login></app-login>
   </po-widget>
 </po-page-default>

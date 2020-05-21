@@ -9,6 +9,6 @@ namespace ScrumPoker.Domain.Models
 
 
         public string SalaId { get; set; }
-        public Sala Sala { get; set; }
+        public Sala Sala { get; }
     }
 }
