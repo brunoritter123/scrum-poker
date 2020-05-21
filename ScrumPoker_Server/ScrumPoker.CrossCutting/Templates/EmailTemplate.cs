@@ -9,7 +9,7 @@ namespace ScrumPoker.CrossCutting.Templates
         public async static Task<string> GetEmailConfirmarEmailAsync(string linkBotao, string userName)
         {
             string paragrafo1 = @"
-                        <p>Olá <b>" + userName + @"</b>, sejá bem-vindo(a) :).</p>
+                        <p>Olá <b>" + userName + @"</b>, sejá bem-vindo(a). :)</p>
                         <p>Clique no botão a baixo para confirmar o seu e-mail.</p>
                     ";
 

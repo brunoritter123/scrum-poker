@@ -6,7 +6,7 @@ Esse projeto foi gerado com  [.Net Core](https://dotnet.microsoft.com/download/d
 Execute `dotnet user-secrets init --project ./ScrumPoker.API/` para criar o arquivo de *secrets*.
 - Execute `dotnet user-secrets set ConnStr "sua-connection-string" --project ScrumPoker.API/` para informar sua *connection string* do banco de dados **sqlite**.
 - Execute `dotnet user-secrets set JwtSecretKey "sua-token-jwt" --project ScrumPoker.API/` para informar sua *scret key* do **token** para autenticação usando **JWT**.
-
+- Execute `dotnet user-secrets set EmailPassword "sua-senha-do-email" --project ScrumPoker.API/` para informar sua senha do **e-mail** para uso da aplicaçao.
 
 
 ## Servidor de desenvolvimento

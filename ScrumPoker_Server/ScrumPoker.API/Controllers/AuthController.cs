@@ -47,11 +47,6 @@ namespace ScrumPoker.API.Controllers
             this._emailSender = emailSender;
         }
 
-        public async Task<ActionResult<User>> GetUser(UserDto userDto)
-        {
-            return Ok(userDto);
-        }
-
         [HttpPost("Registrar")]
         public async Task<ActionResult> Registrar(
             [FromBody] UserDto userDto,
@@ -75,7 +70,7 @@ namespace ScrumPoker.API.Controllers
 
             await EnviarConfirmacaoEmail(user.UserName, urlConfirmaEmail);
 
-            return Created("GetUser", userResult);
+            return Created("Login", userResult);
         }
 
         [HttpPost("Login")]

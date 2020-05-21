@@ -6,6 +6,16 @@
 
     <h1 class="po-font-title po-mb-2">Crie sua Conta</h1>
 
+    <po-email
+      class="po-mb-2"
+      formControlName="email"
+      p-placeholder="Seu e-mail"
+      p-label="E-mail"
+      p-clean="true"
+      p-no-autocomplete="true"
+      p-required = "true">
+    </po-email>
+
     <po-login
       class="po-mb-2"
       p-label="Usuário"
@@ -16,16 +26,6 @@
       p-no-autocomplete="true"
       p-required = "true">
     </po-login>
-
-      <po-email
-        class="po-mb-2"
-        formControlName="email"
-        p-placeholder="Seu e-mail"
-        p-label="E-mail"
-        p-clean="true"
-        p-no-autocomplete="true"
-        p-required = "true">
-      </po-email>
 
     <div formGroupName="senhas">
       <po-password

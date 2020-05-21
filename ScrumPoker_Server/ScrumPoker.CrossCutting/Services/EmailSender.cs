@@ -1,6 +1,6 @@
 ﻿using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Configuration;
 using MimeKit;
 using System.Threading.Tasks;
 
@@ -9,9 +9,16 @@ namespace ScrumPoker.CrossCutting.Services
     public class EmailSender : IEmailSender
     {
         private readonly EmailConfig _emailConfig;
-        public EmailSender(IOptions<EmailConfig> emailConfig)
+        public EmailSender(IConfiguration config)
         {
-            _emailConfig = emailConfig.Value;
+            _emailConfig = new EmailConfig()
+            {
+                From = config.GetSection("EmailConfig:From").Value,
+                SmtpServer = config.GetSection("EmailConfig:SmtpServer").Value,
+                Port =  int.Parse(config.GetSection("EmailConfig:Port").Value),
+                UserName = config.GetSection("EmailConfig:UserName").Value,
+                Password = config["EmailPassword"]
+            };
         }
         public async Task SendEmailAsync(string email, string subject, string message)
         {
