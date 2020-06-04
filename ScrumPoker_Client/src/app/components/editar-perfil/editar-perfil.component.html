@@ -1,0 +1,63 @@
+<po-page-edit
+  p-title="Editar Perfil"
+  (p-cancel)="cancel()"
+  (p-save)="save()">
+
+  <form #f="ngForm" >
+
+    <div class="po-row">
+      <po-avatar
+        p-size="string"
+        p-src="md" >
+      </po-avatar>
+    </div>
+
+    <div class="po-row">
+      <po-button
+        (p-click)="upload()"
+        class="po-sm-12 po-md-7 po-lg-3 po-xl-2 po-mb-1"
+        p-label="Selecionar foto"
+        p-type="default" >
+      </po-button>
+    </div>
+
+    <po-divider class="po-sm-12"></po-divider>
+
+    <po-input
+      class="po-sm-12 po-md-7 po-lg-3 po-xl-2 po-mb-1"
+      [(ngModel)]="perfil.nome"
+      name="nome"
+      p-placeholder="Seu Nome"
+      p-label="Nome"
+      p-clean="true"
+      p-no-autocomplete="true"
+      p-required = "true">
+    </po-input>
+
+    <po-divider class="po-sm-12"></po-divider>
+
+    <div class="po-row">
+      <po-button
+        (p-click)="upload()"
+        class="po-sm-12 po-md-7 po-lg-3 po-xl-2 po-mb-1"
+        p-label="Alterar e-mail"
+        p-type="default" >
+      </po-button>
+    </div>
+
+    <div class="po-row">
+      <po-button
+        (p-click)="upload()"
+        class="po-sm-12 po-md-7 po-lg-3 po-xl-2 po-mb-1"
+        p-label="Alterar senha"
+        p-type="default" >
+      </po-button>
+    </div>
+
+  </form>
+</po-page-edit>
+
+<po-loading-overlay *ngIf="carregando"
+p-screen-lock="true"
+p-text="Aguarde..." >
+</po-loading-overlay>

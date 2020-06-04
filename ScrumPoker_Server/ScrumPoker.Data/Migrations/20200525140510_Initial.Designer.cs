@@ -9,7 +9,7 @@ using ScrumPoker.Data.Context;
 namespace ScrumPoker.Data.Migrations
 {
     [DbContext(typeof(ScrumPokerContext))]
-    [Migration("20200518163340_Initial")]
+    [Migration("20200525140510_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -166,6 +166,9 @@ namespace ScrumPoker.Data.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("TEXT");
 
+                    b.Property<Guid>("PerfilId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("TEXT");
 
@@ -190,6 +193,9 @@ namespace ScrumPoker.Data.Migrations
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
                         .HasName("UserNameIndex");
+
+                    b.HasIndex("PerfilId")
+                        .IsUnique();
 
                     b.ToTable("AspNetUsers");
                 });
@@ -234,6 +240,21 @@ namespace ScrumPoker.Data.Migrations
                     b.HasIndex("SalaId");
 
                     b.ToTable("Carta");
+                });
+
+            modelBuilder.Entity("ScrumPoker.Domain.Models.Perfil", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Perfil");
                 });
 
             modelBuilder.Entity("ScrumPoker.Domain.Models.Sala", b =>
@@ -290,6 +311,15 @@ namespace ScrumPoker.Data.Migrations
                     b.HasOne("ScrumPoker.Domain.Identity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ScrumPoker.Domain.Identity.User", b =>
+                {
+                    b.HasOne("ScrumPoker.Domain.Models.Perfil", "Perfil")
+                        .WithOne("User")
+                        .HasForeignKey("ScrumPoker.Domain.Identity.User", "PerfilId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

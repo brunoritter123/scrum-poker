@@ -16,6 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private inscricaoLogin;
   private inscricaoLogout;
+  private inscricaoPerfil;
 
   public title = 'Scrum Poker';
   private profActLogin: PoToolbarAction = {
@@ -31,6 +32,12 @@ export class AppComponent implements OnInit, OnDestroy {
     separator: true,
     action: () => this.authService.logout()
   };
+  private profActAlterar: PoToolbarAction = {
+    icon: 'po-icon-user',
+    label: 'Editar Perfil',
+    action: () => this.router.navigate(['editar-perfil'])
+  }
+
   public profileActions: Array<PoToolbarAction> = [];
   public profile: PoToolbarProfile = undefined;
 
@@ -52,23 +59,25 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(){
     if (this.authService.logado()) {
-      this.eventLogin(this.authService.getProfile())
+      this.eventLogin();
+      this.profile = this.authService.profileLogado;
     } else {
       this.eventLogout();
     }
 
-    this.inscricaoLogin = this.authService.eventLogin.subscribe( profile => this.eventLogin(profile));
+    this.inscricaoLogin = this.authService.eventLogin.subscribe(() => this.eventLogin());
     this.inscricaoLogout = this.authService.eventLogout.subscribe(() => this.eventLogout());
+    this.inscricaoPerfil = this.authService.eventPerfil.subscribe( profile => { this.profile=profile });
   }
 
   ngOnDestroy() {
     this.inscricaoLogin.unsubscribe();
     this.inscricaoLogout.unsubscribe();
+    this.inscricaoPerfil.unsubscribe();
   }
 
-  private eventLogin(newProfile: PoToolbarProfile) {
-    this.profile = newProfile;
-    this.profileActions = [this.profActSair];
+  private eventLogin() {
+    this.profileActions = [this.profActAlterar, this.profActSair];
   }
 
   private eventLogout() {

@@ -46,10 +46,11 @@ export class LoginComponent implements OnInit {
   public login(): void{
     this.carregando = true;
 
-    this.authService.login(this.authLogin).subscribe(
-      () => {
+    this.authService.login(this.authLogin).toPromise()
+      .then(() => {
         this.poNotification.success('Logado com sucesso!');
-      }, erro => {
+      })
+      .catch((erro) => {
         if (erro.status == 401) {
 
           if (erro.error.code == 'EmailNotConfirmed') {
@@ -67,9 +68,8 @@ export class LoginComponent implements OnInit {
           this.poNotification.error(`Falha para logar!`);
           console.log(erro);
         }
-      },
-      () => this.carregando = false
-    )
+      })
+      .finally(() => this.carregando = false);
   }
 
   public cadastrar(): void{

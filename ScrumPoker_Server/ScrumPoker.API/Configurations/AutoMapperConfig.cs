@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Net.Security;
+using AutoMapper;
 using ScrumPoker.API.Dtos;
 using ScrumPoker.Domain.Identity;
 using ScrumPoker.Domain.Models;
@@ -18,7 +19,21 @@ namespace ScrumPoker.API.AutoMapper
         {
             CreateMap<Sala, SalaDto>().ReverseMap();
             CreateMap<Carta, CartaDto>().ReverseMap();
-            CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<User, UserRegistroDto>()
+                .ForMember(dest => dest.Nome, opt => {
+                    opt.MapFrom(src => src.Perfil.Nome);
+                });
+            CreateMap<UserRegistroDto, User>()
+                .ForMember(dest => dest.Perfil, opt => {
+                    opt.MapFrom(src => new Perfil() {
+                        Nome = src.Nome
+                    });
+                });
+            CreateMap<Perfil, PerfilDto>()
+                .ForMember(dest => dest.Email, opt => {
+                    opt.MapFrom(src => src.User.Email);
+                });
+            CreateMap<PerfilDto, Perfil>();
         }
     }
 }

@@ -8,8 +8,8 @@ import { map } from 'rxjs/operators'
 import { AuthRegistrar } from '../interfaces/authRegistrar.interface';
 import { AuthLogin } from '../interfaces/authLogin.interface';
 import { TokenJwt } from '../interfaces/tokenJwt.interface';
-import { Observable } from 'rxjs';
 import { AuthResetarSenha } from '../interfaces/authResetarSenha.interface';
+import { Perfil } from '../interfaces/perfil.interface';
 
 @Injectable()
 export class AuthService {
@@ -17,23 +17,23 @@ export class AuthService {
   public isJogador: boolean = true;
   public id: string = '';
   public name: string = '';
-  public eventLogin = new EventEmitter<PoToolbarProfile>();
+  public eventLogin = new EventEmitter();
   public eventLogout = new EventEmitter();
+  public eventPerfil = new EventEmitter<PoToolbarProfile>();
+  public userNameLogin: string;
+  public profileLogado: PoToolbarProfile;
 
   private readonly jwtHelper = new JwtHelperService();
-  private readonly url: string = environment.API + '/auth';
+  private readonly url: string = environment.API;
   private decodedToken: TokenJwt;
+  private perfil: Perfil;
 
   constructor(
     private cookieService: CookieService,
     private http: HttpClient
   ) {
     this.getConfig()
-    const token = localStorage.getItem('token');
-
-    if (this.logado){
-      this.decodedToken = this.jwtHelper.decodeToken(token)
-    }
+    this.loadToken();
   }
 
   public getConfig(): void {
@@ -89,38 +89,38 @@ export class AuthService {
 
   public login(model: AuthLogin){
     return this.http
-      .post(`${this.url}/login`, model).pipe(
+      .post(`${this.url}/user/login`, model).pipe(
         this.pipeLogin()
     )
   }
 
   public cadastrarConta(model: AuthRegistrar) {
-    return this.http.post(`${this.url}/registrar`, model, {
+    return this.http.post(`${this.url}/user/registrar`, model, {
       params: {
-        "urlConfirmaEmail": `${location.origin}/confirmar-email`
+        "urlConfirmaEmail": `${location.origin}/user/confirmar-email`
       }})
   }
 
   public enviarConfirmacaoEmail(userName: string) {
-    return this.http.post(`${this.url}/enviar-confirmacao-email/${userName}`, null, {
+    return this.http.post(`${this.url}/user/enviar-confirmacao-email/${userName}`, null, {
       params: {
-        "urlConfirmaEmail": `${location.origin}/confirmar-email`
+        "urlConfirmaEmail": `${location.origin}/user/confirmar-email`
       }})
   }
 
   public solicitacaoResetarSenha(userName: string) {
-    return this.http.post(`${this.url}/solicitacao-resetar-senha/${userName}`, null, {
+    return this.http.post(`${this.url}/user/solicitacao-resetar-senha/${userName}`, null, {
       params: {
-        "urlResetarSenha": `${location.origin}/confirmar-resetar-senha`
+        "urlResetarSenha": `${location.origin}/user/confirmar-resetar-senha`
       }})
   }
 
   public resetarSenha(userName: string, authResetarSenha: AuthResetarSenha) {
-    return this.http.post(`${this.url}/resetar-senha/`, authResetarSenha)
+    return this.http.post(`${this.url}/user/resetar-senha/`, authResetarSenha)
   }
 
   public confirmarEmail(token: string, userName: string) {
-    return this.http.post(`${this.url}/confirmar-email`, {
+    return this.http.post(`${this.url}/user/confirmar-email`, {
       "token": token,
       "userName": userName
     }).pipe(this.pipeLogin());
@@ -131,13 +131,20 @@ export class AuthService {
       const user = respose;
       if (user) {
         localStorage.setItem('token', user.token);
-        this.decodedToken = this.jwtHelper.decodeToken(user.token);
-        this.eventLogin.emit(this.getProfile());
+        this.loadToken();
       }
     })
   }
 
-
+  private loadToken() {
+    if (this.logado()) {
+      const token = localStorage.getItem('token');
+      this.decodedToken = this.jwtHelper.decodeToken(token);
+      this.userNameLogin = this.decodedToken.nameid;
+      this.eventLogin.emit();
+      this.getProfile();
+    }
+  }
 
   public logado(): boolean {
     const token = localStorage.getItem('token');
@@ -146,22 +153,25 @@ export class AuthService {
 
   public logout() {
     localStorage.removeItem('token');
+    this.userNameLogin = '';
     this.eventLogout.emit();
   }
 
-  public getProfile() {
-    let profile: PoToolbarProfile = null;
+  public getProfile(): void {
 
-    if (this.decodedToken)
-    {
-      profile = {
-        //avatar: string
-        title: this.decodedToken.unique_name,
-        subtitle: this.decodedToken.email
-      }
-    }
+    this.http.get<Perfil>(`${this.url}/perfil/${this.userNameLogin}`)
+      .toPromise()
+      .then((perfil) => {
 
-    return profile
+        let profile: PoToolbarProfile = {
+          //avatar: string
+          title: perfil.nome,
+          subtitle: perfil.email
+        }
+
+        this.profileLogado = profile
+        this.eventPerfil.emit(profile)
+      })
   }
 
 }

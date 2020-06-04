@@ -2,8 +2,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ScrumPoker.API.Dtos
 {
-    public class UserDto
+    public class UserRegistroDto
     {
+
+        [Required]
+        public string Nome { get; set; }
+
         [Required]
         public string UserName { get; set; }
 

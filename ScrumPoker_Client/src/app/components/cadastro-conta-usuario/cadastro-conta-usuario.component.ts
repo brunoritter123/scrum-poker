@@ -26,6 +26,7 @@ export class CadastroContaUsuarioComponent implements OnInit {
 
   private validation() {
     this.registrarForm = this.fb.group({
+      nome: ['', Validators.required],
       login: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       senhas: this.fb.group({
@@ -53,6 +54,7 @@ export class CadastroContaUsuarioComponent implements OnInit {
     this.carregando = true;
 
     const authRegistrar: AuthRegistrar = {
+      nome: this.nome.value,
       userName: this.login.value,
       email: this.email.value,
       password: this.senha.value
@@ -64,18 +66,28 @@ export class CadastroContaUsuarioComponent implements OnInit {
         this.router.navigate(['confirmar-email']);
       })
       .catch((erro) => {
-        erro.error.forEach(element  => {
-          switch (element.code) {
-            case 'DuplicateUserName':
-              this.poNotification.error('Nome de usuário duplicado!');
-              break;
-            default:
-              this.poNotification.error(`Erro no cadastro! Code: ${element.code}`);
-              break
-          };
-        });
+        console.log(erro)
+
+        if (typeof erro.error === 'object' && Array.isArray(erro.error)) {
+          erro.error.forEach(element  => {
+            switch (element.code) {
+              case 'DuplicateUserName':
+                this.poNotification.error('Nome de usuário duplicado!');
+                break;
+              default:
+                this.poNotification.error(`Erro no cadastro! Code: ${element.code}`);
+                break
+            };
+          });
+        } else {
+          this.poNotification.error("Erro ao tentar registrar o usuário");
+        }
       })
       .finally(() => this.carregando = false)
+  }
+
+  get nome() {
+    return this.registrarForm.get('nome');
   }
 
   get login() {

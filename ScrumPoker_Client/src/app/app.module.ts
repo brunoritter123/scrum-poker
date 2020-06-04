@@ -19,6 +19,7 @@ import { SalaResolver } from './guards/sala.resolver';
 import { CadastroContaUsuarioComponent } from './components/cadastro-conta-usuario/cadastro-conta-usuario.component';
 import { ConfirmarEmailComponent } from './components/confirmar-email/confirmar-email.component';
 import { ConfirmarResetarSenhaComponent } from './components/confirmar-resetar-senha/confirmar-resetar-senha.component';
+import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ConfirmarResetarSenhaComponent } from './components/confirmar-resetar-s
     LoginComponent,
     CadastroContaUsuarioComponent,
     ConfirmarEmailComponent,
-    ConfirmarResetarSenhaComponent
+    ConfirmarResetarSenhaComponent,
+    EditarPerfilComponent
   ],
   imports: [
     BrowserModule,

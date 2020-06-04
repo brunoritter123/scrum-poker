@@ -16,6 +16,7 @@ namespace ScrumPoker.API.Configurations
 
             services.AddScoped<ISalaRepository, SalaRepository>();
             services.AddScoped<ICartaRepository, CartaRepository>();
+            services.AddScoped<IPerfilRepository, PerfilRepository>();
 
             services.AddTransient<IEmailSender, EmailSender>();
         }

@@ -18,6 +18,8 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using System.IO;
 using ScrumPoker.CrossCutting.Templates;
+using ScrumPoker.Domain.Interfaces.Repositories;
+using ScrumPoker.Domain.Models;
 
 namespace ScrumPoker.API.Controllers
 {
@@ -25,31 +27,34 @@ namespace ScrumPoker.API.Controllers
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly IConfiguration _config;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _singInManager;
         private readonly IMapper _mapper;
         private readonly IEmailSender _emailSender;
+        private readonly IPerfilRepository _repo;
 
-        public AuthController(
+        public UserController(
             IConfiguration config,
             UserManager<User> userManager,
             SignInManager<User> singInManager,
             IEmailSender emailSender,
-            IMapper mapper)
+            IMapper mapper,
+            IPerfilRepository repo)
         {
             this._userManager = userManager;
             this._singInManager = singInManager;
             this._mapper = mapper;
             this._config = config;
             this._emailSender = emailSender;
+            this._repo = repo;
         }
 
         [HttpPost("Registrar")]
         public async Task<ActionResult> Registrar(
-            [FromBody] UserDto userDto,
+            [FromBody] UserRegistroDto userDto,
             [FromQuery] string urlConfirmaEmail)
         {
             if (urlConfirmaEmail is null || !Uri.IsWellFormedUriString(urlConfirmaEmail, UriKind.Absolute))
@@ -63,12 +68,13 @@ namespace ScrumPoker.API.Controllers
                 } );
 
             var user = _mapper.Map<User>(userDto);
+
             var result = await _userManager.CreateAsync(user, userDto.Password);
-            var userResult = _mapper.Map<UserDto>(user);
+            var userResult = _mapper.Map<UserRegistroDto>(user);
 
             if (!result.Succeeded) return BadRequest(result.Errors);
 
-            await EnviarConfirmacaoEmail(user.UserName, urlConfirmaEmail);
+            await EnviarConfirmacaoEmail(userResult.UserName, urlConfirmaEmail);
 
             return Created("Login", userResult);
         }
@@ -102,6 +108,7 @@ namespace ScrumPoker.API.Controllers
 
             var appUser = await _userManager
                 .Users
+                .Include(x => x.Perfil)
                 .FirstOrDefaultAsync(u => u.NormalizedUserName == userLogin.UserName.ToUpper());
 
             return Ok(new {
@@ -135,6 +142,7 @@ namespace ScrumPoker.API.Controllers
 
             var appUser = await _userManager
                 .Users
+                .Include(x => x.Perfil)
                 .FirstOrDefaultAsync(u => u.NormalizedUserName == userEmail.UserName.ToUpper());
 
             return Ok(new {
@@ -167,7 +175,8 @@ namespace ScrumPoker.API.Controllers
             urlConfirmaEmail += $"?token={System.Web.HttpUtility.UrlEncode(token)}";
             urlConfirmaEmail += $"&userName={System.Web.HttpUtility.UrlEncode(user.UserName)}";
 
-            string emailHtml = await EmailTemplate.GetEmailConfirmarEmailAsync(urlConfirmaEmail, user.UserName);
+            var perfil = await _repo.BuscarPorIdAsync(user.PerfilId);
+            string emailHtml = await EmailTemplate.GetEmailConfirmarEmailAsync(urlConfirmaEmail, perfil.Nome);
             await _emailSender.SendEmailAsync(user.Email, "Confirmação de e-mail - ScrumPoker" ,emailHtml);
 
             return NoContent();
@@ -207,8 +216,8 @@ namespace ScrumPoker.API.Controllers
         {
             var claims = new List<Claim>()
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(ClaimTypes.NameIdentifier, user.UserName),
+                new Claim(ClaimTypes.Name, user.Perfil.Nome),
                 new Claim(ClaimTypes.Email, user.Email)
             };
 

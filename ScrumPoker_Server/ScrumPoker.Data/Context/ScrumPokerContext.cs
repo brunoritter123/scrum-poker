@@ -17,6 +17,7 @@ namespace ScrumPoker.Data.Context
 
         public DbSet<Sala> Sala { get; set; }
         public DbSet<Carta> Carta { get; set; }
+        public DbSet<Perfil> Perfil { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +26,7 @@ namespace ScrumPoker.Data.Context
             modelBuilder.ApplyConfiguration(new SalaMap());
             modelBuilder.ApplyConfiguration(new CartaMap());
             modelBuilder.ApplyConfiguration(new UserRoleMap());
+            modelBuilder.ApplyConfiguration(new PerfilMap());
         }
     }
 }
