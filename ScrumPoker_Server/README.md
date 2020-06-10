@@ -2,6 +2,10 @@
 
 Esse projeto foi gerado com  [.Net Core](https://dotnet.microsoft.com/download/dotnet-core/3.1) versão 3.1
 
+## Instalação
+- **dotnet** - Fazer a instalção do [.NET Core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+- **dotnet ef** - Execute `dotnet tool install -g dotnet-ef --version 3.1.1`
+
 ## Configurando user-secrets
 Execute `dotnet user-secrets init --project ./ScrumPoker.API/` para criar o arquivo de *secrets*.
 - Execute `dotnet user-secrets set ConnStr "sua-connection-string" --project ScrumPoker.API/` para informar sua *connection string* do banco de dados **sqlite**.
