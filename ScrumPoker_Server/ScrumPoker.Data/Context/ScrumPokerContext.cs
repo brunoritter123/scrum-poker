@@ -16,6 +16,7 @@ namespace ScrumPoker.Data.Context
         public ScrumPokerContext(DbContextOptions<ScrumPokerContext> options) : base(options) { }
 
         public DbSet<Sala> Sala { get; set; }
+        public DbSet<SalaConfiguracao> SalaConfiguracao { get; set; }
         public DbSet<Carta> Carta { get; set; }
         public DbSet<Perfil> Perfil { get; set; }
 
@@ -24,6 +25,8 @@ namespace ScrumPoker.Data.Context
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new SalaMap());
+            modelBuilder.ApplyConfiguration(new SalaConfiguracaoMap());
+            modelBuilder.ApplyConfiguration(new SalaParticipanteMap());
             modelBuilder.ApplyConfiguration(new CartaMap());
             modelBuilder.ApplyConfiguration(new UserRoleMap());
             modelBuilder.ApplyConfiguration(new PerfilMap());

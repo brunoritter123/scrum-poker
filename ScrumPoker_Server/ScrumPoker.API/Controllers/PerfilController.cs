@@ -61,10 +61,10 @@ namespace ScrumPoker.API.Controllers
             return Ok(_mapper.Map<PerfilDto>(perfil));
         }
 
-        [HttpPost]
-        public async Task<string> AlteraImagem(FileUPloadAPI objfile)
-        {
-            IFormFile
-        }
+        // [HttpPost]
+        // public async Task<string> AlteraImagem(FileUPloadAPI objfile)
+        // {
+        //     IFormFile
+        // }
     }
 }

@@ -10,3 +10,8 @@
 <po-modal #modalSobre p-click-out="true" p-size="md" p-title="Sobre" [p-primary-action]="primaryActionSobre">
   <app-sobre></app-sobre>
 </po-modal>
+
+<po-loading-overlay *ngIf="carregando"
+p-screen-lock="false"
+p-text="Carregando" >
+</po-loading-overlay>

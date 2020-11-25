@@ -10,6 +10,7 @@ export class SalaResolver implements Resolve<Sala> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<Sala> {
     let salaId = route.params['salaId'];
-    return this.salaService.buscarSalaOuDefault(salaId);
+    return this.salaService.buscarSala(salaId)
+    .then((sala) => {return sala});
   }
 }

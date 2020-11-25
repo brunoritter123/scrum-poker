@@ -21,7 +21,7 @@ namespace ScrumPoker.Data.Maps
                 .IsRequired();
 
             builder
-                .Property(x => x.SalaId)
+                .Property(x => x.SalaConfiguracaoId)
                 .IsRequired();
 
             builder

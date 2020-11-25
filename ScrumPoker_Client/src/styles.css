@@ -1,1 +1,47 @@
-/* You can add global styles to this file, and also import other style files */
+h2{
+	color: #4a5c60;
+}
+
+.pad-15{
+	padding: 15px;
+}
+
+.pad-b-20{
+	padding-bottom: 20px;
+}
+
+.pad-b-10{
+	padding-bottom: 10px;
+}
+
+.pad-b-5{
+	padding-bottom: 5px;
+}
+
+.txt-verde{
+  color: #0f0;
+  font-weight: bold;
+}
+
+.txt-vermelho{
+  color: red;
+  font-weight: bold;
+}
+
+.off {
+  text-decoration: line-through;;
+  color: gray;
+}
+
+.click {
+  cursor:pointer;
+}
+
+.f-bold {
+  font-weight: bold
+}
+
+.txt-thf{
+  color: #0c9abe;
+  font-weight: bold;
+}

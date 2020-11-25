@@ -1,0 +1,67 @@
+<po-page-default>
+  <div class="po-row">
+    <div class="pad-b-10 po-sm-12 po-md-7 po-lg-6 po-xl-6">
+      <po-widget p-title="Sala: {{sala.id}}" class="pad-b-10 po-sm-12 po-md-12 po-lg-12 po-xl-12">
+        <app-votacao></app-votacao>
+        <!--Estatisticas-->
+        <!-- <div *ngIf="sala.jogoFinalizado">
+          <h3 class="po-sm-12 txt-vermelho">Mais Votado: {{maisVotado}}</h3>
+          <h3 class="po-sm-6 po-md-6 po-lg-6">Ponto</h3>
+          <h3 class="po-sm-6 po-md-6 po-lg-6">Votos</h3>
+          <div *ngFor="let ponto of pontuacao">
+            <h4 class="po-sm-6 po-md-6 po-lg-6">
+              <span *ngIf="ponto.carta.label > ''">{{ponto.carta.label}}</span>
+              <span *ngIf="!ponto.carta.label" class="txt-vermelho"> - </span>
+            </h4>
+            <h4 class="po-sm-6 po-md-6 po-lg-6">{{ponto.votos}}</h4>
+          </div> -->
+
+          <!--Botões-->
+          <!-- <div>
+            <div class="row">
+              <po-button *ngIf="isPodeExec(configSala.resetar)" class="po-p-1 po-sm-12 po-md-6 po-lg-6 po-xl-6"
+                (p-click)="resetClick(true)" p-label="Revotar" p-type="primary">
+              </po-button>
+              <po-button *ngIf="isPodeExec(configSala.finalizar)" class="po-p-1 po-sm-12 po-md-6 po-lg-6 po-xl-6"
+                (p-click)="concluirClick()" p-label="Concluir" p-type="primary">
+              </po-button>
+            </div>
+          </div>
+        </div> -->
+
+      </po-widget>
+    </div>
+
+    <div class=" pad-b-10 po-sm-12 po-md-5 po-lg-6 po-xl-6">
+      <!--Jogadores-->
+      <div class="pad-b-10 po-sm-12 po-md-12 po-lg-7 po-xl-8">
+        <app-jogadores>
+        </app-jogadores>
+      </div>
+
+      <!--Adminstrador-->
+      <div class="pad-b-10 po-sm-12 po-md-12 po-lg-5 po-xl-4">
+        <app-administradores>
+        </app-administradores>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="po-row">
+    <po-button class="po-sm-3" p-label="View Page Slide" (p-click)="pageSlide.open()"></po-button>
+  </div>
+</po-page-default>
+
+<po-page-slide
+  #pageSlide
+  p-title="Configuração"
+  p-click-out="true"
+  p-size="auto">
+  <app-configurar-sala (close)="pageSlide.close()"></app-configurar-sala>
+</po-page-slide>
+
+<po-loading-overlay *ngIf="carregando"
+p-screen-lock="false"
+p-text="Carregando" >
+</po-loading-overlay>

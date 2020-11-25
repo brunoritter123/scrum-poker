@@ -8,7 +8,7 @@ namespace ScrumPoker.Domain.Models
         public bool Especial { get; set;}
 
 
-        public string SalaId { get; set; }
-        public Sala Sala { get; }
+        public long SalaConfiguracaoId { get; set; }
+        public SalaConfiguracao SalaConfiguracao { get; }
     }
 }

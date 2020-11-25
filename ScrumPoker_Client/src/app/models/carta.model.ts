@@ -5,7 +5,8 @@ export class Carta {
     public idSala: string = '',
     public ordem: number,
     public value: string = '',
-    public especial: boolean = false
+    public especial: boolean = false,
+    public typeButton: string = 'default'
   ) {}
 
 }

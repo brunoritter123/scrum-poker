@@ -6,6 +6,7 @@ using ScrumPoker.Domain.Models;
 using System.Threading.Tasks;
 using AutoMapper;
 using ScrumPoker.API.Dtos;
+using ScrumPoker.API.Interfaces;
 
 namespace ScrumPoker.API.Controllers
 {
@@ -15,56 +16,33 @@ namespace ScrumPoker.API.Controllers
     [ApiController]
     public class SalaController : ControllerBase
     {
-        private readonly ISalaRepository _repo;
+        private readonly ISalaService _salaService;
         private readonly IMapper _mapper;
 
-        public SalaController(ISalaRepository repo, IMapper mapper)
+        public SalaController(ISalaService salaService, IMapper mapper)
         {
-            _repo = repo;
             _mapper = mapper;
+            _salaService = salaService;
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<SalaDto>> BuscarPorIdAsync(string id)
+        public async Task<ActionResult<SalaDto>> ObterPorIdAsync(string id)
         {
-            var sala = await _repo.BuscarPorIdAsync(id);
-
-            if (sala is null)
-                return NotFound();
-
-            return Ok(_mapper.Map<SalaDto>(sala));
+            var sala = await _salaService.ObterPorIdAsync(id);
+            return Ok(sala);
         }
 
-        [HttpPost]
-        public async Task<ActionResult<SalaDto>> IncluiAsync([FromBody] SalaDto salaDto)
+        [HttpPost("{id}")]
+        public async Task<ActionResult<SalaDto>> IncluirSalaPadraoAsync(string id)
         {
-            if (await _repo.ExisteEntityAsync(salaDto.Id))
-                return BadRequest($"Id da sala {salaDto.Id}, já existe no banco de dados");
-
-            var sala = await _repo.IncluirAsync(_mapper.Map<Sala>(salaDto));
-            return Created(nameof(BuscarPorIdAsync), _mapper.Map<SalaDto>(sala));
-        }
-
-        [HttpPut]
-        public async Task<ActionResult<SalaDto>> AlterarAsync([FromBody] SalaDto salaDto)
-        {
-            var sala = await _repo.BuscarPorIdAsync(salaDto.Id);
-            if (sala is null) return NotFound();
-
-            sala.Cartas = sala.Cartas.ToList();
-            _mapper.Map(salaDto, sala);
-            await _repo.AlterarAsync(sala);
-
-            return Ok(_mapper.Map<SalaDto>(sala));
+            var sala = await _salaService.IncluirSalaPadraoAsync(id);
+            return Ok(sala);
         }
 
         [HttpDelete("{id}/cartas")]
         public async Task<ActionResult> ExcluirCartasAsync(string id)
         {
-            if ( !(await _repo.ExisteEntityAsync(id)) )
-                return NotFound();
-
-            await _repo.ExcluirCartasAsync(id);
+            await _salaService.ExcluirCartasAsync(id);
 
             return NoContent();
         }

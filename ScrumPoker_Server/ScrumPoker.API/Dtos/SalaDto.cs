@@ -10,19 +10,11 @@ namespace ScrumPoker.API.Dtos
         public string Id { get; set; }
 
         [Required]
-        public bool JogadorFinalizaJogo { get; set; }
+        public bool JogoFinalizado { get; set; }
 
         [Required]
-        public bool JogadorResetaJogo { get; set; }
-
-        [Required]
-        public bool JogadorRemoveJogador { get; set; }
-
-        [Required]
-        public bool JogadorRemoveAdministrador { get; set; }
-
-
-        [Required]
-        public IEnumerable<CartaDto> Cartas { get; set; }
+        public SalaConfiguracaoDto Configuracao { get; set; }
+        public IEnumerable<SalaParticipanteDto> Administradores { get; set; }
+        public IEnumerable<SalaParticipanteDto> Jogadores { get; set; }
     }
 }

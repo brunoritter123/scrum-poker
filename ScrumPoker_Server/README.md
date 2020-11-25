@@ -8,7 +8,7 @@ Esse projeto foi gerado com  [.Net Core](https://dotnet.microsoft.com/download/d
 
 ## Configurando user-secrets
 Execute `dotnet user-secrets init --project ./ScrumPoker.API/` para criar o arquivo de *secrets*.
-- Execute `dotnet user-secrets set ConnStr "sua-connection-string" --project ScrumPoker.API/` para informar sua *connection string* do banco de dados **sqlite**.
+- Execute `dotnet user-secrets set ConnStr "Data Source=data_base.db;" --project ScrumPoker.API/` para informar sua *connection string* do banco de dados **sqlite**.
 - Execute `dotnet user-secrets set JwtSecretKey "sua-token-jwt" --project ScrumPoker.API/` para informar sua *scret key* do **token** para autenticação usando **JWT**.
 - Execute `dotnet user-secrets set EmailPassword "sua-senha-do-email" --project ScrumPoker.API/` para informar sua senha do **e-mail** para uso da aplicaçao.
 
@@ -23,7 +23,7 @@ Execute `dotnet ef migrations add "nome-da-migration" --project ./ScrumPoker.Dat
 Execute `dotnet ef database update --project ./ScrumPoker.Data/ --startup-project ./ScrumPoker.API/` atulizando o banco de banco de dados com as migrations do projeto.
 
 ## Build
-Execute `dotnet build ScrumPoker_Server.sln` para contruir os executaveis do projeto.
+Execute `dotnet build ScrumPoker.sln` para contruir os executaveis do projeto.
 
 ## Teste unitários
-Execute `dotnet test ScrumPoker_Server.sln` para iniciar os testes unitários via [xUnit](https://xunit.net/).
+Execute `dotnet test ScrumPoker.sln` para iniciar os testes unitários via [xUnit](https://xunit.net/).

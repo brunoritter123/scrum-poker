@@ -225,9 +225,8 @@ namespace ScrumPoker.Data.Migrations
                     b.Property<int>("Ordem")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("SalaId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<long>("SalaConfiguracaoId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Value")
                         .IsRequired()
@@ -235,7 +234,7 @@ namespace ScrumPoker.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SalaId");
+                    b.HasIndex("SalaConfiguracaoId");
 
                     b.ToTable("Carta");
                 });
@@ -260,6 +259,20 @@ namespace ScrumPoker.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("JogoFinalizado")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sala");
+                });
+
+            modelBuilder.Entity("ScrumPoker.Domain.Models.SalaConfiguracao", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
                     b.Property<bool>("JogadorFinalizaJogo")
                         .HasColumnType("INTEGER");
 
@@ -272,9 +285,47 @@ namespace ScrumPoker.Data.Migrations
                     b.Property<bool>("JogadorResetaJogo")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("SalaId")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Sala");
+                    b.HasIndex("SalaId")
+                        .IsUnique();
+
+                    b.ToTable("SalaConfiguracao");
+                });
+
+            modelBuilder.Entity("ScrumPoker.Domain.Models.SalaParticipante", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ConexaoId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Jogador")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Online")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SalaId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("VotoCartaValor")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SalaId");
+
+                    b.ToTable("SalaParticipante");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -345,8 +396,24 @@ namespace ScrumPoker.Data.Migrations
 
             modelBuilder.Entity("ScrumPoker.Domain.Models.Carta", b =>
                 {
-                    b.HasOne("ScrumPoker.Domain.Models.Sala", "Sala")
+                    b.HasOne("ScrumPoker.Domain.Models.SalaConfiguracao", "SalaConfiguracao")
                         .WithMany("Cartas")
+                        .HasForeignKey("SalaConfiguracaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ScrumPoker.Domain.Models.SalaConfiguracao", b =>
+                {
+                    b.HasOne("ScrumPoker.Domain.Models.Sala", "Sala")
+                        .WithOne("Configuracao")
+                        .HasForeignKey("ScrumPoker.Domain.Models.SalaConfiguracao", "SalaId");
+                });
+
+            modelBuilder.Entity("ScrumPoker.Domain.Models.SalaParticipante", b =>
+                {
+                    b.HasOne("ScrumPoker.Domain.Models.Sala", "Sala")
+                        .WithMany("Participantes")
                         .HasForeignKey("SalaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

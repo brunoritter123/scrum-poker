@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 
 import { PoMenuItem, PoModalComponent, PoModalAction, PoToolbarAction, PoToolbarProfile } from '@po-ui/ng-components';
-import { SignalRService } from './services/signal-r.service';
 
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { LoadPageService } from './services/load-page.service';
 
 @Component({
   selector: 'app-root',
@@ -14,16 +15,19 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit, OnDestroy {
   @ViewChild('modalSobre', { static: true }) modalSobre: PoModalComponent;
 
-  private inscricaoLogin;
-  private inscricaoLogout;
-  private inscricaoPerfil;
+  private inscricaoLogin: Subscription;
+  private inscricaoLogout: Subscription;
+  private inscricaoPerfil: Subscription;
+  private inscricaoLoadSala: Subscription;
 
   public title = 'Scrum Poker';
+  public carregando = false;
+
   private profActLogin: PoToolbarAction = {
     icon: 'po-icon-user',
     label: 'Login',
     separator: true,
-    action: () => this.router.navigate([''])
+    url: 'login'
   };
   private profActSair: PoToolbarAction = {
     icon: 'po-icon-exit',
@@ -35,7 +39,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private profActAlterar: PoToolbarAction = {
     icon: 'po-icon-user',
     label: 'Editar Perfil',
-    action: () => this.router.navigate(['editar-perfil'])
+    url: 'editar-perfil'
   }
 
   public profileActions: Array<PoToolbarAction> = [];
@@ -53,7 +57,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private router: Router,
-    public signalRService: SignalRService
+    private loadPageService: LoadPageService
     ) {
   }
 
@@ -68,6 +72,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.inscricaoLogin = this.authService.eventLogin.subscribe(() => this.eventLogin());
     this.inscricaoLogout = this.authService.eventLogout.subscribe(() => this.eventLogout());
     this.inscricaoPerfil = this.authService.eventPerfil.subscribe( profile => { this.profile=profile });
+    this.inscricaoLoadSala = this.loadPageService.loadPage.subscribe((load) => this.carregando = load);
   }
 
   ngOnDestroy() {

@@ -15,7 +15,7 @@ import { Perfil } from '../interfaces/perfil.interface';
 export class AuthService {
   public idSala: string = '';
   public isJogador: boolean = true;
-  public id: string = '';
+  public idParticipante: string = '';
   public name: string = '';
   public eventLogin = new EventEmitter();
   public eventLogout = new EventEmitter();
@@ -29,7 +29,6 @@ export class AuthService {
   private perfil: Perfil;
 
   constructor(
-    private cookieService: CookieService,
     private http: HttpClient
   ) {
     this.getConfig()
@@ -37,18 +36,17 @@ export class AuthService {
   }
 
   public getConfig(): void {
-    this.idSala = this.cookieService.get('idSala')
-    this.name = this.cookieService.get('nome')
-    this.isJogador = this.cookieService.get('isJogador') == 'true'
+
+    this.idSala = localStorage.getItem('idSala')
+    this.name = localStorage.getItem('nome')
+    this.isJogador = localStorage.getItem('isJogador') == 'true'
 
     if (!!this.idSala) {
-      if (this.cookieService.check(this.idSala.toUpperCase())) {
-        this.id = this.cookieService.get(this.idSala.toUpperCase())
-
-      } else {
-        this.id = this.idSala.toUpperCase() + this.aleatorio(30)
-        this.cookieService.set(this.idSala.toUpperCase(), this.id);
-      }
+        this.idParticipante = localStorage.getItem(this.idSala.toUpperCase())
+        if (!this.idParticipante) {
+          this.idParticipante = this.idSala.toUpperCase() + this.aleatorio(30)
+          localStorage.setItem(this.idSala.toUpperCase(), this.idParticipante)
+        }
     }
   }
 
@@ -57,17 +55,18 @@ export class AuthService {
     this.idSala = idSala
     this.name = nome
     this.isJogador = isJogador
-    this.cookieService.set('idSala', idSala, dtExpires);
-    this.cookieService.set('nome', nome, dtExpires);
-    this.cookieService.set('isJogador', isJogador.toString(), dtExpires);
-    this.cookieService.set('isIntegraJira', isIntegraJira.toString(), dtExpires);
 
-    if (this.cookieService.check(idSala.toUpperCase())) {
-      this.id = this.cookieService.get(idSala.toUpperCase())
+    localStorage.setItem('idSala', idSala)
+    localStorage.setItem('nome', nome)
+    localStorage.setItem('isJogador', isJogador.toString())
+    localStorage.setItem('isIntegraJira', isIntegraJira.toString())
 
-    } else {
-      this.id = idSala.toUpperCase() + this.aleatorio(25)
-      this.cookieService.set(idSala.toUpperCase(), this.id, dtExpires);
+    if (!!this.idSala) {
+      this.idParticipante = localStorage.getItem(this.idSala.toUpperCase())
+      if (!this.idParticipante) {
+        this.idParticipante = this.idSala.toUpperCase() + this.aleatorio(30)
+        localStorage.setItem(this.idSala.toUpperCase(), this.idParticipante)
+      }
     }
   }
 
@@ -84,7 +83,7 @@ export class AuthService {
   }
 
   public setCookie(nameCokie: string, valorCookie: string) {
-    this.cookieService.set(nameCokie, valorCookie, new Date(2100, 1, 1))
+    localStorage.setItem(nameCokie, valorCookie)
   }
 
   public login(model: AuthLogin){
@@ -97,21 +96,21 @@ export class AuthService {
   public cadastrarConta(model: AuthRegistrar) {
     return this.http.post(`${this.url}/user/registrar`, model, {
       params: {
-        "urlConfirmaEmail": `${location.origin}/user/confirmar-email`
+        "urlConfirmaEmail": `${location.origin}/confirmar-email`
       }})
   }
 
   public enviarConfirmacaoEmail(userName: string) {
     return this.http.post(`${this.url}/user/enviar-confirmacao-email/${userName}`, null, {
       params: {
-        "urlConfirmaEmail": `${location.origin}/user/confirmar-email`
+        "urlConfirmaEmail": `${location.origin}/confirmar-email`
       }})
   }
 
   public solicitacaoResetarSenha(userName: string) {
     return this.http.post(`${this.url}/user/solicitacao-resetar-senha/${userName}`, null, {
       params: {
-        "urlResetarSenha": `${location.origin}/user/confirmar-resetar-senha`
+        "urlResetarSenha": `${location.origin}/confirmar-resetar-senha`
       }})
   }
 

@@ -1,0 +1,47 @@
+<form #f="ngForm">
+    <po-input
+      p-label="ID Sala"
+      class="po-md-12"
+      name="idSala"
+      [(ngModel)]="idSala"
+      [p-maxlength]="12"
+      [p-minlength]="3"
+      p-required="true"
+      p-placeholder="ID Sala">
+    </po-input>
+
+    <po-input
+      p-label="Nome"
+      class="po-md-12"
+      name="nome"
+      [(ngModel)]="nome"
+      [p-maxlength]="12"
+      [p-minlength]="3"
+      p-required="true"
+      p-placeholder="Informe seu nome"
+      (keyup.enter)="entrar('jogo')">
+    </po-input>
+
+    <po-divider class="po-sm-12"></po-divider>
+
+    <po-switch
+      p-label= "Entrar como:"
+      [p-label-position]="switchLabelPosition"
+      name="jogador"
+      class="po-sm-12 po-md-12"
+      id="jogador"
+      [(ngModel)]="jogador"
+      p-label-off="Administrador"
+      p-label-on="Jogador"
+      p-required="true">
+    </po-switch>
+
+    <po-divider class="po-sm-12"></po-divider>
+
+    <po-button
+      (p-click)="entrar()"
+      class="po-md-12 po-mb-1"
+      p-label="Criar/Entrar"
+      p-type="primary" >
+    </po-button>
+</form>

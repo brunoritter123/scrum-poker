@@ -18,8 +18,8 @@ export class PerfilService {
     private authService: AuthService
   ) { }
 
-  public buscarPerfil(usarName: string): Promise<Perfil> {
-      return this.http.get<Perfil>(`${this.url}/perfil/${usarName}`)
+  public buscarPerfil(userName: string): Promise<Perfil> {
+      return this.http.get<Perfil>(`${this.url}/perfil/${userName}`)
       .toPromise()
   }
 

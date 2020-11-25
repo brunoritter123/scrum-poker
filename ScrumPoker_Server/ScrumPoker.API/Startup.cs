@@ -80,7 +80,7 @@ namespace ScrumPoker.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<ChartHub>("/chart");
+                endpoints.MapHub<SalaHub>("/sala-hub");
             });
         }
     }

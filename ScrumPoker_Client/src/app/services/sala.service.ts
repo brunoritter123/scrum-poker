@@ -16,35 +16,23 @@ export class SalaService {
     private poNotification: PoNotificationService
   ) { }
 
-  private buscarSala(salaId: string): Promise<Sala> {
-      return this.http.get<Sala>(`${this.url}/sala/${salaId}`)
+  public buscarSala(salaId: string): Promise<Sala> {
+    return this.http.get<Sala>(`${this.url}/sala/${salaId}`)
       .toPromise()
-  }
-
-  private incluiSala(sala: Sala): Promise<any> {
-    return this.http.post(`${this.url}/sala/`, sala)
-    .toPromise()
-  }
-
-  public buscarSalaOuDefault(salaId: string): Promise<Sala> {
-
-    return this.buscarSala(salaId)
       .catch( erro => {
-
-        // Se não encontra a sala inclui uma com os valores default
-        if (erro.status == 404) {
-          return this.incluiSala(new Sala(salaId))
-                     .catch(erro => {
-                      this.poNotification.error('Houve um erro ao tentar incluir uma sala default.');
-                      console.log(erro);
-                      throw erro;
-                     })
-
-        } else {
           this.poNotification.error('Houve um erro ao tentar buscar a sala.');
           console.log(erro);
           throw erro;
-        }
+      })
+  }
+
+  public incluirSalaPadrao(salaId: string): Promise<Sala> {
+    return this.http.post<Sala>(`${this.url}/sala/${salaId}`, {})
+      .toPromise()
+      .catch( erro => {
+          this.poNotification.error('Houve um erro ao tentar buscar a sala.');
+          console.log(erro);
+          throw erro;
       })
   }
 

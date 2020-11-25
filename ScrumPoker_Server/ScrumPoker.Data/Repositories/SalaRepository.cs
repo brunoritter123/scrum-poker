@@ -35,7 +35,9 @@ namespace ScrumPoker.Data.Repositories
         public async Task<Sala> BuscarPorIdAsync(string id)
         {
             var sala = await _context.Set<Sala>()
-                                .Include(x => x.Cartas)
+                                .Include(x => x.Configuracao)
+                                .Include(x => x.Configuracao.Cartas)
+                                .Include(x => x.Participantes)
                                 .FirstOrDefaultAsync(x => x.Id == id);
 
             return sala;
@@ -50,7 +52,7 @@ namespace ScrumPoker.Data.Repositories
         public async Task ExcluirCartasAsync(string id)
         {
             var sala = await BuscarPorIdAsync(id);
-            _context.Set<Carta>().RemoveRange(sala.Cartas);
+            _context.Set<Carta>().RemoveRange(sala.Configuracao.Cartas);
             await _context.SaveChangesAsync();
         }
     }

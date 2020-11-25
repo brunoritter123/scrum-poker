@@ -13,22 +13,13 @@ namespace ScrumPoker.Data.Maps
             builder.HasKey(x => x.Id);
 
             builder
-                .Property(x => x.JogadorFinalizaJogo)
+                .Property(x => x.JogoFinalizado)
                 .IsRequired();
 
-            builder
-                .Property(x => x.JogadorRemoveJogador)
-                .IsRequired();
+            builder.HasOne(x => x.Configuracao)
+                .WithOne(x => x.Sala);
 
-            builder
-                .Property(x => x.JogadorRemoveAdministrador)
-                .IsRequired();
-
-            builder
-                .Property(x => x.JogadorRemoveJogador)
-                .IsRequired();
-
-            builder.HasMany(x => x.Cartas)
+            builder.HasMany(x => x.Participantes)
                 .WithOne(x => x.Sala);
         }
     }
