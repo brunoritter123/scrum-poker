@@ -9,6 +9,8 @@ namespace ScrumPoker.API.Dtos
         [Required]
         public string Id { get; set; }
 
+        public string titulo { get; set; }
+
         [Required]
         public bool JogoFinalizado { get; set; }
 

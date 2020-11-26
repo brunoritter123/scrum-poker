@@ -1,4 +1,5 @@
 using ScrumPoker.API.Dtos;
+using ScrumPoker.Domain.Models;
 using System.Threading.Tasks;
 
 namespace ScrumPoker.API.Interfaces
@@ -9,5 +10,7 @@ namespace ScrumPoker.API.Interfaces
         Task<SalaDto> IncluirSalaPadraoAsync(string id);
         Task<SalaDto> AlterarAsync(SalaDto salaDto);
         Task ExcluirCartasAsync(string id);
+        Task<SalaDto> ResetarSala(string salaId);
+        Task<SalaDto> FinalizarJogo(string salaId);
     }
 }

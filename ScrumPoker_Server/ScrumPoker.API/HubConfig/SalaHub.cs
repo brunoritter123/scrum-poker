@@ -14,13 +14,16 @@ namespace ScrumPoker.API.HubConfig
     {
         private readonly ISalaConfiguracaoService _salaConfiguracaoService;
         private readonly ISalaParticipanteService _participanteService;
+        private readonly ISalaService _salaService;
 
         public SalaHub(
             ISalaConfiguracaoService salaConfiguracaoService,
-            ISalaParticipanteService participanteService)
+            ISalaParticipanteService participanteService,
+            ISalaService salaService)
         {
             _salaConfiguracaoService = salaConfiguracaoService;
             _participanteService = participanteService;
+            _salaService = salaService;
         }
         public override async Task OnConnectedAsync()
         {
@@ -41,7 +44,7 @@ namespace ScrumPoker.API.HubConfig
         {
             var participanteDto = await _participanteService.Conectar(Context.ConnectionId, Context.UserIdentifier);
             await Groups.AddToGroupAsync(Context.ConnectionId, participanteDto.SalaId);
-            await AtualizarParticipantesSala(participanteDto.SalaId, participanteDto.Jogador);
+            await AtualizarParticipantesSala(participanteDto.SalaId);
         }
 
         public async Task RemoverParticipante(string participanteId, string participanteQueRemoveu)
@@ -52,9 +55,15 @@ namespace ScrumPoker.API.HubConfig
             await AtualizarParticipantesSala(participanteDto.SalaId, participanteDto.Jogador);
         }
 
-        private async Task AtualizarParticipantesSala(string salaId, bool jogador)
+        private async Task AtualizarParticipantesSala(string salaId, bool? jogador = null)
         {
-            if (jogador)
+            if (!jogador.HasValue)
+            {
+                var participantes = await _participanteService.BuscarParticipantesPorSala(salaId);
+                await Clients.Group(salaId).SendAsync("ReceberJogadores", participantes.Where(x => x.Jogador));
+                await Clients.Group(salaId).SendAsync("ReceberAdministradores", participantes.Where(x => !x.Jogador));
+            }
+            else if (jogador.Value)
             {
                 var jogadores = await _participanteService.BuscarJogadoresPorSalaId(salaId);
                 await Clients.Group(salaId).SendAsync("ReceberJogadores", jogadores);
@@ -76,6 +85,20 @@ namespace ScrumPoker.API.HubConfig
         {
             var participanteDto = await _participanteService.VotoParticipante(Context.UserIdentifier, votoValor);
             await AtualizarParticipantesSala(participanteDto.SalaId, participanteDto.Jogador);
+        }
+
+        public async Task ResetarSala(string salaId)
+        {
+            SalaDto sala = await _salaService.ResetarSala(salaId);
+            await Clients.Group(salaId).SendAsync("ReceberSala", sala);
+            await Clients.Group(salaId).SendAsync("ReceberJogadores", sala.Jogadores);
+        }
+
+        public async Task FinalizarJogo(string salaId)
+        {
+            SalaDto sala = await _salaService.FinalizarJogo(salaId);
+            await Clients.Group(salaId).SendAsync("ReceberSala", sala);
+            await Clients.Group(salaId).SendAsync("ReceberJogadores", sala.Jogadores);
         }
     }
 }

@@ -15,5 +15,6 @@ namespace ScrumPoker.API.Interfaces
         Task<SalaParticipanteDto> Conectar(string conexaoId, string participanteId);
         Task<SalaParticipanteDto> BuscarParticipantePorId(string id);
         Task<SalaParticipanteDto> VotoParticipante(string participanteId, string votoValor);
+        Task<IEnumerable<SalaParticipanteDto>> BuscarParticipantesPorSala(string salaId);
     }
 }

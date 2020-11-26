@@ -3,6 +3,7 @@ import { SalaParticipante } from './sala-participante.model';
 
 export class Sala {
   public id: string;
+  public titulo: string;
   public jogoFinalizado: boolean;
   public configuracao: SalaConfiguracao;
   public jogadores: Array<SalaParticipante>;

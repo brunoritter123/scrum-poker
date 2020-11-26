@@ -95,5 +95,11 @@ namespace ScrumPoker.API.Services
 
             return _mapper.Map<SalaParticipanteDto>(participante);
         }
+
+        public async Task<IEnumerable<SalaParticipanteDto>> BuscarParticipantesPorSala(string salaId)
+        {
+            var participantes = await _repo.BuscarParticipantesPorSalaAsync(salaId);
+            return _mapper.Map<IEnumerable<SalaParticipanteDto>>(participantes);
+        }
     }
 }

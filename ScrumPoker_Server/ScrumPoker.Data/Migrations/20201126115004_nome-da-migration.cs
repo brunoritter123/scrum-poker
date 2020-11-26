@@ -38,6 +38,7 @@ namespace ScrumPoker.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
+                    Titulo = table.Column<string>(nullable: true),
                     JogoFinalizado = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>

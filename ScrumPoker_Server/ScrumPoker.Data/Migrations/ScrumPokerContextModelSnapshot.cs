@@ -262,6 +262,9 @@ namespace ScrumPoker.Data.Migrations
                     b.Property<bool>("JogoFinalizado")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Titulo")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.ToTable("Sala");

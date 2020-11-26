@@ -156,5 +156,28 @@ namespace ScrumPoker.API.Services
                     }
                 };
         }
+
+        public async Task<SalaDto> ResetarSala(string salaId)
+        {
+            Sala sala = await _repo.BuscarPorIdAsync(salaId);
+            sala.JogoFinalizado = false;
+            sala.Titulo = null;
+            foreach (var participante in sala.Participantes)
+            {
+                participante.VotoCartaValor = null;
+            }
+            sala = await _repo.AlterarAsync(sala);
+
+            return _mapper.Map<SalaDto>(sala);
+        }
+
+        public async Task<SalaDto> FinalizarJogo(string salaId)
+        {
+            Sala sala = await _repo.BuscarPorIdAsync(salaId);
+            sala.JogoFinalizado = true;
+            sala = await _repo.AlterarAsync(sala);
+
+            return _mapper.Map<SalaDto>(sala);
+        }
     }
 }

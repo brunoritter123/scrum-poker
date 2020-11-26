@@ -16,6 +16,7 @@ export class SalaHubService {
   public receberJogadores = new EventEmitter<Array<SalaParticipante>>();
   public receberAdministradores = new EventEmitter<Array<SalaParticipante>>();
   public receberParticipanteRemovido = new EventEmitter<string>();
+  public receberSala = new EventEmitter<Sala>();
 
   private hubConnection: singalR.HubConnection;
 
@@ -34,6 +35,7 @@ export class SalaHubService {
       this.receberJogadoresHub();
       this.receberAdministradoresHub();
       this.receberParticipanteRemovidoHub();
+      this.receberSalaHub();
     });
   };
 
@@ -60,6 +62,10 @@ export class SalaHubService {
     return this.hubConnection.invoke('EnviarConfiguracaoSala', salaConfig)
   }
 
+  public enviarResetarSala(salaId: string): Promise<any> {
+    return this.hubConnection.invoke('ResetarSala', salaId)
+  }
+
   public enviarVoto(votoValor: string): Promise<any> {
     return this.hubConnection.invoke('EnviarVoto', votoValor)
   }
@@ -76,5 +82,15 @@ export class SalaHubService {
     this.hubConnection.on('ParticipanteRemovido', (nomeParticipanteQueRemoveu: string) => {
       this.receberParticipanteRemovido.emit(nomeParticipanteQueRemoveu)
     });
+  }
+
+  private receberSalaHub(): void {
+    this.hubConnection.on('ReceberSala', (sala: Sala) => {
+      this.receberSala.emit(sala)
+    });
+  }
+
+  public enviarFinalizarJogo(salaId: string) {
+    return this.hubConnection.invoke('FinalizarJogo', salaId)
   }
 }

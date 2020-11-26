@@ -68,5 +68,13 @@ namespace ScrumPoker.Data.Repositories
             _context.Set<SalaParticipante>().Remove(participante);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<SalaParticipante>> BuscarParticipantesPorSalaAsync(string salaId)
+        {
+            return await _context.Set<SalaParticipante>()
+            .Where(x => x.SalaId == salaId)
+            .OrderBy(x => x.Nome)
+            .ToListAsync();
+        }
     }
 }

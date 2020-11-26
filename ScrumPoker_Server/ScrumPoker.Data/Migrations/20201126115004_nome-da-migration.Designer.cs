@@ -9,7 +9,7 @@ using ScrumPoker.Data.Context;
 namespace ScrumPoker.Data.Migrations
 {
     [DbContext(typeof(ScrumPokerContext))]
-    [Migration("20201124091530_nome-da-migration")]
+    [Migration("20201126115004_nome-da-migration")]
     partial class nomedamigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -263,6 +263,9 @@ namespace ScrumPoker.Data.Migrations
 
                     b.Property<bool>("JogoFinalizado")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Titulo")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

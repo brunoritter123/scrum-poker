@@ -40,7 +40,9 @@ export class JogadoresComponent implements OnInit, OnDestroy {
   private inscricaoNovoJogador: Subscription;
   private inscricaoNovoAdministrador: Subscription;
   private inscricaoSalaConfiguracaor: Subscription;
+  private inscricaoReceberSala: Subscription;
   ngOnInit(): void {
+    this.inscricaoReceberSala = this.salaHubService.receberSala.subscribe(x => this.onReceberSala(x));
     this.inscricaoNovoJogador = this.salaHubService.receberJogadores.subscribe((x) => this.onReceberJogadores(x));
     this.inscricaoNovoAdministrador = this.salaHubService.receberAdministradores.subscribe((x) => this.onReceberAdministradores(x));
     this.inscricaoSalaConfiguracaor = this.salaHubService.receberConfiguracaoSala.subscribe((x) => this.onNovaConfiguracaoSala(x));
@@ -50,6 +52,11 @@ export class JogadoresComponent implements OnInit, OnDestroy {
     this.inscricaoNovoJogador.unsubscribe();
     this.inscricaoNovoAdministrador.unsubscribe();
     this.inscricaoSalaConfiguracaor.unsubscribe();
+    this.inscricaoReceberSala.unsubscribe();
+  }
+
+  private onReceberSala(sala: Sala): void {
+    this.sala = sala;
   }
 
   private onReceberJogadores(jogadores: Array<SalaParticipante>) {
