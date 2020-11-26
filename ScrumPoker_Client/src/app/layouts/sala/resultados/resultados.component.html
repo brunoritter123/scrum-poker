@@ -1,1 +1,30 @@
-<p>resultados works!</p>
+<h3 class="po-sm-12 txt-vermelho">Carta mais Votada: {{maisVotado}}</h3>
+<h3 class="po-sm-6 po-md-6 po-lg-6">Cartas</h3>
+<h3 class="po-sm-6 po-md-6 po-lg-6">Votos</h3>
+<div *ngFor="let ponto of pontuacao">
+  <h4 class="po-sm-6 po-md-6 po-lg-6">
+    <span *ngIf="ponto.cartaValor > ''">{{ponto.cartaValor}}</span>
+    <span *ngIf="!ponto.cartaValor" class="txt-vermelho"> - </span>
+  </h4>
+  <h4 class="po-sm-6 po-md-6 po-lg-6">{{ponto.quantidadePontos}}</h4>
+</div>
+
+<!--Botões-->
+<div>
+  <div class="row">
+    <po-button
+      *ngIf="possoRevotarJogo"
+      class="po-p-1 po-sm-12 po-md-6 po-lg-6 po-xl-6"
+      (p-click)="revotarJogo()"
+      p-label="Revotar"
+      p-type="primary">
+    </po-button>
+    <po-button
+      *ngIf="possoConcluirJogo"
+      class="po-p-1 po-sm-12 po-md-6 po-lg-6 po-xl-6"
+      (p-click)="concluirJogo()"
+      p-label="Concluir"
+      p-type="primary">
+    </po-button>
+  </div>
+</div>

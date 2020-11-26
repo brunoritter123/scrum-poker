@@ -53,7 +53,6 @@ export class VotacaoComponent implements OnInit, OnDestroy {
   private inscricaoSalaconfiguracao: Subscription;
   private inscricaoReceberAdministradores: Subscription;
   private inscricaoReceberJogaodoes: Subscription;
-  private inscricaoReceberSala: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -69,7 +68,6 @@ export class VotacaoComponent implements OnInit, OnDestroy {
      }
 
   ngOnInit(): void {
-    this.inscricaoReceberSala = this.salaHubService.receberSala.subscribe(x => this.onReceberSala(x));
     this.inscricaoSalaconfiguracao = this.salaHubService.receberConfiguracaoSala.subscribe(x => this.onReceberConfiguracaoSala(x));
     this.inscricaoReceberAdministradores = this.salaHubService.receberAdministradores.subscribe(x => this.onReceberAdministradores(x));
     this.inscricaoReceberJogaodoes = this.salaHubService.receberJogadores.subscribe(x => this.onReceberJogadores(x));
@@ -79,7 +77,6 @@ export class VotacaoComponent implements OnInit, OnDestroy {
     this.inscricaoSalaconfiguracao.unsubscribe();
     this.inscricaoReceberAdministradores.unsubscribe();
     this.inscricaoReceberJogaodoes.unsubscribe();
-    this.inscricaoReceberSala.unsubscribe();
   }
 
   private onReceberConfiguracaoSala(salaConfig: SalaConfiguracao): void {
@@ -92,10 +89,6 @@ export class VotacaoComponent implements OnInit, OnDestroy {
 
   private onReceberJogadores(jogadores: Array<SalaParticipante>): void {
     this.meuVotoValue = jogadores.find(jogador => jogador.id == this.meuIdParticipante)?.votoCartaValor;
-  }
-
-  private onReceberSala(sala: Sala): void {
-    this.sala = sala;
   }
 
   public votar(carta: Carta): void {
