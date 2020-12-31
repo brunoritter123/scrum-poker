@@ -1,7 +1,7 @@
 <po-page-default>
   <div class="po-row">
     <div class="pad-b-10 po-sm-12 po-md-7 po-lg-6 po-xl-6">
-      <po-widget p-title="Sala: {{sala.id}}" class="pad-b-10 po-sm-12 po-md-12 po-lg-12 po-xl-12">
+      <po-widget p-title="Sala: {{sala.id}}" class="pad-b-10 po-sm-12 po-md-12 po-lg-12 po-xl-12" (p-setting)="pageSlide.open()">
         <app-votacao *ngIf="!sala.jogoFinalizado"></app-votacao>
         <app-resultados *ngIf="sala.jogoFinalizado"></app-resultados>
       </po-widget>
@@ -21,10 +21,6 @@
       </div>
 
     </div>
-  </div>
-
-  <div class="po-row">
-    <po-button class="po-sm-3" p-label="View Page Slide" (p-click)="pageSlide.open()"></po-button>
   </div>
 </po-page-default>
 
