@@ -6,7 +6,7 @@ export class Carta {
     public ordem: number,
     public value: string = '',
     public especial: boolean = false,
-    public typeButton: string = 'default'
+    public selecionada: boolean = false,
   ) {}
 
 }

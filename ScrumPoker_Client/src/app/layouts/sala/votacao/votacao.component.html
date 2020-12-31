@@ -1,19 +1,19 @@
 <!--Cartas-->
 <div *ngIf="souJogador" class="po-sm-12">
-  <po-button
-    #card
+  <app-carta
     *ngFor="let carta of salaConfig.cartas"
     class="po-p-1 po-sm-6 po-md-6 po-lg-4"
     p-label={{carta.value}}
+    p-selecionada={{carta.selecionada}}
     (p-click)="votar(carta)"
-    p-type={{carta.typeButton}}>
-  </po-button>
+    >
+  </app-carta>
 </div>
 
 <!--Botões-->
 <div class="row">
   <po-button
-    *ngIf="possoRestarJogo"
+    *ngIf="possoResetarJogo"
     class="po-p-1 po-sm-12 po-md-6 po-lg-6 po-xl-6 selecionado"
     (p-click)="resetarJogo()"
     p-label="Resetar"

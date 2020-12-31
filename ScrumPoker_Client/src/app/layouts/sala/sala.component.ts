@@ -24,6 +24,7 @@ export class SalaComponent implements OnInit, OnDestroy {
     private router: Router
   ) {
     this.sala = this.activatedRoute.snapshot.data['sala'];
+    salaHubService.salaConfig = this.sala.configuracao;
    }
 
   private inscricaoParticipanteRemovido: Subscription;

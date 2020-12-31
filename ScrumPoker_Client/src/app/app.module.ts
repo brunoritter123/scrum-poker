@@ -28,6 +28,7 @@ import { VotacaoComponent } from './layouts/sala/votacao/votacao.component';
 import { ResultadosComponent } from './layouts/sala/resultados/resultados.component';
 import { SalaHubService } from './services/sala-hub.service';
 import { LoadPageService } from './services/load-page.service';
+import { CartaComponent } from './lib/components/carta/carta.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { LoadPageService } from './services/load-page.service';
     JogadoresComponent,
     AdministradoresComponent,
     VotacaoComponent,
-    ResultadosComponent
+    ResultadosComponent,
+    CartaComponent
   ],
   imports: [
     BrowserModule,

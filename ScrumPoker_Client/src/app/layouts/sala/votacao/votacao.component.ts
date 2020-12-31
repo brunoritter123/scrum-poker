@@ -10,12 +10,11 @@ import { SalaHubService } from 'src/app/services/sala-hub.service';
 
 @Component({
   selector: 'app-votacao',
-  templateUrl: './votacao.component.html',
-  styleUrls: ['./votacao.component.css']
+  templateUrl: './votacao.component.html'
 })
 export class VotacaoComponent implements OnInit, OnDestroy {
   public souJogador: boolean;
-  public possoRestarJogo: boolean;
+  public possoResetarJogo: boolean;
   public possoFinalizarJogo: boolean;
 
   public sala: Sala;
@@ -24,7 +23,6 @@ export class VotacaoComponent implements OnInit, OnDestroy {
   public set salaConfig(v : SalaConfiguracao) {
     this._salaConfig = v;
     this.selecionaCartaVotada();
-    this.verificarConfiguracoes();
   }
   public get salaConfig(): SalaConfiguracao {
     return this._salaConfig;
@@ -39,20 +37,12 @@ export class VotacaoComponent implements OnInit, OnDestroy {
     return this._meuVotoValue;
   }
 
-  private _administradores: Array<SalaParticipante>;
-  private set administradores(v: Array<SalaParticipante>){
-    this._administradores = v;
-    this.verificarConfiguracoes();
-  }
-  private get administradores(): Array<SalaParticipante> {
-    return this._administradores
-  }
-
   private estouConectado: boolean = true;
   private meuIdParticipante: string;
   private inscricaoSalaconfiguracao: Subscription;
-  private inscricaoReceberAdministradores: Subscription;
   private inscricaoReceberJogaodoes: Subscription;
+  private inscricaoJogadorFinalizaJogo: Subscription;
+  private inscricaoJogadorResetaJogo: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -61,30 +51,29 @@ export class VotacaoComponent implements OnInit, OnDestroy {
     ) {
       this.sala = this.activatedRoute.snapshot.data['sala'];
       this.salaConfig = this.sala.configuracao;
-      this.administradores = this.sala.administradores;
       this.meuVotoValue = this.sala.jogadores.find(jogador => jogador.id == this.meuIdParticipante)?.votoCartaValor;
       this.meuIdParticipante = authService.idParticipante;
       this.souJogador = authService.isJogador;
+      this.possoResetarJogo = salaHubService.possoResetarJogo;
+      this.possoFinalizarJogo = salaHubService.possoFinalizarJogo;
      }
 
   ngOnInit(): void {
     this.inscricaoSalaconfiguracao = this.salaHubService.receberConfiguracaoSala.subscribe(x => this.onReceberConfiguracaoSala(x));
-    this.inscricaoReceberAdministradores = this.salaHubService.receberAdministradores.subscribe(x => this.onReceberAdministradores(x));
     this.inscricaoReceberJogaodoes = this.salaHubService.receberJogadores.subscribe(x => this.onReceberJogadores(x));
+    this.inscricaoJogadorFinalizaJogo = this.salaHubService.jogadorFinalizaJogo.subscribe(x => this.possoFinalizarJogo = x);
+    this.inscricaoJogadorResetaJogo = this.salaHubService.jogadorResetaJogo.subscribe(x => this.possoResetarJogo = x);
   }
 
   ngOnDestroy(): void {
     this.inscricaoSalaconfiguracao.unsubscribe();
-    this.inscricaoReceberAdministradores.unsubscribe();
     this.inscricaoReceberJogaodoes.unsubscribe();
+    this.inscricaoJogadorFinalizaJogo.unsubscribe();
+    this.inscricaoJogadorResetaJogo.unsubscribe();
   }
 
   private onReceberConfiguracaoSala(salaConfig: SalaConfiguracao): void {
     this.salaConfig = salaConfig;
-  }
-
-  private onReceberAdministradores(administradores: Array<SalaParticipante>): void {
-    this.administradores = administradores;
   }
 
   private onReceberJogadores(jogadores: Array<SalaParticipante>): void {
@@ -93,7 +82,7 @@ export class VotacaoComponent implements OnInit, OnDestroy {
 
   public votar(carta: Carta): void {
     if (!this.sala.jogoFinalizado && !!carta && this.estouConectado) {
-      this.meuVotoValue = carta.typeButton == 'danger' ? null : carta.value;
+      this.meuVotoValue = carta.selecionada ? null : carta.value;
       this.salaHubService.enviarVoto(this.meuVotoValue);
     }
   }
@@ -108,17 +97,7 @@ export class VotacaoComponent implements OnInit, OnDestroy {
 
   private selecionaCartaVotada(): void {
     this.salaConfig.cartas.forEach( carta => {
-      if (carta.value == this.meuVotoValue){
-        carta.typeButton = 'danger';
-      } else {
-        carta.typeButton = 'default';
-      }
+      carta.selecionada = carta.value == this.meuVotoValue;
     })
   }
-
-  private verificarConfiguracoes(): void {
-    this.possoFinalizarJogo = !this.souJogador || this.administradores.length == 0 || this.salaConfig.jogadorFinalizaJogo;
-    this.possoRestarJogo = !this.souJogador || this.administradores.length == 0 || this.salaConfig.jogadorResetaJogo;
-  }
-
 }

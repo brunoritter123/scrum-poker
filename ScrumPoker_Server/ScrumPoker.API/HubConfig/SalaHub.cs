@@ -100,5 +100,19 @@ namespace ScrumPoker.API.HubConfig
             await Clients.Group(salaId).SendAsync("ReceberSala", sala);
             await Clients.Group(salaId).SendAsync("ReceberJogadores", sala.Jogadores);
         }
+
+        public async Task RevotarSala(string salaId)
+        {
+            SalaDto sala = await _salaService.ResetarSala(salaId);
+            await Clients.Group(salaId).SendAsync("ReceberSala", sala);
+            await Clients.Group(salaId).SendAsync("ReceberJogadores", sala.Jogadores);
+        }
+
+        public async Task ConcluirSala(string salaId)
+        {
+            SalaDto sala = await _salaService.ResetarSala(salaId);
+            await Clients.Group(salaId).SendAsync("ReceberSala", sala);
+            await Clients.Group(salaId).SendAsync("ReceberJogadores", sala.Jogadores);
+        }
     }
 }

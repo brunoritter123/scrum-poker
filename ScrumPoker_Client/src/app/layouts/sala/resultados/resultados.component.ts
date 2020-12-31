@@ -10,8 +10,7 @@ import { SalaHubService } from 'src/app/services/sala-hub.service';
 
 @Component({
   selector: 'app-resultados',
-  templateUrl: './resultados.component.html',
-  styleUrls: ['./resultados.component.css']
+  templateUrl: './resultados.component.html'
 })
 export class ResultadosComponent implements OnInit {
   public maisVotado: string;
@@ -27,6 +26,8 @@ export class ResultadosComponent implements OnInit {
   private inscricaoSalaconfiguracao: Subscription;
   private inscricaoReceberAdministradores: Subscription;
   private inscricaoReceberJogaodoes: Subscription;
+  private inscricaoJogadorFinalizaJogo: Subscription;
+  private inscricaoJogadorResetaJogo: Subscription;
   constructor(
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
@@ -37,18 +38,25 @@ export class ResultadosComponent implements OnInit {
     this.administradores = this.sala.administradores;
     this.meuIdParticipante = authService.idParticipante;
     this.onReceberJogadores(this.sala.jogadores);
+    this.possoRevotarJogo = salaHubService.possoResetarJogo;
+    this.possoConcluirJogo = salaHubService.possoFinalizarJogo;
   }
 
   ngOnInit(): void {
     this.inscricaoSalaconfiguracao = this.salaHubService.receberConfiguracaoSala.subscribe(x => this.onReceberConfiguracaoSala(x));
     this.inscricaoReceberAdministradores = this.salaHubService.receberAdministradores.subscribe(x => this.onReceberAdministradores(x));
     this.inscricaoReceberJogaodoes = this.salaHubService.receberJogadores.subscribe(x => this.onReceberJogadores(x));
+    this.inscricaoJogadorFinalizaJogo = this.salaHubService.jogadorFinalizaJogo.subscribe(x => this.possoConcluirJogo = x);
+    this.inscricaoJogadorResetaJogo = this.salaHubService.jogadorResetaJogo.subscribe(x => this.possoRevotarJogo = x);
   }
 
   ngOnDestroy(): void {
     this.inscricaoSalaconfiguracao.unsubscribe();
     this.inscricaoReceberAdministradores.unsubscribe();
     this.inscricaoReceberJogaodoes.unsubscribe();
+    this.inscricaoJogadorFinalizaJogo.unsubscribe();
+    this.inscricaoJogadorResetaJogo.unsubscribe();
+
   }
 
   private onReceberConfiguracaoSala(salaConfig: SalaConfiguracao): void {
@@ -96,11 +104,11 @@ export class ResultadosComponent implements OnInit {
   }
 
   public revotarJogo() {
-
+    this.salaHubService.enviarRevotarSala(this.sala.id);
   }
 
   public concluirJogo() {
-
+    this.salaHubService.enviarConcluirSala(this.sala.id);
   }
 
 }

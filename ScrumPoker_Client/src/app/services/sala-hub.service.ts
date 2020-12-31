@@ -10,6 +10,28 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class SalaHubService {
+  private souJogador: boolean;
+
+  public _administradores: Array<SalaParticipante>;
+  public set administradores(v : Array<SalaParticipante>) {
+    this._administradores = v;
+    this.verificarConfiguracoes();
+  }
+  public get administradores(): Array<SalaParticipante> {
+    return this._administradores;
+  }
+
+  public _salaConfig: SalaConfiguracao;
+  public set salaConfig(v : SalaConfiguracao) {
+    this._salaConfig = v;
+    this.verificarConfiguracoes();
+  }
+  public get salaConfig(): SalaConfiguracao {
+    return this._salaConfig;
+  }
+
+  public possoFinalizarJogo: boolean;
+  public possoResetarJogo: boolean;
   public data: ChartModel[];
   public broadcastedData: ChartModel[];
   public receberConfiguracaoSala = new EventEmitter<SalaConfiguracao>();
@@ -17,12 +39,16 @@ export class SalaHubService {
   public receberAdministradores = new EventEmitter<Array<SalaParticipante>>();
   public receberParticipanteRemovido = new EventEmitter<string>();
   public receberSala = new EventEmitter<Sala>();
+  public jogadorFinalizaJogo = new EventEmitter<boolean>();
+  public jogadorResetaJogo = new EventEmitter<boolean>();
 
   private hubConnection: singalR.HubConnection;
 
   constructor(
     private authService: AuthService
-    ) { }
+    ) {
+      this.souJogador = authService.isJogador;
+    }
 
 
   public startConection(participanteId: string) {
@@ -55,15 +81,25 @@ export class SalaHubService {
 
   private receberAdministradoresHub(): void {
     this.hubConnection.on('ReceberAdministradores', (administradores: Array<SalaParticipante>) => {
+      this.administradores = administradores;
       this.receberAdministradores.emit(administradores)});
   }
 
   public enviarConfiguracaoSala(salaConfig: SalaConfiguracao): Promise<any> {
+    this.salaConfig = salaConfig;
     return this.hubConnection.invoke('EnviarConfiguracaoSala', salaConfig)
   }
 
   public enviarResetarSala(salaId: string): Promise<any> {
     return this.hubConnection.invoke('ResetarSala', salaId)
+  }
+
+  public enviarRevotarSala(salaId: string): Promise<any> {
+    return this.hubConnection.invoke('RevotarSala', salaId)
+  }
+
+  public enviarConcluirSala(salaId: string): Promise<any> {
+    return this.hubConnection.invoke('ConcluirSala', salaId)
   }
 
   public enviarVoto(votoValor: string): Promise<any> {
@@ -92,5 +128,15 @@ export class SalaHubService {
 
   public enviarFinalizarJogo(salaId: string) {
     return this.hubConnection.invoke('FinalizarJogo', salaId)
+  }
+
+  private verificarConfiguracoes(): void {
+    if(!this.administradores || !this.salaConfig)
+      return;
+
+    this.possoFinalizarJogo = !this.souJogador || this.administradores.length == 0 || this.salaConfig.jogadorFinalizaJogo;
+    this.possoResetarJogo = !this.souJogador || this.administradores.length == 0 || this.salaConfig.jogadorResetaJogo;
+    this.jogadorFinalizaJogo.emit(this.possoFinalizarJogo);
+    this.jogadorResetaJogo.emit(this.possoResetarJogo);
   }
 }
