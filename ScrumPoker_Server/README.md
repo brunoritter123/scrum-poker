@@ -1,10 +1,10 @@
 # ScrumPoker_Server
 
-Esse projeto foi gerado com  [.Net Core](https://dotnet.microsoft.com/download/dotnet-core/3.1) versão 3.1
+Esse projeto foi gerado com  [.Net Core](https://dotnet.microsoft.com/download/dotnet-core/3.1) versão 5.0
 
 ## Instalação
-- **dotnet** - Fazer a instalção do [.NET Core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1)
-- **dotnet ef** - Execute `dotnet tool install -g dotnet-ef --version 3.1.1`
+- **dotnet** - Fazer a instalção do [.NET Core 5.0](https://dotnet.microsoft.com/download/dotnet-core/5.0)
+- **dotnet ef** - Execute `dotnet tool install -g dotnet-ef --version 5.0.1`
 
 ## Configurando user-secrets
 Execute `dotnet user-secrets init --project ./ScrumPoker.API/` para criar o arquivo de *secrets*.

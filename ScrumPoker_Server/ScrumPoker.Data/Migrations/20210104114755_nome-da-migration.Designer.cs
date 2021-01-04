@@ -9,14 +9,14 @@ using ScrumPoker.Data.Context;
 namespace ScrumPoker.Data.Migrations
 {
     [DbContext(typeof(ScrumPokerContext))]
-    [Migration("20201126115004_nome-da-migration")]
+    [Migration("20210104114755_nome-da-migration")]
     partial class nomedamigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.1");
+                .HasAnnotation("ProductVersion", "5.0.1");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
@@ -113,18 +113,18 @@ namespace ScrumPoker.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedName")
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasName("RoleNameIndex");
+                        .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
                 });
@@ -143,8 +143,8 @@ namespace ScrumPoker.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
@@ -156,12 +156,12 @@ namespace ScrumPoker.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("TEXT");
@@ -182,17 +182,17 @@ namespace ScrumPoker.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
+                        .HasDatabaseName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex");
+                        .HasDatabaseName("UserNameIndex");
 
                     b.HasIndex("PerfilId")
                         .IsUnique();
@@ -376,6 +376,8 @@ namespace ScrumPoker.Data.Migrations
                         .HasForeignKey("ScrumPoker.Domain.Identity.User", "PerfilId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Perfil");
                 });
 
             modelBuilder.Entity("ScrumPoker.Domain.Identity.UserRole", b =>
@@ -397,6 +399,10 @@ namespace ScrumPoker.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ScrumPoker.Domain.Models.Carta", b =>
@@ -406,6 +412,8 @@ namespace ScrumPoker.Data.Migrations
                         .HasForeignKey("SalaConfiguracaoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("SalaConfiguracao");
                 });
 
             modelBuilder.Entity("ScrumPoker.Domain.Models.SalaConfiguracao", b =>
@@ -413,6 +421,8 @@ namespace ScrumPoker.Data.Migrations
                     b.HasOne("ScrumPoker.Domain.Models.Sala", "Sala")
                         .WithOne("Configuracao")
                         .HasForeignKey("ScrumPoker.Domain.Models.SalaConfiguracao", "SalaId");
+
+                    b.Navigation("Sala");
                 });
 
             modelBuilder.Entity("ScrumPoker.Domain.Models.SalaParticipante", b =>
@@ -422,6 +432,35 @@ namespace ScrumPoker.Data.Migrations
                         .HasForeignKey("SalaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Sala");
+                });
+
+            modelBuilder.Entity("ScrumPoker.Domain.Identity.Role", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("ScrumPoker.Domain.Identity.User", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("ScrumPoker.Domain.Models.Perfil", b =>
+                {
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ScrumPoker.Domain.Models.Sala", b =>
+                {
+                    b.Navigation("Configuracao");
+
+                    b.Navigation("Participantes");
+                });
+
+            modelBuilder.Entity("ScrumPoker.Domain.Models.SalaConfiguracao", b =>
+                {
+                    b.Navigation("Cartas");
                 });
 #pragma warning restore 612, 618
         }

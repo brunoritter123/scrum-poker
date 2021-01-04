@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import * as singalR from '@aspnet/signalr';
+import * as singalR from '@microsoft/signalr';
 import { ChartModel } from '../interfaces/chartmodel.interface';
 import { SalaConfiguracao } from '../models/sala-configuracao.model';
 import { SalaParticipante } from '../models/sala-participante.model';
@@ -54,7 +54,12 @@ export class SalaHubService {
   public startConection(participanteId: string) {
     this.hubConnection = new singalR.HubConnectionBuilder()
     .withUrl(`http://localhost:5000/sala-hub?participante-id=${participanteId}`)
+    .withAutomaticReconnect()
     .build();
+
+    this.hubConnection.onclose(x => this.onCloseConection(x));
+    this.hubConnection.onreconnecting(x => this.onReconnectingConection(x));
+    this.hubConnection.onreconnected(x => this.onReconnectedConection(x));
 
     return this.hubConnection.start().then(() => {
       this.receberConfiguracaoSalaHub();
@@ -64,6 +69,18 @@ export class SalaHubService {
       this.receberSalaHub();
     });
   };
+
+  private onCloseConection(error) {
+    console.log('perca de conecção');
+  }
+
+  private onReconnectedConection(error) {
+    console.log('Reconectado');
+  }
+
+  private onReconnectingConection(error) {
+    console.log('Sem Conexão');
+  }
 
   public stopConection() {
     this.hubConnection.stop();
