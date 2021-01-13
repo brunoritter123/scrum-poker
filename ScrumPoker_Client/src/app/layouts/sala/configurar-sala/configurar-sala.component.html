@@ -7,7 +7,7 @@
       <div class="po-row">
         <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12">
           <po-multiselect name="cartasEspecias" [(ngModel)]="cartasEspecias" p-placeholder="Cartas Especiais"
-            p-hide-search="true" [p-options]="opcoesCartasEspecias">
+            [p-hide-search]=true [p-options]="opcoesCartasEspecias">
           </po-multiselect>
         </div>
       </div>
@@ -21,11 +21,11 @@
       <div class="po-row">
 
         <po-input [(ngModel)]="ordemCarta" class="po-mb-1 po-sm-3 po-md-3 po-lg-3" p-label="Ordem"
-        p-maxlength="2">
+        [p-maxlength]=2>
         </po-input>
 
         <po-input [(ngModel)]="novaCarta" class="po-mb-1 po-sm-3 po-md-3 po-lg-5" p-label="Carta"
-        p-maxlength="10" (keyup.enter)="addCarta()">
+        [p-maxlength]=10 (keyup.enter)="addCarta()">
         </po-input>
 
         <po-button (p-click)="addCarta()" class="po-mt-4  po-sm-6 po-md-6 po-lg-4" p-label="Adicionar"
@@ -35,7 +35,7 @@
       </div>
 
       <div class="po-row po-mb-1">
-        <po-disclaimer-group class="po-mb-1" [p-disclaimers]="cartas" p-hide-remove-all="true" (p-change)="proximaOrdem()">
+        <po-disclaimer-group class="po-mb-1" [p-disclaimers]="cartas" [p-hide-remove-all]=true (p-change)="proximaOrdem()">
         </po-disclaimer-group>
       </div>
 
@@ -78,7 +78,7 @@
 
 
   <po-loading-overlay *ngIf="carregando"
-      p-screen-lock="false"
+      [p-screen-lock]=false
       p-text="Carregando" >
   </po-loading-overlay>
 </po-page-edit>

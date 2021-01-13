@@ -4,9 +4,9 @@
       class="po-md-12"
       name="idSala"
       [(ngModel)]="idSala"
-      [p-maxlength]="12"
-      [p-minlength]="3"
-      p-required="true"
+      [p-maxlength]=12
+      [p-minlength]=3
+      p-required
       p-placeholder="ID Sala">
     </po-input>
 
@@ -15,11 +15,11 @@
       class="po-md-12"
       name="nome"
       [(ngModel)]="nome"
-      [p-maxlength]="12"
-      [p-minlength]="3"
-      p-required="true"
+      [p-maxlength]=12
+      [p-minlength]=3
+      p-required
       p-placeholder="Informe seu nome"
-      (keyup.enter)="entrar('jogo')">
+      (keyup.enter)="entrar()">
     </po-input>
 
     <po-divider class="po-sm-12"></po-divider>
@@ -32,8 +32,7 @@
       id="jogador"
       [(ngModel)]="jogador"
       p-label-off="Administrador"
-      p-label-on="Jogador"
-      p-required="true">
+      p-label-on="Jogador">
     </po-switch>
 
     <po-divider class="po-sm-12"></po-divider>

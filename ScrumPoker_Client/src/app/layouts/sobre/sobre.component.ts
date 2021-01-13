@@ -13,11 +13,11 @@ export class SobreComponent {
     email: 'brunolritter123@gmail.com'
   };
 
-  sendContact(email) {
+  sendContact(email: string): void {
     window.open(`mailto:${email}`, '_self');
   }
 
-  apoiar() {
+  apoiar(): void {
     window.open('https://github.com/brunoritter123/scrum-poker', '_blank');
   }
 

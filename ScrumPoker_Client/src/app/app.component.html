@@ -1,17 +1,17 @@
 <div class="po-wrapper">
   <po-toolbar p-title="{{title}}" [p-profile]="profile" [p-profile-actions]="profileActions"></po-toolbar>
 
-  <po-menu display="none" [p-menus]="menus" p-collapsed>
+  <po-menu display="none" [p-menus]="menus" [p-collapsed]=true>
   </po-menu>
 
   <router-outlet></router-outlet>
 </div>
 
-<po-modal #modalSobre p-click-out="true" p-size="md" p-title="Sobre" [p-primary-action]="primaryActionSobre">
+<po-modal #modalSobre [p-click-out]=true p-size="md" p-title="Sobre" [p-primary-action]="primaryActionSobre">
   <app-sobre></app-sobre>
 </po-modal>
 
 <po-loading-overlay *ngIf="carregando"
-p-screen-lock="false"
+[p-screen-lock]=false
 p-text="Carregando" >
 </po-loading-overlay>

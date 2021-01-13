@@ -13,7 +13,7 @@ import { LoadPageService } from './services/load-page.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  @ViewChild('modalSobre', { static: true }) modalSobre: PoModalComponent;
+  @ViewChild('modalSobre', { static: true }) modalSobre?: PoModalComponent;
 
   private inscricaoLogin: Subscription;
   private inscricaoLogout: Subscription;
@@ -40,16 +40,20 @@ export class AppComponent implements OnInit, OnDestroy {
     icon: 'po-icon-user',
     label: 'Editar Perfil',
     url: 'editar-perfil'
-  }
+  };
 
   public profileActions: Array<PoToolbarAction> = [];
-  public profile: PoToolbarProfile = undefined;
-
-
+  public profile?: PoToolbarProfile = undefined;
+  public menus: Array<PoMenuItem> = [
+    { label: 'Início', link: '/', icon: 'po-icon-home', shortLabel: 'Início' },
+    { label: 'Sobre', action: this.openModal.bind(this), icon: 'po-icon-user', shortLabel: 'Sobre' }
+  ];
 
   public primaryActionSobre: PoModalAction = {
     action: () => {
-      this.modalSobre.close()
+      if (!!this.modalSobre){
+        this.modalSobre.close();
+      }
     },
     label: 'Fechar'
   };
@@ -59,46 +63,41 @@ export class AppComponent implements OnInit, OnDestroy {
     private router: Router,
     private loadPageService: LoadPageService
     ) {
+      this.inscricaoLogin = this.authService.eventLogin.subscribe(() => this.eventLogin());
+      this.inscricaoLogout = this.authService.eventLogout.subscribe(() => this.eventLogout());
+      this.inscricaoPerfil = this.authService.eventPerfil.subscribe( (profile: PoToolbarProfile) => this.profile = profile);
+      this.inscricaoLoadSala = this.loadPageService.loadPage.subscribe((load: boolean) => this.carregando = load);
   }
 
-  ngOnInit(){
+  ngOnInit(): void{
     if (this.authService.logado()) {
       this.eventLogin();
       this.profile = this.authService.profileLogado;
     } else {
       this.eventLogout();
     }
-
-    this.inscricaoLogin = this.authService.eventLogin.subscribe(() => this.eventLogin());
-    this.inscricaoLogout = this.authService.eventLogout.subscribe(() => this.eventLogout());
-    this.inscricaoPerfil = this.authService.eventPerfil.subscribe( profile => { this.profile=profile });
-    this.inscricaoLoadSala = this.loadPageService.loadPage.subscribe((load) => this.carregando = load);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.inscricaoLogin.unsubscribe();
     this.inscricaoLogout.unsubscribe();
     this.inscricaoPerfil.unsubscribe();
   }
 
-  private eventLogin() {
+  private eventLogin(): void {
     this.profileActions = [this.profActAlterar, this.profActSair];
   }
 
-  private eventLogout() {
+  private eventLogout(): void {
     this.profile = undefined;
     this.profileActions = [this.profActLogin];
   }
 
-  public menus: Array<PoMenuItem> = [
-    { label: 'Início', link: '/', icon: 'po-icon-home', shortLabel: 'Início' },
-    { label: 'Sobre', action: this.openModal.bind(this), icon: 'po-icon-user', shortLabel: 'Sobre' }
-  ];
-
-
   public openModal(): boolean {
-    debugger
-    this.modalSobre.open();
-    return true;
+    if (!!this.modalSobre) {
+      this.modalSobre.open();
+      return true;
+    }
+    return false;
   }
 }

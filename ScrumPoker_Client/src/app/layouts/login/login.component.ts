@@ -3,21 +3,24 @@ import { PoModalComponent, PoModalAction, PoNotificationService } from '@po-ui/n
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { AuthLogin } from 'src/app/interfaces/authLogin.interface';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  @ViewChild('modalEsqueceuSenha', { static: true }) modalEsqueceuSenha: PoModalComponent;
+  @ViewChild('modalEsqueceuSenha', { static: true }) modalEsqueceuSenha?: PoModalComponent;
 
-  private inscricaoLogin;
-  public carregando: boolean = false;
-  public userNameEsqueceuSenha: string = '';
+  private inscricaoLogin: Subscription;
+  public carregando = false;
+  public userNameEsqueceuSenha = '';
 
   public closeModal: PoModalAction = {
     action: () => {
-      this.modalEsqueceuSenha.close();
+      if (!!this.modalEsqueceuSenha) {
+        this.modalEsqueceuSenha.close();
+      }
     },
     label: 'Cancelar',
     danger: true
@@ -30,19 +33,20 @@ export class LoginComponent implements OnInit, OnDestroy {
     label: 'Enviar'
   };
 
-  public authLogin : AuthLogin = {
+  public authLogin: AuthLogin = {
     userName: '',
     password: ''
-  }
+  };
 
   constructor(
     public authService: AuthService,
     private router: Router,
     private poNotification: PoNotificationService
-  ) { }
+  ) {
+    this.inscricaoLogin = this.authService.eventLogin.subscribe(() => this.router.navigate(['']));
+  }
 
   ngOnInit(): void {
-    this.inscricaoLogin = this.authService.eventLogin.subscribe(() => this.router.navigate(['']));
   }
 
   ngOnDestroy(): void {
@@ -57,16 +61,16 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.poNotification.success('Logado com sucesso!');
       })
       .catch((erro) => {
-        if (erro.status == 401) {
+        if (erro.status === 401) {
 
-          if (erro.error.code == 'EmailNotConfirmed') {
+          if (erro.error.code === 'EmailNotConfirmed') {
             this.poNotification.warning(`E-mail não está confirmado`);
             this.authService.enviarConfirmacaoEmail(this.authLogin.userName).subscribe(
               () => this.router.navigate([`/confirmar-email`])
-            )
+            );
           }
 
-          if (erro.error.code == 'Unauthorized') {
+          if (erro.error.code === 'Unauthorized') {
             this.poNotification.warning(`Usuário ou senha estão incorretos!`);
           }
 
@@ -83,25 +87,29 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   public esqueceuSenha(): void{
-    this.modalEsqueceuSenha.open()
+    if (!!this.modalEsqueceuSenha) {
+      this.modalEsqueceuSenha.open();
+    }
   }
 
   public enviarEmailEsqueceuSenha(): void{
     if (!this.userNameEsqueceuSenha) {
-      this.poNotification.warning("Usuário não foi informado.")
-      return
+      this.poNotification.warning('Usuário não foi informado.');
+      return;
     }
 
     this.carregando = true;
     this.authService.solicitacaoResetarSenha(this.userNameEsqueceuSenha).toPromise()
       .then(() => {
-        this.poNotification.success("E-mail enviado com sucesso!")
-        this.modalEsqueceuSenha.close();
+        this.poNotification.success('E-mail enviado com sucesso!');
+        if (!!this.modalEsqueceuSenha) {
+          this.modalEsqueceuSenha.close();
+        }
       })
       .catch((erro) => {
         console.log(erro);
-        this.poNotification.error("Houve algum erro ao tentar resetar a senha.")
+        this.poNotification.error('Houve algum erro ao tentar resetar a senha.');
       })
-      .finally(() => this.carregando = false)
+      .finally(() => this.carregando = false);
   }
 }

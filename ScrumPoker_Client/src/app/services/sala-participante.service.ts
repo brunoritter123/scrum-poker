@@ -23,6 +23,6 @@ export class SalaParticipanteService {
           this.poNotification.error('Houve um erro ao tentar incluir o participante.');
           console.log(erro);
           throw erro;
-      })
+      });
   }
 }

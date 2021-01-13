@@ -20,21 +20,21 @@ export class PerfilService {
 
   public buscarPerfil(userName: string): Promise<Perfil> {
       return this.http.get<Perfil>(`${this.url}/perfil/${userName}`)
-      .toPromise()
+      .toPromise();
   }
 
   public alterarPerfil(perfil: Perfil): Promise<any> {
     return this.http.put(`${this.url}/perfil/`, perfil)
     .toPromise()
     .then( () => {
-      this.poNotification.success('Perfil salvo com sucesso.')
+      this.poNotification.success('Perfil salvo com sucesso.');
       this.authService.getProfile();
     })
     .catch( (erro) => {
       this.poNotification.error('Houve um erro ao tentar salvar a perfil.');
       console.log(erro);
-      throw erro
-    })
+      throw erro;
+    });
   }
 
 }

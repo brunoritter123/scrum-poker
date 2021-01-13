@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PoNotificationService, PoPageSlideComponent } from '@po-ui/ng-components';
+import { PoModalComponent, PoNotificationService, PoPageSlideComponent } from '@po-ui/ng-components';
 import { Subscription } from 'rxjs';
 import { SalaConfiguracao } from 'src/app/models/sala-configuracao.model';
 import { Sala } from 'src/app/models/sala.model';
@@ -14,7 +14,15 @@ import { SalaHubService } from 'src/app/services/sala-hub.service';
 export class SalaComponent implements OnInit, OnDestroy {
 
   public carregando = false;
+  public textoLoading = 'Carregando';
+  public reconectando = false;
   public sala: Sala;
+
+  private inscricaoParticipanteRemovido: Subscription;
+  private inscricaoReceberSala: Subscription;
+  private inscricaoonPercaDeConexao: Subscription;
+  private inscricaoonReconectando: Subscription;
+  private inscricaoonReconectado: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -23,28 +31,48 @@ export class SalaComponent implements OnInit, OnDestroy {
     private poNotification: PoNotificationService,
     private router: Router
   ) {
-    this.sala = this.activatedRoute.snapshot.data['sala'];
+    const keySala = 'sala';
+    this.sala = this.activatedRoute.snapshot.data[keySala];
     salaHubService.salaConfig = this.sala.configuracao;
-   }
 
-  private inscricaoParticipanteRemovido: Subscription;
-  private inscricaoReceberSala: Subscription;
-  ngOnInit(): void {
-    this.inscricaoReceberSala = this.salaHubService.receberSala.subscribe(x => this.onReceberSala(x));
+    this.inscricaoReceberSala = this.salaHubService.receberSala.subscribe((x: any) => this.onReceberSala(x));
     this.inscricaoParticipanteRemovido = this.salaHubService.receberParticipanteRemovido.subscribe((x: string) => {
       this.onParticipanteRemovido(x);
-    })
+    });
+    this.inscricaoonPercaDeConexao = this.salaHubService.onPercaDeConexao.subscribe((x: any) => this.onPercaDeConexao());
+    this.inscricaoonReconectando = this.salaHubService.onReconectando.subscribe((x: any) => this.onReconectando());
+    this.inscricaoonReconectado = this.salaHubService.onReconectado.subscribe((x: any) => this.onReconectado());
+   }
+
+  ngOnInit(): void {
   }
 
   ngOnDestroy(): void {
     this.inscricaoParticipanteRemovido.unsubscribe();
     this.inscricaoReceberSala.unsubscribe();
+    this.inscricaoonReconectando.unsubscribe();
+    this.inscricaoonReconectado.unsubscribe();
+    this.inscricaoonPercaDeConexao.unsubscribe();
     this.salaHubService.stopConection();
   }
 
   private onParticipanteRemovido(nomeParticipanteQueRemoveu: string): void {
-    this.poNotification.warning("Você foi removido da sala pelo participante: " + nomeParticipanteQueRemoveu)
+    this.poNotification.warning('Você foi removido da sala pelo participante: ' + nomeParticipanteQueRemoveu);
     this.router.navigate(['']);
+  }
+
+  private onPercaDeConexao(): void {
+    this.poNotification.error('Perca de conexão.');
+    this.router.navigate(['']);
+  }
+
+  private onReconectando(): void {
+    this.reconectando = true;
+    this.textoLoading = 'Recnectando...';
+  }
+
+  private onReconectado(): void {
+    this.reconectando = false;
   }
 
   private onReceberSala(sala: Sala): void {

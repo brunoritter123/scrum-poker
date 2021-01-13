@@ -29,9 +29,9 @@
       name="nome"
       p-placeholder="Seu Nome"
       p-label="Nome"
-      p-clean="true"
-      p-no-autocomplete="true"
-      p-required = "true">
+      p-clean
+      [p-no-autocomplete]=true
+      p-required>
     </po-input>
 
      <!-- <po-divider class="po-sm-12"></po-divider>
@@ -58,6 +58,6 @@
 </po-page-edit>
 
 <po-loading-overlay *ngIf="carregando"
-p-screen-lock="true"
+[p-screen-lock]=true
 p-text="Aguarde..." >
 </po-loading-overlay>

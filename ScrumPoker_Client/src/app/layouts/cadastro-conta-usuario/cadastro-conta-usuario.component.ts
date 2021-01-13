@@ -11,40 +11,38 @@ import { PoNotificationService } from '@po-ui/ng-components';
 })
 export class CadastroContaUsuarioComponent implements OnInit {
   public registrarForm: FormGroup;
-  public carregando: boolean = false;
+  public carregando = false;
 
   constructor(
     public fb: FormBuilder,
     public authService: AuthService,
     private router: Router,
     private poNotification: PoNotificationService
-  ) { }
-
-  ngOnInit(): void {
-    this.validation();
-  }
-
-  private validation() {
+  ) {
     this.registrarForm = this.fb.group({
       nome: ['', Validators.required],
       login: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      // tslint:disable-next-line: deprecation
       senhas: this.fb.group({
         senha: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]],
         confirmaSenha: ['', Validators.required ]
       }, {validator: this.compararSenhas})
     });
+   }
+
+  ngOnInit(): void {
   }
 
-  private compararSenhas(fb: FormGroup) {
+  private compararSenhas(fb: FormGroup): void {
     const senha = fb.get('senha');
     const confirmaSenha = fb.get('confirmaSenha');
 
-    if (confirmaSenha.errors == null || 'mismatch' in confirmaSenha.errors) {
-      if (senha.value != confirmaSenha.value) {
-        confirmaSenha.setErrors({mismatch: 'Confirmação da senha não confere com a senha.'});
+    if (confirmaSenha?.errors == null || 'mismatch' in confirmaSenha.errors) {
+      if (senha?.value !== confirmaSenha?.value) {
+        confirmaSenha?.setErrors({mismatch: 'Confirmação da senha não confere com a senha.'});
       } else {
-        confirmaSenha.setErrors(null);
+        confirmaSenha?.setErrors(null);
       }
     }
 
@@ -54,62 +52,62 @@ export class CadastroContaUsuarioComponent implements OnInit {
     this.carregando = true;
 
     const authRegistrar: AuthRegistrar = {
-      nome: this.nome.value,
-      userName: this.login.value,
-      email: this.email.value,
-      password: this.senha.value
-    }
+      nome: this.nome?.value,
+      userName: this.login?.value,
+      email: this.email?.value,
+      password: this.senha?.value
+    };
 
     this.authService.cadastrarConta(authRegistrar).toPromise()
       .then(() => {
-        this.poNotification.success('Cadastro realizado')
+        this.poNotification.success('Cadastro realizado');
         this.router.navigate(['confirmar-email']);
       })
       .catch((erro) => {
-        console.log(erro)
+        console.log(erro);
 
         if (typeof erro.error === 'object' && Array.isArray(erro.error)) {
-          erro.error.forEach(element  => {
+          erro.error.forEach((element: any)  => {
             switch (element.code) {
               case 'DuplicateUserName':
                 this.poNotification.error('Nome de usuário duplicado!');
                 break;
               default:
                 this.poNotification.error(`Erro no cadastro! Code: ${element.code}`);
-                break
-            };
+                break;
+            }
           });
         } else {
-          this.poNotification.error("Erro ao tentar registrar o usuário");
+          this.poNotification.error('Erro ao tentar registrar o usuário');
         }
       })
-      .finally(() => this.carregando = false)
+      .finally(() => this.carregando = false);
   }
 
-  get nome() {
+  get nome(): AbstractControl | null {
     return this.registrarForm.get('nome');
   }
 
-  get login() {
+  get login(): AbstractControl | null {
     return this.registrarForm.get('login');
   }
 
-  get email() {
+  get email(): AbstractControl | null {
     return this.registrarForm.get('email');
   }
 
-  get senha() {
+  get senha(): AbstractControl | null {
     return this.registrarForm.get('senhas.senha');
   }
 
-  get confirmaSenha() {
+  get confirmaSenha(): AbstractControl | null {
     return this.registrarForm.get('senhas.confirmaSenha');
   }
 
-  public getErroForm(item: AbstractControl): string {
-    let erros: string = '';
+  public getErroForm(item: AbstractControl | null): string {
+    let erros = '';
 
-    if (item.errors != null && 'mismatch' in item.errors) {
+    if (!!item && item.errors != null && 'mismatch' in item.errors) {
       erros += item.errors.mismatch;
     }
 

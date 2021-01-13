@@ -14,11 +14,11 @@
         p-label="Senha"
         p-placeholder="Informe a senha"
         formControlName="senha"
-        p-clean = "true"
-        p-minlength = "4"
-        p-maxlength="10"
-        p-no-autocomplete="boolean"
-        p-required = "true">
+       p-clean
+        [p-minlength] = 4
+        [p-maxlength]=10
+       [ p-no-autocomplete]=true
+        p-required>
       </po-password>
 
       <po-password
@@ -26,13 +26,13 @@
         p-label="Confirmar Senha"
         p-placeholder="Confirme a senha"
         formControlName="confirmaSenha"
-        p-clean = "true"
-        p-minlength = "4"
-        p-maxlength= "10"
+        p-clean
+        [p-minlength] = 4
+        [p-maxlength]= 10
         (keyup.enter)="resetarSenha()"
         [p-error-pattern] = "getErroForm(confirmaSenha)"
-        p-no-autocomplete="boolean"
-        p-required = "true">
+        [p-no-autocomplete]=true
+        p-required>
       </po-password>
     </div>
 
@@ -49,6 +49,6 @@
 </po-page-default>
 
 <po-loading-overlay *ngIf="carregando"
-    p-screen-lock="true"
+    [p-screen-lock]=true
     p-text="Aguarde..." >
 </po-loading-overlay>

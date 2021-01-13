@@ -17,10 +17,15 @@ export class JogadoresComponent implements OnInit, OnDestroy {
   public jogadores: Array<SalaParticipante>;
   public meuIdParticipante: string;
   public souJogador: boolean;
-  public possoRemoverJogador: boolean;
+  public possoRemoverJogador = false;
 
-  private salaConfig: SalaConfiguracao
+  private salaConfig: SalaConfiguracao;
   private administradores: Array<SalaParticipante>;
+
+  private inscricaoNovoJogador: Subscription;
+  private inscricaoNovoAdministrador: Subscription;
+  private inscricaoSalaConfiguracaor: Subscription;
+  private inscricaoReceberSala: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -30,25 +35,23 @@ export class JogadoresComponent implements OnInit, OnDestroy {
   ) {
     this.meuIdParticipante = authService.idParticipante;
     this.souJogador = authService.isJogador;
-    this.sala = this.activatedRoute.snapshot.data['sala'];
+    const keySala = 'sala';
+    this.sala = this.activatedRoute.snapshot.data[keySala];
     this.jogadores = this.sala.jogadores;
     this.salaConfig = this.sala.configuracao;
     this.administradores = this.sala.administradores;
     this.verificarSePossoRemoverJogador();
+
+    this.inscricaoReceberSala = this.salaHubService.receberSala.subscribe((x: any) => this.onReceberSala(x));
+    this.inscricaoNovoJogador = this.salaHubService.receberJogadores.subscribe((x: any) => this.onReceberJogadores(x));
+    this.inscricaoNovoAdministrador = this.salaHubService.receberAdministradores.subscribe((x: any) => this.onReceberAdministradores(x));
+    this.inscricaoSalaConfiguracaor = this.salaHubService.receberConfiguracaoSala.subscribe((x: any) => this.onNovaConfiguracaoSala(x));
    }
 
-  private inscricaoNovoJogador: Subscription;
-  private inscricaoNovoAdministrador: Subscription;
-  private inscricaoSalaConfiguracaor: Subscription;
-  private inscricaoReceberSala: Subscription;
   ngOnInit(): void {
-    this.inscricaoReceberSala = this.salaHubService.receberSala.subscribe(x => this.onReceberSala(x));
-    this.inscricaoNovoJogador = this.salaHubService.receberJogadores.subscribe((x) => this.onReceberJogadores(x));
-    this.inscricaoNovoAdministrador = this.salaHubService.receberAdministradores.subscribe((x) => this.onReceberAdministradores(x));
-    this.inscricaoSalaConfiguracaor = this.salaHubService.receberConfiguracaoSala.subscribe((x) => this.onNovaConfiguracaoSala(x));
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.inscricaoNovoJogador.unsubscribe();
     this.inscricaoNovoAdministrador.unsubscribe();
     this.inscricaoSalaConfiguracaor.unsubscribe();
@@ -59,34 +62,34 @@ export class JogadoresComponent implements OnInit, OnDestroy {
     this.sala = sala;
   }
 
-  private onReceberJogadores(jogadores: Array<SalaParticipante>) {
+  private onReceberJogadores(jogadores: Array<SalaParticipante>): void {
     this.jogadores = jogadores;
   }
 
-  private onReceberAdministradores(administradores: Array<SalaParticipante>) {
+  private onReceberAdministradores(administradores: Array<SalaParticipante>): void {
     this.administradores = administradores;
     this.verificarSePossoRemoverJogador();
   }
 
-  private onNovaConfiguracaoSala(salaConfig: SalaConfiguracao) {
+  private onNovaConfiguracaoSala(salaConfig: SalaConfiguracao): void {
     this.salaConfig = salaConfig;
     this.verificarSePossoRemoverJogador();
   }
 
-  private verificarSePossoRemoverJogador(){
+  private verificarSePossoRemoverJogador(): void {
     this.possoRemoverJogador = !this.souJogador ||
                                this.salaConfig.jogadorRemoveJogador ||
-                               this.administradores.length == 0;
+                               this.administradores.length === 0;
   }
 
 
   public remover(jogador: SalaParticipante): void {
-    if(jogador.id != this.meuIdParticipante && this.possoRemoverJogador) {
+    if (jogador.id !== this.meuIdParticipante && this.possoRemoverJogador) {
       this.poDialogService.confirm({
         title: 'Atenção',
         message: 'Deseja realmente remover o jogador: ' + jogador.nome + '?',
         confirm: () => this.salaHubService.removerParticipante(jogador.id)
-      })
+      });
     }
   }
 }

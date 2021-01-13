@@ -22,7 +22,7 @@
       name="userLogin"
       [(ngModel)]="userName"
       p-clean
-      p-maxlength="20"
+      [p-maxlength]=20
       (keyup.enter)="reenviarEmail()"
       p-required>
     </po-login>
@@ -38,6 +38,6 @@
 </po-page-default>
 
 <po-loading-overlay *ngIf="carregando"
-    p-screen-lock="true"
+    [p-screen-lock]=true
     p-text="Aguarde..." >
 </po-loading-overlay>

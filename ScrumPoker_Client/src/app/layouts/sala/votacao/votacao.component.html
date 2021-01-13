@@ -1,11 +1,11 @@
 <!--Cartas-->
 <div *ngIf="souJogador" class="po-sm-12">
   <app-carta
-    *ngFor="let carta of salaConfig.cartas"
+    *ngFor="let carta of salaConfig?.cartas"
     class="po-p-1 po-sm-6 po-md-6 po-lg-4"
-    p-label={{carta.value}}
-    p-selecionada={{carta.selecionada}}
-    (p-click)="votar(carta)"
+    pLabel={{carta.value}}
+    [pSelecionada]=carta.selecionada
+    (pClick)="votar(carta)"
     >
   </app-carta>
 </div>

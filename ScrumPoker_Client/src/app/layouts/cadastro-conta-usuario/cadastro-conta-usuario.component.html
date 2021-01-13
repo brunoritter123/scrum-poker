@@ -11,9 +11,9 @@
       formControlName="nome"
       p-placeholder="Seu Nome"
       p-label="Nome"
-      p-clean="true"
-      p-no-autocomplete="true"
-      p-required = "true">
+      p-clean
+      [p-no-autocomplete]=true
+      p-required>
     </po-input>
 
     <po-email
@@ -21,9 +21,9 @@
       formControlName="email"
       p-placeholder="Seu e-mail"
       p-label="E-mail"
-      p-clean="true"
-      p-no-autocomplete="true"
-      p-required = "true">
+      p-clean
+      [p-no-autocomplete]=true
+      p-required>
     </po-email>
 
     <po-login
@@ -31,10 +31,10 @@
       p-label="Usuário"
       p-placeholder="Nome de usuário"
       formControlName="login"
-      p-clean="true"
-      p-maxlength="20"
-      p-no-autocomplete="true"
-      p-required = "true">
+      p-clean
+      [p-maxlength]=20
+      [p-no-autocomplete]=true
+      p-required>
     </po-login>
 
     <div formGroupName="senhas">
@@ -43,11 +43,11 @@
         p-label="Senha"
         p-placeholder="Informe a senha"
         formControlName="senha"
-        p-clean = "true"
-        p-minlength = "4"
-        p-maxlength="10"
-        p-no-autocomplete="boolean"
-        p-required = "true">
+       p-clean
+        [p-minlength] = 4
+        [p-maxlength]=10
+       [ p-no-autocomplete]=true
+        p-required>
       </po-password>
 
     <po-password
@@ -55,13 +55,13 @@
       p-label="Confirmar Senha"
       p-placeholder="Confirme a senha"
       formControlName="confirmaSenha"
-      p-clean = "true"
-      p-minlength = "4"
-      p-maxlength= "10"
+     p-clean
+      [p-minlength] = 4
+      [p-maxlength]= 10
       (keyup.enter)="cadastrarConta()"
       [p-error-pattern] = "getErroForm(confirmaSenha)"
-      p-no-autocomplete="boolean"
-      p-required = "true">
+     [ p-no-autocomplete]=true
+      p-required>
     </po-password>
   </div>
 
@@ -78,6 +78,6 @@
 </po-page-default>
 
 <po-loading-overlay *ngIf="carregando"
-    p-screen-lock="true"
+    [p-screen-lock]=true
     p-text="Salvado..." >
 </po-loading-overlay>

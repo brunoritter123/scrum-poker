@@ -7,7 +7,8 @@
           p-placeholder="Informe seu usuário"
           name="userLogin"
           [(ngModel)]="authLogin.userName"
-          p-clean p-maxlength="20"
+          p-clean
+          [p-maxlength]=20
           p-required>
         </po-login>
 
@@ -17,8 +18,8 @@
           p-placeholder="Informe sua senha"
           name="senha"
           [(ngModel)]="authLogin.password"
-          p-minlength = "4"
-          p-maxlength="10"
+          [p-minlength] = 4
+          [p-maxlength]=10
           p-clean
           (keyup.enter)="login()"
           p-required>
@@ -50,8 +51,8 @@
 
     <po-modal
       #modalEsqueceuSenha
-      p-click-out="true"
-      p-hide-close="false"
+      [p-click-out]=true
+      [p-hide-close]=false
       [p-primary-action]="confirmModal"
       [p-secondary-action]="closeModal"
       p-size="sm"
@@ -65,7 +66,8 @@
           p-placeholder="Informe seu usuário"
           name="userLogin"
           [(ngModel)]="userNameEsqueceuSenha"
-          p-clean p-maxlength="20"
+          p-clean
+          [p-maxlength]=20
           (keyup.enter)="enviarEmailEsqueceuSenha()"
           p-required>
         </po-login>
@@ -76,6 +78,6 @@
 </po-page-default>
 
 <po-loading-overlay *ngIf="carregando"
-  p-screen-lock="true"
+  [p-screen-lock]=true
   p-text="Aguarde..." >
 </po-loading-overlay>

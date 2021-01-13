@@ -19,25 +19,25 @@ export class VotacaoComponent implements OnInit, OnDestroy {
 
   public sala: Sala;
 
-  public _salaConfig: SalaConfiguracao;
-  public set salaConfig(v : SalaConfiguracao) {
-    this._salaConfig = v;
+  private pSalaConfig?: SalaConfiguracao;
+  public set salaConfig(v: SalaConfiguracao | undefined) {
+    this.pSalaConfig = v;
     this.selecionaCartaVotada();
   }
-  public get salaConfig(): SalaConfiguracao {
-    return this._salaConfig;
+  public get salaConfig(): SalaConfiguracao | undefined {
+    return this.pSalaConfig;
   }
 
-  public _meuVotoValue: string;
-  public set meuVotoValue(v : string) {
-    this._meuVotoValue = v;
+  private pMeuVotoValue = '';
+  public set meuVotoValue(v: string) {
+    this.pMeuVotoValue = v;
     this.selecionaCartaVotada();
   }
   public get meuVotoValue(): string {
-    return this._meuVotoValue;
+    return this.pMeuVotoValue;
   }
 
-  private estouConectado: boolean = true;
+  private estouConectado = true;
   private meuIdParticipante: string;
   private inscricaoSalaconfiguracao: Subscription;
   private inscricaoReceberJogaodoes: Subscription;
@@ -49,20 +49,23 @@ export class VotacaoComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private salaHubService: SalaHubService
     ) {
-      this.sala = this.activatedRoute.snapshot.data['sala'];
+      const keySala = 'sala';
+      this.sala = this.activatedRoute.snapshot.data[keySala];
       this.salaConfig = this.sala.configuracao;
-      this.meuVotoValue = this.sala.jogadores.find(jogador => jogador.id == this.meuIdParticipante)?.votoCartaValor;
+      const meuVotoValue = this.sala.jogadores.find(jogador => jogador.id === this.meuIdParticipante)?.votoCartaValor;
+      this.meuVotoValue = !!meuVotoValue ? meuVotoValue : '';
       this.meuIdParticipante = authService.idParticipante;
       this.souJogador = authService.isJogador;
       this.possoResetarJogo = salaHubService.possoResetarJogo;
       this.possoFinalizarJogo = salaHubService.possoFinalizarJogo;
+
+      this.inscricaoSalaconfiguracao = this.salaHubService.receberConfiguracaoSala.subscribe((x: any) => this.onReceberConfiguracaoSala(x));
+      this.inscricaoReceberJogaodoes = this.salaHubService.receberJogadores.subscribe((x: any) => this.onReceberJogadores(x));
+      this.inscricaoJogadorFinalizaJogo = this.salaHubService.jogadorFinalizaJogo.subscribe((x: any) => this.possoFinalizarJogo = x);
+      this.inscricaoJogadorResetaJogo = this.salaHubService.jogadorResetaJogo.subscribe((x: any) => this.possoResetarJogo = x);
      }
 
   ngOnInit(): void {
-    this.inscricaoSalaconfiguracao = this.salaHubService.receberConfiguracaoSala.subscribe(x => this.onReceberConfiguracaoSala(x));
-    this.inscricaoReceberJogaodoes = this.salaHubService.receberJogadores.subscribe(x => this.onReceberJogadores(x));
-    this.inscricaoJogadorFinalizaJogo = this.salaHubService.jogadorFinalizaJogo.subscribe(x => this.possoFinalizarJogo = x);
-    this.inscricaoJogadorResetaJogo = this.salaHubService.jogadorResetaJogo.subscribe(x => this.possoResetarJogo = x);
   }
 
   ngOnDestroy(): void {
@@ -77,12 +80,13 @@ export class VotacaoComponent implements OnInit, OnDestroy {
   }
 
   private onReceberJogadores(jogadores: Array<SalaParticipante>): void {
-    this.meuVotoValue = jogadores.find(jogador => jogador.id == this.meuIdParticipante)?.votoCartaValor;
+    const meuVotoValue = jogadores.find(jogador => jogador.id === this.meuIdParticipante)?.votoCartaValor;
+    this.meuVotoValue = !!meuVotoValue ? meuVotoValue : '';
   }
 
   public votar(carta: Carta): void {
     if (!this.sala.jogoFinalizado && !!carta && this.estouConectado) {
-      this.meuVotoValue = carta.selecionada ? null : carta.value;
+      this.meuVotoValue = carta.selecionada ? '' : carta.value;
       this.salaHubService.enviarVoto(this.meuVotoValue);
     }
   }
@@ -96,8 +100,8 @@ export class VotacaoComponent implements OnInit, OnDestroy {
   }
 
   private selecionaCartaVotada(): void {
-    this.salaConfig.cartas.forEach( carta => {
-      carta.selecionada = carta.value == this.meuVotoValue;
-    })
+    this.salaConfig?.cartas.forEach( carta => {
+      carta.selecionada = carta.value === this.meuVotoValue;
+    });
   }
 }

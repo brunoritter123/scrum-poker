@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs/internal/Subscription';
 import { PerfilService } from 'src/app/services/perfil.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Perfil } from 'src/app/interfaces/perfil.interface';
@@ -10,7 +9,7 @@ import { PoNotificationService } from '@po-ui/ng-components';
   templateUrl: './editar-perfil.component.html'
 })
 export class EditarPerfilComponent implements OnInit {
-  public carregando: boolean = false;
+  public carregando = false;
   public perfil: Perfil = {id: '', nome: '', email: ''};
 
   constructor(
@@ -25,25 +24,24 @@ export class EditarPerfilComponent implements OnInit {
       },
       (erro) => {
         console.log(erro);
-        this.poNotification.error("Houve um erro ao buscar o perfil");
-      })
+        this.poNotification.error('Houve um erro ao buscar o perfil');
+      });
   }
 
-  public upload() {
+  public upload(): void {
 
   }
 
-  public cancel() {
+  public cancel(): void {
     history.go(-1);
   }
 
-  public save() {
+  public save(): void {
     this.carregando = true;
 
     this.perfilService.alterarPerfil(this.perfil)
     .then( () => history.go(-1))
     .finally(() => this.carregando = false);
-
   }
 
 }

@@ -12,7 +12,7 @@ export class PerfilResolver implements Resolve<Perfil> {
     private authService: AuthService){}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<Perfil> {
-    let userName = this.authService.userNameLogin
+    const userName = this.authService.userNameLogin;
     return this.perfilService.buscarPerfil(userName);
   }
 }

@@ -18,9 +18,12 @@ export class AdministradoresComponent implements OnInit, OnDestroy {
   public administradores: Array<SalaParticipante>;
   public meuIdParticipante: string;
   public souJogador: boolean;
-  public possoRemoverAdministrador: boolean;
+  public possoRemoverAdministrador = false;
 
-  private salaConfig: SalaConfiguracao
+  private salaConfig: SalaConfiguracao;
+
+  private inscricaoNovoAdministrador: Subscription;
+  private inscricaoSalaConfiguracaor: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -34,13 +37,12 @@ export class AdministradoresComponent implements OnInit, OnDestroy {
     this.administradores = sala.administradores;
     this.salaConfig = sala.configuracao;
     this.verificarSePossoRemoverAdministrador();
+
+    this.inscricaoNovoAdministrador = this.salaHubService.receberAdministradores.subscribe((x: any) => this.onNovoAdministradores(x));
+    this.inscricaoSalaConfiguracaor = this.salaHubService.receberConfiguracaoSala.subscribe((x: any) => this.onNovaConfiguracaoSala(x));
    }
 
-  private inscricaoNovoAdministrador: Subscription;
-  private inscricaoSalaConfiguracaor: Subscription;
   ngOnInit(): void {
-    this.inscricaoNovoAdministrador = this.salaHubService.receberAdministradores.subscribe((x) => this.onNovoAdministradores(x));
-    this.inscricaoSalaConfiguracaor = this.salaHubService.receberConfiguracaoSala.subscribe((x) => this.onNovaConfiguracaoSala(x));
   }
 
   ngOnDestroy() {

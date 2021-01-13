@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Sala } from '../../../models/sala.model';
-import { PoDialogService } from '@po-ui/ng-components';
+import { PoDialogService, PoDropdownAction } from '@po-ui/ng-components';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SalaService } from '../../../services/sala.service';
 import { Subscription } from 'rxjs';
@@ -12,7 +12,7 @@ import { SalaConfiguracao } from 'src/app/models/sala-configuracao.model';
   templateUrl: './configurar-sala.component.html'
 })
 export class ConfigurarSalaComponent implements OnInit, OnDestroy {
-  @Output() close: EventEmitter<boolean> = new EventEmitter();
+  @Output() closeConfig: EventEmitter<any> = new EventEmitter();
 
   public novaCarta = '';
   public ordemCarta = '';
@@ -28,7 +28,7 @@ export class ConfigurarSalaComponent implements OnInit, OnDestroy {
     { value: 'cafe', label: 'Xícara de café' }
   ];
 
-  public readonly sequencias: Array<object> = [
+  public readonly sequencias: Array<PoDropdownAction> = [
     { label: 'Padrão 1'   , action: () => this.alteraCartas('Padrão 1') },
     { label: 'Padrão 2'   , action: () => this.alteraCartas('Padrão 2') },
     { label: 'Fibonacci'  , action: () => this.alteraCartas('Fibonacci') },
@@ -37,7 +37,7 @@ export class ConfigurarSalaComponent implements OnInit, OnDestroy {
     { label: 'Limpar'     , action: () => this.alteraCartas('Limpar') }
   ];
 
-  public configSala: SalaConfiguracao = this.activatedRoute.snapshot.data['sala'].configuracao;
+  public configSala: SalaConfiguracao = this.activatedRoute.snapshot.data.sala.configuracao;
 
   private inscricaoConfiguracaoSala: Subscription;
 
@@ -46,26 +46,28 @@ export class ConfigurarSalaComponent implements OnInit, OnDestroy {
     private thfAlert: PoDialogService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private salaHubService: SalaHubService) {}
-
-  ngOnInit() {
-    this.receberSala(this.activatedRoute.snapshot.data['sala'].configuracao);
+    private salaHubService: SalaHubService) {
 
     this.inscricaoConfiguracaoSala = this.salaHubService.receberConfiguracaoSala.subscribe(
       (salaConfig: SalaConfiguracao) => this.receberSala(salaConfig));
+    }
+
+  ngOnInit(): void {
+    this.receberSala(this.activatedRoute.snapshot.data.sala.configuracao);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.inscricaoConfiguracaoSala.unsubscribe();
   }
 
-  private receberSala(sala: SalaConfiguracao) {
-    this.configSala = { ...sala }; //gera uma nova referência do objeto
-    this.execteAlteraCartas("Salvo");
+  private receberSala(sala: SalaConfiguracao): void {
+    // Gera uma nova referência do objeto
+    this.configSala = { ...sala };
+    this.execteAlteraCartas('Salvo');
   }
 
-  public alteraCartas(aplicar: string){
-    if(this.isAlterouCartas){
+  public alteraCartas(aplicar: string): void{
+    if (this.isAlterouCartas){
       this.thfAlert.confirm({
         title: 'Atenção',
         message: `Deseja limpar as alteração realizadas nas cartas e aplicar a sequência selecionada?`,
@@ -76,21 +78,21 @@ export class ConfigurarSalaComponent implements OnInit, OnDestroy {
     }
   }
 
-  private execteAlteraCartas(aplicar: string) {
+  private execteAlteraCartas(aplicar: string): void {
     switch (aplicar) {
       case 'Fibonacci':
         this.cartas = [ {value: ' 0'}, {value: ' ½'}, {value: '01'},
                         {value: '02'}, {value: '03'}, {value: '05'},
                         {value: '08'}, {value: '13'}, {value: '21'},
                         {value: '34'}, {value: '55'}
-        ]
+        ];
         break;
 
       case 'Padrão 1':
         this.cartas = [ {value: '01'}, {value: '02'}, {value: '03'},
                         {value: '05'}, {value: '08'}, {value: '13'},
                         {value: '21'}, {value: '34'}, {value: '55'}
-        ]
+        ];
         break;
 
       case 'Padrão 2':
@@ -98,14 +100,14 @@ export class ConfigurarSalaComponent implements OnInit, OnDestroy {
                         {value: '02'}, {value: '03'}, {value: '05'},
                         {value: '08'}, {value: '13'}, {value: '20'},
                         {value: '40'}, {value: '100'}
-        ]
+        ];
         break;
 
       case 'Tamanho':
         this.cartas = [ {value: 'XXS'}, {value: 'XS'}, {value: 'S'},
                         {value: 'M'}, {value: 'L'},  {value: 'XL'},
                         {value: 'XXL'}
-        ]
+        ];
         break;
 
       case 'Limpar':
@@ -117,11 +119,12 @@ export class ConfigurarSalaComponent implements OnInit, OnDestroy {
         this.cartas = [];
         this.configSala.cartas.forEach( (carta) => {
           if (carta.especial){
-            this.cartasEspecias.push(carta.value)
+            this.cartasEspecias.push(carta.value);
           } else {
             this.cartas.push({value: carta.value});
           }
-        })
+        });
+        break;
 
 
       default:
@@ -130,10 +133,10 @@ export class ConfigurarSalaComponent implements OnInit, OnDestroy {
     this.isAlterouCartas = false;
   }
 
-  public save() {
+  public save(): void {
     this.carregando = true;
 
-    let cartasNew: Array<any> = [];
+    const cartasNew: Array<any> = [];
     this.cartas.forEach( (carta, id) => {
       cartasNew.push({
         idSala: this.configSala.id,
@@ -152,15 +155,15 @@ export class ConfigurarSalaComponent implements OnInit, OnDestroy {
       });
     });
 
-    let lAltCartas: boolean = cartasNew.length != this.configSala.cartas.length;
+    let lAltCartas: boolean = cartasNew.length !== this.configSala.cartas.length;
 
     if (!lAltCartas)
     {
       this.configSala.cartas.forEach( (carta, index) => {
-        if (carta.value != cartasNew[index].value) {
+        if (carta.value !== cartasNew[index].value) {
           lAltCartas = true;
         }
-      })
+      });
     }
 
     if (lAltCartas){
@@ -168,36 +171,36 @@ export class ConfigurarSalaComponent implements OnInit, OnDestroy {
       this.salaService.excluirCarta(this.configSala.salaId)
       .then( () => {
         this.configSala.cartas = cartasNew;
-        this.salvarSala()
-      })
+        this.salvarSala();
+      });
     } else {
 
-      this.salvarSala()
+      this.salvarSala();
     }
   }
 
   private salvarSala(): void {
     this.salaHubService.enviarConfiguracaoSala(this.configSala)
     .finally(() => {
-      this.carregando = false
-      this.close.emit(true);
-    })
+      this.carregando = false;
+      this.closeConfig.emit(true);
+    });
   }
 
-  public cancel() {
-    this.close.emit(true);
-    this.carregando = true
+  public cancel(): void {
+    this.closeConfig.emit(true);
+    this.carregando = true;
     this.salaService.buscarSala(this.configSala.salaId)
     .then((sala: Sala) => this.receberSala(sala.configuracao))
     .finally(() => {
-      this.carregando = false
-    })
+      this.carregando = false;
+    });
   }
 
-  public addCarta() {
-    let cartaTmp : Array<object> = [];
-    const ordemCarta = parseInt(this.ordemCarta)
-    const novaCarta = {value: this.novaCarta}
+  public addCarta(): void {
+    const cartaTmp: Array<object> = [];
+    const ordemCarta = parseInt(this.ordemCarta, 4);
+    const novaCarta = {value: this.novaCarta};
 
     if (this.novaCarta.length > 0) {
       if (ordemCarta <= 0) {
@@ -208,7 +211,7 @@ export class ConfigurarSalaComponent implements OnInit, OnDestroy {
 
       } else {
         this.cartas.forEach( carta => {
-          if( (cartaTmp.length + 1) == ordemCarta) {
+          if ( (cartaTmp.length + 1) === ordemCarta) {
             cartaTmp.push(novaCarta);
           }
           cartaTmp.push(carta);
@@ -221,7 +224,7 @@ export class ConfigurarSalaComponent implements OnInit, OnDestroy {
     }
   }
 
-  public proximaOrdem(){
+  public proximaOrdem(): void {
     this.ordemCarta = (this.cartas.length + 1).toString();
   }
 }

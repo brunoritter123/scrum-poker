@@ -29,20 +29,25 @@ export class SalaGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
       return new Promise((resolve, reject) => {
         this.loadPageService.loadPage.emit(true);
-        let salaId: string = route.params['salaId'];
+        if (!route.params?.salaId) {
+          this.poNotification.error('Id da Sala não foi definida');
+          this.router.navigate(['']);
+          reject();
+        }
+        const salaId: string = route.params?.salaId;
 
         this.salaService.incluirSalaPadrao(salaId)
-        .then(() => {return this.getParticipante(salaId)})
-        .then((participante) => {return this.participanteService.incluirOuAlterarParticipante(participante)})
-        .then(() => {return this.iniciarConexaoHub()})
+        .then(() => this.getParticipante(salaId))
+        .then((participante) => this.participanteService.incluirOuAlterarParticipante(participante))
+        .then(() => this.iniciarConexaoHub())
         .then(() => resolve(true))
         .catch((err) => {
-          this.poNotification.error(err)
+          this.poNotification.error(err);
           this.router.navigate(['']);
           reject();
         })
-        .finally(() => this.loadPageService.loadPage.emit(false))
-      })
+        .finally(() => this.loadPageService.loadPage.emit(false));
+      });
 
     // let idParticipante = this.authService.idParticipante;
     // let isJogador = this.authService.isJogador;
@@ -73,59 +78,48 @@ export class SalaGuard implements CanActivate {
 
   private iniciarConexaoHub(): Promise<any> {
     return this.salaHubService.startConection(this.authService.idParticipante).catch((err) => {
-      // this.poNotification.error('Erro ao iniciar a conexão com o servidor')
-      // this.loadPageService.loadPage.emit(false);
-      // this.router.navigate(['']);
-      console.error(err)
+      console.error(err);
       throw new Error('Erro ao iniciar a conexão com o servidor');
     });
   }
 
   private getParticipante(salaId: string): Promise<SalaParticipante>{
     return new Promise((resolve, reject) => {
-      let participante = new SalaParticipante();
+      const participante = new SalaParticipante();
       participante.id = this.authService.idParticipante;
       participante.salaId = salaId;
       participante.nome = this.authService.name;
       participante.jogador = this.authService.isJogador;
       participante.online = true;
 
-      if(!participante.id || !participante.salaId || !participante.nome ||
+      if (!participante.id || !participante.salaId || !participante.nome ||
         participante.jogador === undefined || participante.online === undefined)
       {
-          reject('Dados insuficientes para entrar na sala.')
+          reject('Dados insuficientes para entrar na sala.');
       }
 
-      resolve(participante)
-    })
+      resolve(participante);
+    });
   }
 
   private entrarSala(idParticipante: string, salaId: string, isJogador: boolean, nomeParticipante: string): Promise<any> {
 
-    let participante = new SalaParticipante();
+    const participante = new SalaParticipante();
     participante.id = idParticipante;
     participante.salaId = salaId;
     participante.nome = nomeParticipante;
     participante.jogador = isJogador;
     participante.online = true;
     return this.salaHubService.enviarParticipante(participante).catch((err) => {
-      // this.poNotification.error("Erro ao tentar entrar na sala: " + salaId)
-      // this.router.navigate(['']);
-      // this.loadPageService.loadPage.emit(false);
-      console.error(err)
-      throw new Error('Erro ao tentar entrar na sala: ' + salaId)
+      console.error(err);
+      throw new Error('Erro ao tentar entrar na sala: ' + salaId);
     });
   }
 
-
-
   private criarSalaPadrao(salaId: string): Promise<any> {
     return this.salaService.incluirSalaPadrao(salaId).catch((err) => {
-      // this.poNotification.error('Erro ao tentar incluir uma sala padrão')
-      // this.loadPageService.loadPage.emit(false);
-      // this.router.navigate(['']);
-      console.error(err)
-      throw new Error('Erro ao tentar incluir uma sala padrão')
-    })
+      console.error(err);
+      throw new Error('Erro ao tentar incluir uma sala padrão');
+    });
   }
 }

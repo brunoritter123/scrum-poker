@@ -1,8 +1,8 @@
 export class SalaParticipante {
-  public id: string;
-  public jogador: boolean;
-  public salaId: string;
-  public nome: string;
-  public votoCartaValor: string;
-  public online: boolean;
+  public id = '';
+  public jogador = true;
+  public salaId = '';
+  public nome = '';
+  public votoCartaValor = '';
+  public online = true;
 }

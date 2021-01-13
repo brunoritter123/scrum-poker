@@ -23,7 +23,7 @@ export class SalaService {
           this.poNotification.error('Houve um erro ao tentar buscar a sala.');
           console.log(erro);
           throw erro;
-      })
+      });
   }
 
   public incluirSalaPadrao(salaId: string): Promise<Sala> {
@@ -33,7 +33,7 @@ export class SalaService {
           this.poNotification.error('Houve um erro ao tentar buscar a sala.');
           console.log(erro);
           throw erro;
-      })
+      });
   }
 
   public alterarSala(sala: Sala): Promise<any> {
@@ -43,12 +43,12 @@ export class SalaService {
     .catch( (erro) => {
       this.poNotification.error('Houve um erro ao tentar salvar a sala.');
       console.log(erro);
-      throw erro
-    })
+      throw erro;
+    });
   }
 
   public excluirCarta(salaId: string): Promise<any> {
     return this.http.delete(`${this.url}/sala/${salaId}/cartas`)
-    .toPromise()
+    .toPromise();
   }
 }

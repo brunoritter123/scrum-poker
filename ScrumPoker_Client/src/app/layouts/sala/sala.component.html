@@ -27,12 +27,12 @@
 <po-page-slide
   #pageSlide
   p-title="Configuração"
-  p-click-out="true"
+  [p-click-out]=true
   p-size="auto">
-  <app-configurar-sala (close)="pageSlide.close()"></app-configurar-sala>
+  <app-configurar-sala (closeConfig)="pageSlide.close()"></app-configurar-sala>
 </po-page-slide>
 
-<po-loading-overlay *ngIf="carregando"
-p-screen-lock="false"
-p-text="Carregando" >
+<po-loading-overlay *ngIf="carregando || reconectando"
+[p-screen-lock]=false
+[p-text]="textoLoading">
 </po-loading-overlay>

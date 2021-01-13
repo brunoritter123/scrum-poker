@@ -11,9 +11,9 @@ import { AuthResetarSenha } from 'src/app/interfaces/authResetarSenha.interface'
 })
 export class ConfirmarResetarSenhaComponent implements OnInit {
   public registrarForm: FormGroup;
-  public carregando: boolean = false;
-  private token: string = '';
-  private userName: string = '';
+  public carregando = false;
+  private token = '';
+  private userName = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -21,21 +21,9 @@ export class ConfirmarResetarSenhaComponent implements OnInit {
     public authService: AuthService,
     private router: Router,
     private poNotification: PoNotificationService
-  ) { }
-
-  ngOnInit(): void {
-    this.validation();
-
-    this.token = this.activatedRoute.snapshot.queryParams['token'];
-    this.userName = this.activatedRoute.snapshot.queryParams['userName'];
-
-    if (!this.token || !this.userName){
-      this.router.navigate(['']);
-    }
-  }
-
-  private validation() {
+  ) {
     this.registrarForm = this.fb.group({
+      // tslint:disable-next-line: deprecation
       senhas: this.fb.group({
         senha: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]],
         confirmaSenha: ['', Validators.required ]
@@ -43,15 +31,26 @@ export class ConfirmarResetarSenhaComponent implements OnInit {
     });
   }
 
-  private compararSenhas(fb: FormGroup) {
+  ngOnInit(): void {
+    const keyToken = 'token';
+    const keyUserName = 'userName';
+    this.token = this.activatedRoute.snapshot.queryParams[keyToken];
+    this.userName = this.activatedRoute.snapshot.queryParams[keyUserName];
+
+    if (!this.token || !this.userName){
+      this.router.navigate(['']);
+    }
+  }
+
+  private compararSenhas(fb: FormGroup): void {
     const senha = fb.get('senha');
     const confirmaSenha = fb.get('confirmaSenha');
 
-    if (confirmaSenha.errors == null || 'mismatch' in confirmaSenha.errors) {
-      if (senha.value != confirmaSenha.value) {
-        confirmaSenha.setErrors({mismatch: 'Confirmação da senha não confere com a senha.'});
+    if (confirmaSenha?.errors == null || 'mismatch' in confirmaSenha.errors) {
+      if (senha?.value !== confirmaSenha?.value) {
+        confirmaSenha?.setErrors({mismatch: 'Confirmação da senha não confere com a senha.'});
       } else {
-        confirmaSenha.setErrors(null);
+        confirmaSenha?.setErrors(null);
       }
     }
   }
@@ -61,34 +60,34 @@ export class ConfirmarResetarSenhaComponent implements OnInit {
 
     const authRegistrar: AuthResetarSenha = {
       userName: this.userName,
-      password: this.senha.value,
+      password: this.senha?.value,
       token: this.token
-    }
+    };
 
     this.authService.resetarSenha(this.userName, authRegistrar).toPromise()
       .then(() => {
-        this.poNotification.success('Senha resetada com sucesso')
+        this.poNotification.success('Senha resetada com sucesso');
         this.router.navigate(['']);
       })
       .catch((erro) => {
-        console.log(erro)
-        this.poNotification.error("Houve um erro ao tentar resetar a senha")
+        console.log(erro);
+        this.poNotification.error('Houve um erro ao tentar resetar a senha');
       })
-      .finally(() => this.carregando = false)
+      .finally(() => this.carregando = false);
   }
 
-  get senha() {
+  get senha(): AbstractControl | null {
     return this.registrarForm.get('senhas.senha');
   }
 
-  get confirmaSenha() {
+  get confirmaSenha(): AbstractControl | null {
     return this.registrarForm.get('senhas.confirmaSenha');
   }
 
-  public getErroForm(item: AbstractControl): string {
-    let erros: string = '';
+  public getErroForm(item: AbstractControl | null): string {
+    let erros = '';
 
-    if (item.errors != null && 'mismatch' in item.errors) {
+    if (!!item && item.errors != null && 'mismatch' in item.errors) {
       erros += item.errors.mismatch;
     }
 

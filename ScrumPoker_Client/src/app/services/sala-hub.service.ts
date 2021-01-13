@@ -1,10 +1,10 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import * as singalR from '@microsoft/signalr';
-import { ChartModel } from '../interfaces/chartmodel.interface';
 import { SalaConfiguracao } from '../models/sala-configuracao.model';
 import { SalaParticipante } from '../models/sala-participante.model';
 import { Sala } from '../models/sala.model';
 import { AuthService } from './auth.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,28 +12,26 @@ import { AuthService } from './auth.service';
 export class SalaHubService {
   private souJogador: boolean;
 
-  public _administradores: Array<SalaParticipante>;
-  public set administradores(v : Array<SalaParticipante>) {
-    this._administradores = v;
+  private pAdministradores: Array<SalaParticipante> = [];
+  public set administradores(v: Array<SalaParticipante>) {
+    this.pAdministradores = v;
     this.verificarConfiguracoes();
   }
   public get administradores(): Array<SalaParticipante> {
-    return this._administradores;
+    return this.pAdministradores;
   }
 
-  public _salaConfig: SalaConfiguracao;
-  public set salaConfig(v : SalaConfiguracao) {
-    this._salaConfig = v;
+  private pSalaConfig: SalaConfiguracao | undefined;
+  public set salaConfig(v: SalaConfiguracao | undefined) {
+    this.pSalaConfig = v;
     this.verificarConfiguracoes();
   }
-  public get salaConfig(): SalaConfiguracao {
-    return this._salaConfig;
+  public get salaConfig(): SalaConfiguracao | undefined{
+    return this.pSalaConfig;
   }
 
-  public possoFinalizarJogo: boolean;
-  public possoResetarJogo: boolean;
-  public data: ChartModel[];
-  public broadcastedData: ChartModel[];
+  public possoFinalizarJogo = false;
+  public possoResetarJogo = false;
   public receberConfiguracaoSala = new EventEmitter<SalaConfiguracao>();
   public receberJogadores = new EventEmitter<Array<SalaParticipante>>();
   public receberAdministradores = new EventEmitter<Array<SalaParticipante>>();
@@ -42,7 +40,11 @@ export class SalaHubService {
   public jogadorFinalizaJogo = new EventEmitter<boolean>();
   public jogadorResetaJogo = new EventEmitter<boolean>();
 
-  private hubConnection: singalR.HubConnection;
+  public onReconectado = new EventEmitter<any>();
+  public onReconectando = new EventEmitter<any>();
+  public onPercaDeConexao = new EventEmitter<any>();
+
+  private hubConnection!: singalR.HubConnection;
 
   constructor(
     private authService: AuthService
@@ -51,9 +53,11 @@ export class SalaHubService {
     }
 
 
-  public startConection(participanteId: string) {
+  public startConection(participanteId: string): Promise<void> {
+    const url = environment.SOCKET;
+
     this.hubConnection = new singalR.HubConnectionBuilder()
-    .withUrl(`http://localhost:5000/sala-hub?participante-id=${participanteId}`)
+    .withUrl(`${url}/sala-hub?participante-id=${participanteId}`)
     .withAutomaticReconnect()
     .build();
 
@@ -68,91 +72,95 @@ export class SalaHubService {
       this.receberParticipanteRemovidoHub();
       this.receberSalaHub();
     });
-  };
-
-  private onCloseConection(error) {
-    console.log('perca de conecção');
   }
 
-  private onReconnectedConection(error) {
-    console.log('Reconectado');
+  private onCloseConection(error: Error | undefined): void {
+    this.onPercaDeConexao.emit();
   }
 
-  private onReconnectingConection(error) {
-    console.log('Sem Conexão');
+  private onReconnectedConection(error: string | undefined): void {
+    this.onReconectado.emit();
   }
 
-  public stopConection() {
+  private onReconnectingConection(error: Error | undefined): void {
+    this.onReconectando.emit();
+  }
+
+  public stopConection(): void {
     this.hubConnection.stop();
-  };
+  }
 
   private receberConfiguracaoSalaHub(): void {
     this.hubConnection.on('ReceberConfiguracaoSala', (salaconfig: SalaConfiguracao) => {
-      this.receberConfiguracaoSala.emit(salaconfig)});
+      this.receberConfiguracaoSala.emit(salaconfig);
+    });
   }
 
   private receberJogadoresHub(): void {
     this.hubConnection.on('ReceberJogadores', (jogadores: Array<SalaParticipante>) => {
-      this.receberJogadores.emit(jogadores)});
+      this.receberJogadores.emit(jogadores);
+    });
   }
 
   private receberAdministradoresHub(): void {
     this.hubConnection.on('ReceberAdministradores', (administradores: Array<SalaParticipante>) => {
       this.administradores = administradores;
-      this.receberAdministradores.emit(administradores)});
+      this.receberAdministradores.emit(administradores);
+    });
   }
 
   public enviarConfiguracaoSala(salaConfig: SalaConfiguracao): Promise<any> {
     this.salaConfig = salaConfig;
-    return this.hubConnection.invoke('EnviarConfiguracaoSala', salaConfig)
+    return this.hubConnection.invoke('EnviarConfiguracaoSala', salaConfig);
   }
 
   public enviarResetarSala(salaId: string): Promise<any> {
-    return this.hubConnection.invoke('ResetarSala', salaId)
+    return this.hubConnection.invoke('ResetarSala', salaId);
   }
 
   public enviarRevotarSala(salaId: string): Promise<any> {
-    return this.hubConnection.invoke('RevotarSala', salaId)
+    return this.hubConnection.invoke('RevotarSala', salaId);
   }
 
   public enviarConcluirSala(salaId: string): Promise<any> {
-    return this.hubConnection.invoke('ConcluirSala', salaId)
+    return this.hubConnection.invoke('ConcluirSala', salaId);
   }
 
   public enviarVoto(votoValor: string): Promise<any> {
-    return this.hubConnection.invoke('EnviarVoto', votoValor)
+    return this.hubConnection.invoke('EnviarVoto', votoValor);
   }
 
   public enviarParticipante(participante: SalaParticipante): Promise<any> {
-    return this.hubConnection.invoke('EnviarParticipante', participante)
+    return this.hubConnection.invoke('EnviarParticipante', participante);
   }
 
   public removerParticipante(participanteId: string): Promise<any> {
-    return this.hubConnection.invoke('RemoverParticipante', participanteId, this.authService.name)
+    return this.hubConnection.invoke('RemoverParticipante', participanteId, this.authService.name);
   }
 
   private receberParticipanteRemovidoHub(): void {
     this.hubConnection.on('ParticipanteRemovido', (nomeParticipanteQueRemoveu: string) => {
-      this.receberParticipanteRemovido.emit(nomeParticipanteQueRemoveu)
+      this.receberParticipanteRemovido.emit(nomeParticipanteQueRemoveu);
     });
   }
 
   private receberSalaHub(): void {
     this.hubConnection.on('ReceberSala', (sala: Sala) => {
-      this.receberSala.emit(sala)
+      this.receberSala.emit(sala);
     });
   }
 
-  public enviarFinalizarJogo(salaId: string) {
-    return this.hubConnection.invoke('FinalizarJogo', salaId)
+  public enviarFinalizarJogo(salaId: string): Promise<any> {
+    return this.hubConnection.invoke('FinalizarJogo', salaId);
   }
 
   private verificarConfiguracoes(): void {
-    if(!this.administradores || !this.salaConfig)
+    if (!this.administradores || !this.salaConfig){
       return;
+    }
 
-    this.possoFinalizarJogo = !this.souJogador || this.administradores.length == 0 || this.salaConfig.jogadorFinalizaJogo;
-    this.possoResetarJogo = !this.souJogador || this.administradores.length == 0 || this.salaConfig.jogadorResetaJogo;
+    this.possoFinalizarJogo = !this.souJogador || this.administradores.length === 0 || this.salaConfig.jogadorFinalizaJogo;
+    this.possoResetarJogo = !this.souJogador || this.administradores.length === 0 || this.salaConfig.jogadorResetaJogo;
     this.jogadorFinalizaJogo.emit(this.possoFinalizarJogo);
     this.jogadorResetaJogo.emit(this.possoResetarJogo);
   }
