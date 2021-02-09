@@ -1,14 +1,12 @@
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using ScrumPoker.Domain.Interfaces.Repositories;
-using ScrumPoker.Domain.Models;
-using System.Threading.Tasks;
-using AutoMapper;
-using ScrumPoker.API.Dtos;
-using Microsoft.AspNetCore.Identity;
-using ScrumPoker.Domain.Identity;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using ScrumPoker.Application.DTOs.InputModels;
+using ScrumPoker.Application.DTOs.ViewModels;
+using ScrumPoker.Domain.Identity;
+using ScrumPoker.Application.Interfaces.ApplicationServices;
+using System.Threading.Tasks;
 
 namespace ScrumPoker.API.Controllers
 {
@@ -18,53 +16,36 @@ namespace ScrumPoker.API.Controllers
     [ApiController]
     public class PerfilController : ControllerBase
     {
-        private readonly IPerfilRepository _repo;
-        private readonly IMapper _mapper;
+        private readonly IPerfilService _perfilService;
         private readonly UserManager<User> _userManager;
-        private readonly IWebHostEnvironment _env;
 
         public PerfilController(
-            IPerfilRepository repo,
-            IMapper mapper,
-            UserManager<User> userManager,
-            IWebHostEnvironment env
+            IPerfilService perfilService,
+            UserManager<User> userManager
             )
         {
-            _repo = repo;
-            _mapper = mapper;
+            _perfilService = perfilService;
             _userManager = userManager;
-            _env = env;
         }
 
         [HttpGet("{userName}")]
-        public async Task<ActionResult<PerfilDto>> BuscarPorIdAsync(string userName)
+        public async Task<ActionResult<PerfilViewModel>> BuscarPorIdAsync(string userName)
         {
             var user = await _userManager.FindByNameAsync(userName);
 
-            if (user is null)
-                return NotFound();
+            if (user is null) return NotFound();
 
-            var perfil = await _repo.BuscarPorIdAsync(user.PerfilId);
-            return Ok(_mapper.Map<PerfilDto>(perfil));
+            var perfil = await _perfilService.BuscarPorIdAsync(user.PerfilId);
+            return Ok(perfil);
         }
 
         [HttpPut]
         [Authorize]
-        public async Task<ActionResult<PerfilDto>> AlterarAsync([FromBody] PerfilDto perfilDto)
+        public async Task<ActionResult<PerfilViewModel>> AlterarAsync(
+            [FromBody] PerfilAlteracaoInputModel perfilAlteracao)
         {
-            var perfil = await _repo.BuscarPorIdAsync(perfilDto.Id);
-            if (perfil is null) return NotFound();
-
-            _mapper.Map(perfilDto, perfil);
-            await _repo.AlterarAsync(perfil);
-
-            return Ok(_mapper.Map<PerfilDto>(perfil));
+            var novoPerfil = await _perfilService.AlterarAsync(perfilAlteracao);
+            return Ok(novoPerfil);
         }
-
-        // [HttpPost]
-        // public async Task<string> AlteraImagem(FileUPloadAPI objfile)
-        // {
-        //     IFormFile
-        // }
     }
 }

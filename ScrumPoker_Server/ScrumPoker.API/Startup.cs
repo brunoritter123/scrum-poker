@@ -1,22 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using ScrumPoker.API.HubConfig;
-using ScrumPoker.Data.Context;
-using Microsoft.EntityFrameworkCore;
-using AutoMapper;
 using ScrumPoker.API.Configurations;
-using ScrumPoker.API.AutoMapper;
+using ScrumPoker.API.HubConfig;
+using ScrumPoker.Application.Configurations;
 using ScrumPoker.CrossCutting.Services;
+using ScrumPoker.Data;
 
 namespace ScrumPoker.API
 {
@@ -48,11 +40,11 @@ namespace ScrumPoker.API
                 .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling =
                 Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-            services.AddDbContext<ScrumPokerContext>(options =>
-                options.UseSqlite(Configuration["ConnStr"]));
+            services.AddApplicationServicesConfig();
+            services.AddDependencyDbContext(Configuration);
 
             services.Configure<EmailConfig>(Configuration.GetSection("EmailConfig"));
-            services.AddAutoMapper(typeof(AutoMapperConfig));
+            services.AddAutoMapper(typeof(AutoMapperApiConfig));
             services.AdicionarInjecaoDependenciaConfig();
             services.AdicionarIdentityConfig(Configuration);
             services.AdicionarVersionamentoConfig();

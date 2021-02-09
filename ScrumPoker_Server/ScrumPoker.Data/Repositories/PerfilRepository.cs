@@ -1,9 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using ScrumPoker.Data.Context;
+using ScrumPoker.Domain.Entities.UsuarioEntity;
 using ScrumPoker.Domain.Interfaces.Repositories;
-using ScrumPoker.Domain.Models;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ScrumPoker.Data.Repositories

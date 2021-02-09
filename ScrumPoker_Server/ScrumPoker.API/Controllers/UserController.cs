@@ -1,25 +1,21 @@
-using System.Net.Sockets;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using ScrumPoker.Domain.Identity;
-using System.Threading.Tasks;
-using ScrumPoker.API.Dtos;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using System.IO;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using ScrumPoker.API.Dtos;
 using ScrumPoker.CrossCutting.Templates;
-using ScrumPoker.Domain.Interfaces.Repositories;
-using ScrumPoker.Domain.Models;
+using ScrumPoker.Domain.Identity;
+using ScrumPoker.Application.Interfaces.ApplicationServices;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ScrumPoker.API.Controllers
 {
@@ -34,7 +30,7 @@ namespace ScrumPoker.API.Controllers
         private readonly SignInManager<User> _singInManager;
         private readonly IMapper _mapper;
         private readonly IEmailSender _emailSender;
-        private readonly IPerfilRepository _repo;
+        private readonly IPerfilService _perfilService;
 
         public UserController(
             IConfiguration config,
@@ -42,14 +38,14 @@ namespace ScrumPoker.API.Controllers
             SignInManager<User> singInManager,
             IEmailSender emailSender,
             IMapper mapper,
-            IPerfilRepository repo)
+            IPerfilService perfilService)
         {
             this._userManager = userManager;
             this._singInManager = singInManager;
             this._mapper = mapper;
             this._config = config;
             this._emailSender = emailSender;
-            this._repo = repo;
+            this._perfilService = perfilService;
         }
 
         [HttpPost("Registrar")]
@@ -175,7 +171,7 @@ namespace ScrumPoker.API.Controllers
             urlConfirmaEmail += $"?token={System.Web.HttpUtility.UrlEncode(token)}";
             urlConfirmaEmail += $"&userName={System.Web.HttpUtility.UrlEncode(user.UserName)}";
 
-            var perfil = await _repo.BuscarPorIdAsync(user.PerfilId);
+            var perfil = await _perfilService.BuscarPorIdAsync(user.PerfilId);
             string emailHtml = await EmailTemplate.GetEmailConfirmarEmailAsync(urlConfirmaEmail, perfil.Nome);
             await _emailSender.SendEmailAsync(user.Email, "Confirmação de e-mail - ScrumPoker" ,emailHtml);
 

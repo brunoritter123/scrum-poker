@@ -16,9 +16,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ScrumPoker.Application\ScrumPoker.Application.csproj" />
+    <ProjectReference Include="..\ScrumPoker.CrossCutting\ScrumPoker.CrossCutting.csproj" />
     <ProjectReference Include="..\ScrumPoker.Data\ScrumPoker.Data.csproj" />
     <ProjectReference Include="..\ScrumPoker.Domain\ScrumPoker.Domain.csproj" />
-    <ProjectReference Include="..\ScrumPoker.CrossCutting\ScrumPoker.CrossCutting.csproj" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>

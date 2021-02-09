@@ -1,24 +1,22 @@
-using System.Linq;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
-using ScrumPoker.Domain.Models;
-using ScrumPoker.API.Dtos;
-using ScrumPoker.API.Services;
-using ScrumPoker.API.Interfaces;
+using ScrumPoker.Application.DTOs.InputModels;
+using ScrumPoker.Application.DTOs.ViewModels;
+using ScrumPoker.Application.Interfaces.ApplicationServices;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ScrumPoker.API.HubConfig
 {
     public class SalaHub : Hub
     {
         private readonly ISalaConfiguracaoService _salaConfiguracaoService;
-        private readonly ISalaParticipanteService _participanteService;
+        private readonly IParticipanteService _participanteService;
         private readonly ISalaService _salaService;
 
         public SalaHub(
             ISalaConfiguracaoService salaConfiguracaoService,
-            ISalaParticipanteService participanteService,
+            IParticipanteService participanteService,
             ISalaService salaService)
         {
             _salaConfiguracaoService = salaConfiguracaoService;
@@ -75,9 +73,9 @@ namespace ScrumPoker.API.HubConfig
             }
         }
 
-        public async Task EnviarConfiguracaoSala(SalaConfiguracaoDto salaConfiguracaoDto)
+        public async Task EnviarConfiguracaoSala(AlterarConfiguracaoSalaInputModel salaConfiguracaoDto)
         {
-            SalaConfiguracaoDto salaConfiguracaoAlterada = await _salaConfiguracaoService.AlterarAsync(salaConfiguracaoDto);
+            SalaConfiguracaoViewModel salaConfiguracaoAlterada = await _salaConfiguracaoService.AlterarAsync(salaConfiguracaoDto);
             await Clients.Group(salaConfiguracaoDto.SalaId).SendAsync("ReceberConfiguracaoSala", salaConfiguracaoAlterada);
         }
 
@@ -89,28 +87,28 @@ namespace ScrumPoker.API.HubConfig
 
         public async Task ResetarSala(string salaId)
         {
-            SalaDto sala = await _salaService.ResetarSala(salaId);
+            SalaViewModel sala = await _salaService.ResetarSala(salaId);
             await Clients.Group(salaId).SendAsync("ReceberSala", sala);
             await Clients.Group(salaId).SendAsync("ReceberJogadores", sala.Jogadores);
         }
 
         public async Task FinalizarJogo(string salaId)
         {
-            SalaDto sala = await _salaService.FinalizarJogo(salaId);
+            SalaViewModel sala = await _salaService.FinalizarJogo(salaId);
             await Clients.Group(salaId).SendAsync("ReceberSala", sala);
             await Clients.Group(salaId).SendAsync("ReceberJogadores", sala.Jogadores);
         }
 
         public async Task RevotarSala(string salaId)
         {
-            SalaDto sala = await _salaService.ResetarSala(salaId);
+            SalaViewModel sala = await _salaService.ResetarSala(salaId);
             await Clients.Group(salaId).SendAsync("ReceberSala", sala);
             await Clients.Group(salaId).SendAsync("ReceberJogadores", sala.Jogadores);
         }
 
         public async Task ConcluirSala(string salaId)
         {
-            SalaDto sala = await _salaService.ResetarSala(salaId);
+            SalaViewModel sala = await _salaService.ResetarSala(salaId);
             await Clients.Group(salaId).SendAsync("ReceberSala", sala);
             await Clients.Group(salaId).SendAsync("ReceberJogadores", sala.Jogadores);
         }

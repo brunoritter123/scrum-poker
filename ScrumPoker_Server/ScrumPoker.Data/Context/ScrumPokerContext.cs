@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using ScrumPoker.Domain.Identity;
 using ScrumPoker.Data.Maps;
-using ScrumPoker.Domain.Models;
+using ScrumPoker.Domain.Entities.SalaEntity;
+using ScrumPoker.Domain.Entities.UsuarioEntity;
+using ScrumPoker.Domain.Identity;
 using System;
 
 namespace ScrumPoker.Data.Context
@@ -26,7 +27,7 @@ namespace ScrumPoker.Data.Context
 
             modelBuilder.ApplyConfiguration(new SalaMap());
             modelBuilder.ApplyConfiguration(new SalaConfiguracaoMap());
-            modelBuilder.ApplyConfiguration(new SalaParticipanteMap());
+            modelBuilder.ApplyConfiguration(new ParticipanteMap());
             modelBuilder.ApplyConfiguration(new CartaMap());
             modelBuilder.ApplyConfiguration(new UserRoleMap());
             modelBuilder.ApplyConfiguration(new PerfilMap());

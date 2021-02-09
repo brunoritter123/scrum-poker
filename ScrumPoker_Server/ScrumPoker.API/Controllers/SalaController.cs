@@ -1,12 +1,8 @@
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using ScrumPoker.Domain.Interfaces.Repositories;
-using ScrumPoker.Domain.Models;
+using Microsoft.AspNetCore.Mvc;
+using ScrumPoker.Application.DTOs.ViewModels;
+using ScrumPoker.Application.Interfaces.ApplicationServices;
 using System.Threading.Tasks;
-using AutoMapper;
-using ScrumPoker.API.Dtos;
-using ScrumPoker.API.Interfaces;
 
 namespace ScrumPoker.API.Controllers
 {
@@ -17,23 +13,21 @@ namespace ScrumPoker.API.Controllers
     public class SalaController : ControllerBase
     {
         private readonly ISalaService _salaService;
-        private readonly IMapper _mapper;
 
-        public SalaController(ISalaService salaService, IMapper mapper)
+        public SalaController(ISalaService salaService)
         {
-            _mapper = mapper;
             _salaService = salaService;
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<SalaDto>> ObterPorIdAsync(string id)
+        public async Task<ActionResult<SalaViewModel>> ObterPorIdAsync(string id)
         {
             var sala = await _salaService.ObterPorIdAsync(id);
             return Ok(sala);
         }
 
         [HttpPost("{id}")]
-        public async Task<ActionResult<SalaDto>> IncluirSalaPadraoAsync(string id)
+        public async Task<ActionResult<SalaViewModel>> IncluirSalaPadraoAsync(string id)
         {
             var sala = await _salaService.IncluirSalaPadraoAsync(id);
             return Ok(sala);

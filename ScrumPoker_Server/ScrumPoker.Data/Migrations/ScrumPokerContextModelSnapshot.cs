@@ -100,6 +100,124 @@ namespace ScrumPoker.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("ScrumPoker.Domain.Entities.SalaEntity.Carta", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Especial")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Ordem")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("SalaConfiguracaoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SalaConfiguracaoId");
+
+                    b.ToTable("Carta");
+                });
+
+            modelBuilder.Entity("ScrumPoker.Domain.Entities.SalaEntity.Participante", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ConexaoId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Jogador")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Online")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SalaId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("VotoCartaValor")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SalaId");
+
+                    b.ToTable("Participante");
+                });
+
+            modelBuilder.Entity("ScrumPoker.Domain.Entities.SalaEntity.Sala", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("JogoFinalizado")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Titulo")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sala");
+                });
+
+            modelBuilder.Entity("ScrumPoker.Domain.Entities.SalaEntity.SalaConfiguracao", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("JogadorFinalizaJogo")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("JogadorRemoveAdministrador")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("JogadorRemoveJogador")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("JogadorResetaJogo")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SalaId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SalaId")
+                        .IsUnique();
+
+                    b.ToTable("SalaConfiguracao");
+                });
+
+            modelBuilder.Entity("ScrumPoker.Domain.Entities.UsuarioEntity.Perfil", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Perfil");
+                });
+
             modelBuilder.Entity("ScrumPoker.Domain.Identity.Role", b =>
                 {
                     b.Property<Guid>("Id")
@@ -213,124 +331,6 @@ namespace ScrumPoker.Data.Migrations
                     b.ToTable("UserRole");
                 });
 
-            modelBuilder.Entity("ScrumPoker.Domain.Models.Carta", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("Especial")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Ordem")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long>("SalaConfiguracaoId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SalaConfiguracaoId");
-
-                    b.ToTable("Carta");
-                });
-
-            modelBuilder.Entity("ScrumPoker.Domain.Models.Perfil", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Perfil");
-                });
-
-            modelBuilder.Entity("ScrumPoker.Domain.Models.Sala", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("JogoFinalizado")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Titulo")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Sala");
-                });
-
-            modelBuilder.Entity("ScrumPoker.Domain.Models.SalaConfiguracao", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("JogadorFinalizaJogo")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("JogadorRemoveAdministrador")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("JogadorRemoveJogador")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("JogadorResetaJogo")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("SalaId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SalaId")
-                        .IsUnique();
-
-                    b.ToTable("SalaConfiguracao");
-                });
-
-            modelBuilder.Entity("ScrumPoker.Domain.Models.SalaParticipante", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ConexaoId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("Jogador")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("Online")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("SalaId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("VotoCartaValor")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SalaId");
-
-                    b.ToTable("SalaParticipante");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
                     b.HasOne("ScrumPoker.Domain.Identity.Role", null)
@@ -367,9 +367,40 @@ namespace ScrumPoker.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ScrumPoker.Domain.Entities.SalaEntity.Carta", b =>
+                {
+                    b.HasOne("ScrumPoker.Domain.Entities.SalaEntity.SalaConfiguracao", "SalaConfiguracao")
+                        .WithMany("Cartas")
+                        .HasForeignKey("SalaConfiguracaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SalaConfiguracao");
+                });
+
+            modelBuilder.Entity("ScrumPoker.Domain.Entities.SalaEntity.Participante", b =>
+                {
+                    b.HasOne("ScrumPoker.Domain.Entities.SalaEntity.Sala", "Sala")
+                        .WithMany("Participantes")
+                        .HasForeignKey("SalaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sala");
+                });
+
+            modelBuilder.Entity("ScrumPoker.Domain.Entities.SalaEntity.SalaConfiguracao", b =>
+                {
+                    b.HasOne("ScrumPoker.Domain.Entities.SalaEntity.Sala", "Sala")
+                        .WithOne("Configuracao")
+                        .HasForeignKey("ScrumPoker.Domain.Entities.SalaEntity.SalaConfiguracao", "SalaId");
+
+                    b.Navigation("Sala");
+                });
+
             modelBuilder.Entity("ScrumPoker.Domain.Identity.User", b =>
                 {
-                    b.HasOne("ScrumPoker.Domain.Models.Perfil", "Perfil")
+                    b.HasOne("ScrumPoker.Domain.Entities.UsuarioEntity.Perfil", "Perfil")
                         .WithOne("User")
                         .HasForeignKey("ScrumPoker.Domain.Identity.User", "PerfilId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -403,35 +434,21 @@ namespace ScrumPoker.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ScrumPoker.Domain.Models.Carta", b =>
+            modelBuilder.Entity("ScrumPoker.Domain.Entities.SalaEntity.Sala", b =>
                 {
-                    b.HasOne("ScrumPoker.Domain.Models.SalaConfiguracao", "SalaConfiguracao")
-                        .WithMany("Cartas")
-                        .HasForeignKey("SalaConfiguracaoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Configuracao");
 
-                    b.Navigation("SalaConfiguracao");
+                    b.Navigation("Participantes");
                 });
 
-            modelBuilder.Entity("ScrumPoker.Domain.Models.SalaConfiguracao", b =>
+            modelBuilder.Entity("ScrumPoker.Domain.Entities.SalaEntity.SalaConfiguracao", b =>
                 {
-                    b.HasOne("ScrumPoker.Domain.Models.Sala", "Sala")
-                        .WithOne("Configuracao")
-                        .HasForeignKey("ScrumPoker.Domain.Models.SalaConfiguracao", "SalaId");
-
-                    b.Navigation("Sala");
+                    b.Navigation("Cartas");
                 });
 
-            modelBuilder.Entity("ScrumPoker.Domain.Models.SalaParticipante", b =>
+            modelBuilder.Entity("ScrumPoker.Domain.Entities.UsuarioEntity.Perfil", b =>
                 {
-                    b.HasOne("ScrumPoker.Domain.Models.Sala", "Sala")
-                        .WithMany("Participantes")
-                        .HasForeignKey("SalaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Sala");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ScrumPoker.Domain.Identity.Role", b =>
@@ -442,23 +459,6 @@ namespace ScrumPoker.Data.Migrations
             modelBuilder.Entity("ScrumPoker.Domain.Identity.User", b =>
                 {
                     b.Navigation("UserRoles");
-                });
-
-            modelBuilder.Entity("ScrumPoker.Domain.Models.Perfil", b =>
-                {
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ScrumPoker.Domain.Models.Sala", b =>
-                {
-                    b.Navigation("Configuracao");
-
-                    b.Navigation("Participantes");
-                });
-
-            modelBuilder.Entity("ScrumPoker.Domain.Models.SalaConfiguracao", b =>
-                {
-                    b.Navigation("Cartas");
                 });
 #pragma warning restore 612, 618
         }

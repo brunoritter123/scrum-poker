@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Identity;
-using ScrumPoker.Domain.Models;
+using ScrumPoker.Domain.Entities.UsuarioEntity;
 using System;
 using System.Collections.Generic;
 

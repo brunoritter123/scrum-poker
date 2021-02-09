@@ -1,5 +1,5 @@
+using ScrumPoker.Domain.Entities.SalaEntity;
 using System.Threading.Tasks;
-using ScrumPoker.Domain.Models;
 
 namespace ScrumPoker.Domain.Interfaces.Repositories
 {

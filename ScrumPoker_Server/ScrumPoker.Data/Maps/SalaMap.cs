@@ -1,6 +1,6 @@
-using ScrumPoker.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using ScrumPoker.Domain.Entities.SalaEntity;
 
 namespace ScrumPoker.Data.Maps
 {

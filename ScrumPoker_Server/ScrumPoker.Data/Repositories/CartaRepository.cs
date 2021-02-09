@@ -1,6 +1,6 @@
 using ScrumPoker.Data.Context;
+using ScrumPoker.Domain.Entities.SalaEntity;
 using ScrumPoker.Domain.Interfaces.Repositories;
-using ScrumPoker.Domain.Models;
 using System.Linq;
 
 namespace ScrumPoker.Data.Repositories

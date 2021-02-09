@@ -17,7 +17,7 @@ export class SalaParticipanteService {
   ) { }
 
   public incluirOuAlterarParticipante(participante: SalaParticipante): Promise<SalaParticipante> {
-    return this.http.post<SalaParticipante>(`${this.url}/SalaParticipante/`, participante)
+    return this.http.post<SalaParticipante>(`${this.url}/Participante/`, participante)
       .toPromise()
       .catch( erro => {
           this.poNotification.error('Houve um erro ao tentar incluir o participante.');

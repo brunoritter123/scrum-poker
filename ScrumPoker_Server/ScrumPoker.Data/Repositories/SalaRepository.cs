@@ -1,9 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ScrumPoker.Data.Context;
+using ScrumPoker.Domain.Entities.SalaEntity;
 using ScrumPoker.Domain.Interfaces.Repositories;
-using ScrumPoker.Domain.Models;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ScrumPoker.Data.Repositories
@@ -43,7 +41,7 @@ namespace ScrumPoker.Data.Repositories
             return sala;
         }
 
-        public async Task<bool> ExisteEntityAsync(string id)
+        public async Task<bool> ExisteSalaAsync(string id)
         {
             return await _context.Set<Sala>()
                            .AnyAsync(x => x.Id == id);

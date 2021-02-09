@@ -1,13 +1,12 @@
-using ScrumPoker.Domain.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Security.Claims;
-using System.Text;
 using ScrumPoker.Data.Context;
+using ScrumPoker.Domain.Identity;
+using System;
+using System.Text;
 
 namespace ScrumPoker.API.Configurations
 {

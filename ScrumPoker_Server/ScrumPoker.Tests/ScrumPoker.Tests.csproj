@@ -20,10 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ScrumPoker.API\ScrumPoker.API.csproj" />
-    <ProjectReference Include="..\ScrumPoker.Data\ScrumPoker.Data.csproj" />
+    <ProjectReference Include="..\ScrumPoker.Application\ScrumPoker.Application.csproj" />
     <ProjectReference Include="..\ScrumPoker.Domain\ScrumPoker.Domain.csproj" />
-    <ProjectReference Include="..\ScrumPoker.CrossCutting\ScrumPoker.CrossCutting.csproj" />
   </ItemGroup>
 
 </Project>

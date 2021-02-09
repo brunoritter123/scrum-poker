@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>ScrumPoker.Entities</AssemblyName>
+    <RootNamespace>ScrumPoker.Entities</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ScrumPoker.CrossCutting\ScrumPoker.CrossCutting.csproj" />
+  </ItemGroup>
+</Project>
