@@ -3,7 +3,9 @@ R/bin
 /Migrations
 *.db
 
-**/appsettings.json
+**/appsettings.development.json
+**/appsettings.staging.json
+**/appsettings.production.json
 
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
