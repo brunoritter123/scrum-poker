@@ -5,6 +5,7 @@ import { SalaParticipante } from '../models/sala-participante.model';
 import { Sala } from '../models/sala.model';
 import { AuthService } from './auth.service';
 import { environment } from '../../environments/environment';
+import { SalaService } from './sala.service';
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +48,8 @@ export class SalaHubService {
   private hubConnection!: singalR.HubConnection;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private salaService: SalaService
     ) {
       this.souJogador = authService.isJogador;
     }
@@ -79,7 +81,15 @@ export class SalaHubService {
   }
 
   private onReconnectedConection(error: string | undefined): void {
-    this.onReconectado.emit();
+    this.salaService.buscarSala(this.salaConfig!.salaId)
+    .then((sala) => {
+      this.receberSala.emit(sala);
+      this.receberConfiguracaoSala.emit(sala.configuracao);
+      this.receberJogadores.emit(sala.jogadores);
+      this.receberAdministradores.emit(sala.administradores);
+      this.receberAdministradores.emit(sala.administradores);
+      this.onReconectado.emit();
+    })
   }
 
   private onReconnectingConection(error: Error | undefined): void {
