@@ -125,8 +125,8 @@ export class AuthService {
 
   public confirmarEmail(token: string, userName: string): Observable<any> {
     return this.http.post(`${this.url}/user/confirmar-email`, {
-      '{token}': token,
-      '{userName}': userName
+      'token': token,
+      'userName': userName
     }).pipe(this.pipeLogin());
   }
 

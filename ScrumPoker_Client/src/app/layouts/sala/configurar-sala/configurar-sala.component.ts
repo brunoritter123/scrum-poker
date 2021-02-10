@@ -15,7 +15,7 @@ export class ConfigurarSalaComponent implements OnInit, OnDestroy {
   @Output() closeConfig: EventEmitter<any> = new EventEmitter();
 
   public novaCarta = '';
-  public ordemCarta = '';
+  public ordemCarta = 0;
   public isAlterouCartas = false;
   public cartas: Array<any> = [];
   public carregando = false;
@@ -199,14 +199,14 @@ export class ConfigurarSalaComponent implements OnInit, OnDestroy {
 
   public addCarta(): void {
     const cartaTmp: Array<object> = [];
-    const ordemCarta = parseInt(this.ordemCarta, 4);
+    const ordemCarta = this.ordemCarta;
     const novaCarta = {value: this.novaCarta};
 
     if (this.novaCarta.length > 0) {
       if (ordemCarta <= 0) {
         this.cartas.unshift(novaCarta);
 
-      } else if (ordemCarta > this.cartas.length || isNaN(ordemCarta)) {
+      } else if (ordemCarta > this.cartas.length) {
         this.cartas.push(novaCarta);
 
       } else {
@@ -225,6 +225,6 @@ export class ConfigurarSalaComponent implements OnInit, OnDestroy {
   }
 
   public proximaOrdem(): void {
-    this.ordemCarta = (this.cartas.length + 1).toString();
+    this.ordemCarta = this.cartas.length + 1;
   }
 }

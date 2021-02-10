@@ -20,9 +20,8 @@
 
       <div class="po-row">
 
-        <po-input [(ngModel)]="ordemCarta" class="po-mb-1 po-sm-3 po-md-3 po-lg-3" p-label="Ordem"
-        [p-maxlength]=2>
-        </po-input>
+        <po-number  [(ngModel)]="ordemCarta" class="po-mb-1 po-sm-3 po-md-3 po-lg-3" p-label="Ordem">
+        </po-number>
 
         <po-input [(ngModel)]="novaCarta" class="po-mb-1 po-sm-3 po-md-3 po-lg-5" p-label="Carta"
         [p-maxlength]=10 (keyup.enter)="addCarta()">

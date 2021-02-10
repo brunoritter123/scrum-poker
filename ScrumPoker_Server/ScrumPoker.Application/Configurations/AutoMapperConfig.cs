@@ -33,7 +33,11 @@ namespace ScrumPoker.Application.Configurations
                 .ForMember(dest => dest.Email, opt => {
                     opt.MapFrom(src => src.User.Email);
                 });
-            profile.CreateMap<PerfilViewModel, Perfil>();
+            profile.CreateMap<PerfilViewModel, Perfil>(); 
+            profile.CreateMap<PerfilAlteracaoInputModel, Perfil>().ReverseMap();
+            profile.CreateMap<SalaConfiguracao, AlterarConfiguracaoSalaInputModel>().ReverseMap();
+            profile.CreateMap<Carta, AlterarConfiguracaoSalaCartaInputModel>().ReverseMap();
+            profile.CreateMap<SalaConfiguracao, AlterarConfiguracaoSalaCartaInputModel>().ReverseMap();
 
             return profile;
         }

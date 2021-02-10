@@ -43,27 +43,27 @@
         p-label="Senha"
         p-placeholder="Informe a senha"
         formControlName="senha"
-       p-clean
+        p-clean
         [p-minlength] = 4
         [p-maxlength]=10
-       [ p-no-autocomplete]=true
+        [p-no-autocomplete]=true
         p-required>
       </po-password>
 
-    <po-password
-      class="po-mb-2"
-      p-label="Confirmar Senha"
-      p-placeholder="Confirme a senha"
-      formControlName="confirmaSenha"
-     p-clean
-      [p-minlength] = 4
-      [p-maxlength]= 10
-      (keyup.enter)="cadastrarConta()"
-      [p-error-pattern] = "getErroForm(confirmaSenha)"
-     [ p-no-autocomplete]=true
-      p-required>
-    </po-password>
-  </div>
+      <po-password
+        class="po-mb-2"
+        p-label="Confirmar Senha"
+        p-placeholder="Confirme a senha"
+        formControlName="confirmaSenha"
+        p-clean
+        [p-minlength] = 4
+        [p-maxlength]= 10
+        (keyup.enter)="cadastrarConta()"
+        [p-error-pattern] = "getErroForm(confirmaSenha)"
+        [p-no-autocomplete]=true
+        p-required>
+      </po-password>
+    </div>
 
     <po-divider></po-divider>
 

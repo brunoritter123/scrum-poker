@@ -77,5 +77,6 @@ export class SalaComponent implements OnInit, OnDestroy {
 
   private onReceberSala(sala: Sala): void {
     this.sala = sala;
+    this.activatedRoute.snapshot.data['sala'] = this.sala;
   }
 }

@@ -17,6 +17,7 @@ namespace ScrumPoker.Application.Configurations
             services.AddScoped<ISalaService, SalaService>();
             services.AddScoped<ISalaConfiguracaoService, SalaConfiguracaoService>();
             services.AddScoped<IParticipanteService, ParticipanteService>();
+            services.AddScoped<IPerfilService, PerfilService>();
             return services;
         }
     }
