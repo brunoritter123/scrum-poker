@@ -3,7 +3,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { PoToolbarProfile } from '@po-ui/ng-components';
 import { environment } from 'src/environments/environment';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { map } from 'rxjs/operators';
 import { AuthRegistrar } from '../interfaces/authRegistrar.interface';
 import { AuthLogin } from '../interfaces/authLogin.interface';
@@ -11,6 +10,7 @@ import { TokenJwt } from '../interfaces/tokenJwt.interface';
 import { AuthResetarSenha } from '../interfaces/authResetarSenha.interface';
 import { Perfil } from '../interfaces/perfil.interface';
 import { Observable, OperatorFunction } from 'rxjs';
+import jwtDecode, { JwtDecodeOptions, JwtPayload } from 'jwt-decode';
 
 @Injectable()
 export class AuthService {
@@ -24,7 +24,7 @@ export class AuthService {
   public userNameLogin = '';
   public profileLogado: PoToolbarProfile | undefined;
 
-  private readonly jwtHelper = new JwtHelperService();
+  private readonly jwtDescode = jwtDecode;
   private readonly url: string = environment.API;
   private decodedToken: TokenJwt | undefined;
   private perfil: Perfil | undefined;
@@ -143,7 +143,7 @@ export class AuthService {
   private loadToken(): void {
     if (this.logado()) {
       const token = localStorage.getItem('token');
-      this.decodedToken = !!token ? this.jwtHelper.decodeToken(token) : undefined;
+      this.decodedToken = !!token ? this.jwtDescode(token) : undefined;
       this.userNameLogin = !!this.decodedToken ? this.decodedToken.nameid : '';
       this.eventLogin.emit();
       this.getProfile();
@@ -152,7 +152,8 @@ export class AuthService {
 
   public logado(): boolean {
     const token = localStorage.getItem('token');
-    return !!token ? !this.jwtHelper.isTokenExpired(token) : false;
+    const tokenDecode: JwtPayload | undefined = !!token ? this.jwtDescode(token) : undefined;
+    return !!tokenDecode && !!tokenDecode.exp && new Date(tokenDecode.exp * 1000) > new Date();
   }
 
   public logout(): void {
