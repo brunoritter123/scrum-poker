@@ -25,11 +25,9 @@ export class CriarSalaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (!!this.authService.name) {
-      this.idSala = this.authService.idSala;
-      this.nome = this.authService.name;
-      this.jogador = this.authService.isJogador;
-    }
+    this.idSala = this.authService.idSala;
+    this.nome = this.authService.name;
+    this.jogador = this.authService.isJogador;
   }
 
   public confirmLogin(): void {

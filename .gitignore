@@ -479,3 +479,5 @@ $RECYCLE.BIN/
 # JetBrains Rider
 .idea/
 *.sln.iml
+.vscode/tasks.json
+.vscode/launch.json

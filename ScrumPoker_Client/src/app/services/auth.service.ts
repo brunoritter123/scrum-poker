@@ -12,7 +12,9 @@ import { Perfil } from '../interfaces/perfil.interface';
 import { Observable, OperatorFunction } from 'rxjs';
 import jwtDecode, { JwtDecodeOptions, JwtPayload } from 'jwt-decode';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthService {
   public idSala = '';
   public isJogador = true;
@@ -42,7 +44,7 @@ export class AuthService {
 
     this.idSala = !!idSala ? idSala : '';
     this.name = !!nome ? nome : '';
-    this.isJogador = localStorage.getItem('isJogador') === 'true';
+    this.isJogador = localStorage.getItem('isJogador') ? localStorage.getItem('isJogador') === 'true' : true;
 
     if (!!this.idSala) {
       const idParticipante = localStorage.getItem(this.idSala.toUpperCase());
@@ -89,6 +91,11 @@ export class AuthService {
 
   public setCookie(nameCokie: string, valorCookie: string): void {
     localStorage.setItem(nameCokie, valorCookie);
+  }
+
+  public setSalaCookie(idSala: string): void {
+    this.idSala = idSala;
+    localStorage.setItem('idSala', idSala);
   }
 
   public login(model: AuthLogin): Observable<void> {

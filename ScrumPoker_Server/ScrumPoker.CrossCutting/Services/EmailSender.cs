@@ -17,7 +17,7 @@ namespace ScrumPoker.CrossCutting.Services
                 SmtpServer = config.GetSection("EmailConfig:SmtpServer").Value,
                 Port =  int.Parse(config.GetSection("EmailConfig:Port").Value),
                 UserName = config.GetSection("EmailConfig:UserName").Value,
-                Password = config["EmailPassword"]
+                Password = config.GetSection("EmailConfig:Password").Value
             };
         }
         public async Task SendEmailAsync(string email, string subject, string message)

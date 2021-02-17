@@ -51,6 +51,7 @@ export class VotacaoComponent implements OnInit, OnDestroy {
     ) {
       const keySala = 'sala';
       this.sala = this.activatedRoute.snapshot.data[keySala];
+      this.meuIdParticipante = authService.idParticipante;
       this.salaConfig = this.sala.configuracao;
       const meuVotoValue = this.sala.jogadores.find(jogador => jogador.id === this.meuIdParticipante)?.votoCartaValor;
       this.meuVotoValue = !!meuVotoValue ? meuVotoValue : '';

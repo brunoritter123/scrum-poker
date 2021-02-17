@@ -23,6 +23,11 @@ h2{
   font-weight: bold;
 }
 
+.txt-verde-escuro{
+    color: rgb(1, 143, 1);
+    font-weight: bold;
+  }
+
 .txt-vermelho{
   color: red;
   font-weight: bold;

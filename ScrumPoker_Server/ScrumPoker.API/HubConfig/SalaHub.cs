@@ -40,6 +40,7 @@ namespace ScrumPoker.API.HubConfig
 
         private async Task IncluirParticipante()
         {
+            await Clients.User(Context.UserIdentifier).SendAsync("ParticipanteRemovido", "");
             var participanteDto = await _participanteService.Conectar(Context.ConnectionId, Context.UserIdentifier);
             await Groups.AddToGroupAsync(Context.ConnectionId, participanteDto.SalaId);
             await AtualizarParticipantesSala(participanteDto.SalaId);

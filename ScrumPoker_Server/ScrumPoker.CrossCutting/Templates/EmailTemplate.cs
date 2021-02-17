@@ -43,15 +43,15 @@ namespace ScrumPoker.CrossCutting.Templates
 
             using (Stream stream = assembly.GetManifestResourceStream(NAME))
             {
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    var template = await reader.ReadToEndAsync();
-                    template = template.Replace("@@Paragrafo1@@", paragrafo1);
-                    template = template.Replace("@@LinkBotao@@", linkBotao);
-                    template = template.Replace("@@LabelBotao@@", labelBotao);
-                    template = template.Replace("@@Paragrafo2@@", paragrafo2);
-                    return template;
-                }
+               using (StreamReader reader = new StreamReader(stream))
+               {
+                   var template = await reader.ReadToEndAsync();
+                   template = template.Replace("@@Paragrafo1@@", paragrafo1);
+                   template = template.Replace("@@LinkBotao@@", linkBotao);
+                   template = template.Replace("@@LabelBotao@@", labelBotao);
+                   template = template.Replace("@@Paragrafo2@@", paragrafo2);
+                   return template;
+               }
             }
         }
     }

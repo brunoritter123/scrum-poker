@@ -14,6 +14,8 @@ import { SalaHubService } from 'src/app/services/sala-hub.service';
 })
 export class ResultadosComponent implements OnInit, OnDestroy {
   public maisVotado = '';
+  public concenso = false;
+  public gifAleatorio = '0';
   public pontuacao: Array<Pontuacao> = [];
   public possoRevotarJogo: boolean;
   public possoConcluirJogo: boolean;
@@ -106,6 +108,7 @@ export class ResultadosComponent implements OnInit, OnDestroy {
       });
 
       this.maisVotado = this.pontuacao[0].cartaValor;
+      this.concenso = this.pontuacao.length === 1 && !!this.maisVotado;
     });
   }
 

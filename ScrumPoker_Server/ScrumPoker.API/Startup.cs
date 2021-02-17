@@ -1,6 +1,8 @@
 using AutoMapper;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,7 +29,16 @@ namespace ScrumPoker.API
             services.AddCors(opt =>
             {
                 opt.AddPolicy("CorsPolicy", builder => builder
-                .WithOrigins("http://localhost:4200")
+                .WithOrigins(new[]
+                    {
+                        "http://localhost:4200",
+                        "http://localhost:5000",
+                        "https://scrum-poker-br.herokuapp.com",
+                        "http://scrum-poker-br.herokuapp.com",
+                        "https://*.herokuapp.com",
+                        "http://*.herokuapp.con"
+                    })
+                .SetIsOriginAllowedToAllowWildcardSubdomains()
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .AllowCredentials()
@@ -35,6 +46,11 @@ namespace ScrumPoker.API
             });
 
             services.AddSignalR();
+
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "wwwroot";
+            });
 
             services.AddControllers()
                 .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling =
@@ -59,20 +75,33 @@ namespace ScrumPoker.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UsarSwaggerConfig();
-            // app.UseHttpsRedirection();
+            app.UseCors("CorsPolicy");
 
             app.UseRouting();
 
-            app.UseCors("CorsPolicy");
-
             app.UseAuthorization();
             app.UseAuthentication();
+
+            app.UsarSwaggerConfig();
+
+            if (env.IsProduction())
+            {
+                app.UseHttpsRedirection();
+                app.UseDefaultFiles();
+
+                app.UseStaticFiles(new StaticFileOptions
+                {
+                    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")),
+                });
+
+                app.UseSpaStaticFiles();
+            }
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
                 endpoints.MapHub<SalaHub>("/sala-hub");
+                endpoints.MapFallbackToFile("/index.html");
             });
         }
     }

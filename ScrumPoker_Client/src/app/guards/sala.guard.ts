@@ -95,6 +95,7 @@ export class SalaGuard implements CanActivate {
       if (!participante.id || !participante.salaId || !participante.nome ||
         participante.jogador === undefined || participante.online === undefined)
       {
+          this.authService.setSalaCookie(salaId);
           reject('Dados insuficientes para entrar na sala.');
       }
 

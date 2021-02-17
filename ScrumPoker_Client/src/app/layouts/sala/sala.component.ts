@@ -57,7 +57,11 @@ export class SalaComponent implements OnInit, OnDestroy {
   }
 
   private onParticipanteRemovido(nomeParticipanteQueRemoveu: string): void {
-    this.poNotification.warning('Você foi removido da sala pelo participante: ' + nomeParticipanteQueRemoveu);
+    if (!!nomeParticipanteQueRemoveu) {
+      this.poNotification.warning('Você foi removido da sala pelo participante: ' + nomeParticipanteQueRemoveu);
+    } else {
+      this.poNotification.warning('Essa sessão foi encerrada');
+    }
     this.router.navigate(['']);
   }
 

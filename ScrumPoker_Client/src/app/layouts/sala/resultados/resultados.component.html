@@ -1,12 +1,20 @@
 <h3 class="po-sm-12 txt-vermelho">Carta mais Votada: {{maisVotado}}</h3>
-<h3 class="po-sm-6 po-md-6 po-lg-6">Cartas</h3>
-<h3 class="po-sm-6 po-md-6 po-lg-6">Votos</h3>
-<div *ngFor="let ponto of pontuacao">
-  <h4 class="po-sm-6 po-md-6 po-lg-6">
-    <span *ngIf="ponto.cartaValor > ''">{{ponto.cartaValor}}</span>
-    <span *ngIf="!ponto.cartaValor" class="txt-vermelho"> - </span>
-  </h4>
-  <h4 class="po-sm-6 po-md-6 po-lg-6">{{ponto.quantidadePontos}}</h4>
+
+<div *ngIf="concenso">
+  <h3 class="po-sm-12 txt-verde-escuro"> Concenso.!!!</h3>
+  <img src='https://thumbs.gfycat.com/MerrySpiritedCoelacanth-size_restricted.gif' alt="Concenso"  width=250/>
+</div>
+
+<div *ngIf="!concenso">
+  <h3 class="po-sm-6 po-md-6 po-lg-6">Cartas</h3>
+  <h3 class="po-sm-6 po-md-6 po-lg-6">Votos</h3>
+  <div *ngFor="let ponto of pontuacao">
+    <h4 class="po-sm-6 po-md-6 po-lg-6">
+      <span *ngIf="ponto.cartaValor > ''">{{ponto.cartaValor}}</span>
+      <span *ngIf="!ponto.cartaValor" class="txt-vermelho"> - </span>
+    </h4>
+    <h4 class="po-sm-6 po-md-6 po-lg-6">{{ponto.quantidadePontos}}</h4>
+  </div>
 </div>
 
 <!--Botões-->

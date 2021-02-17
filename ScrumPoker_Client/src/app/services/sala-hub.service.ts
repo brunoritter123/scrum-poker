@@ -11,8 +11,6 @@ import { SalaService } from './sala.service';
   providedIn: 'root'
 })
 export class SalaHubService {
-  private souJogador: boolean;
-
   private pAdministradores: Array<SalaParticipante> = [];
   public set administradores(v: Array<SalaParticipante>) {
     this.pAdministradores = v;
@@ -51,7 +49,6 @@ export class SalaHubService {
     private authService: AuthService,
     private salaService: SalaService
     ) {
-      this.souJogador = authService.isJogador;
     }
 
 
@@ -102,6 +99,7 @@ export class SalaHubService {
 
   private receberConfiguracaoSalaHub(): void {
     this.hubConnection.on('ReceberConfiguracaoSala', (salaconfig: SalaConfiguracao) => {
+      this.salaConfig = salaconfig;
       this.receberConfiguracaoSala.emit(salaconfig);
     });
   }
@@ -156,6 +154,7 @@ export class SalaHubService {
 
   private receberSalaHub(): void {
     this.hubConnection.on('ReceberSala', (sala: Sala) => {
+      this.salaConfig = sala.configuracao;
       this.receberSala.emit(sala);
     });
   }
@@ -169,8 +168,8 @@ export class SalaHubService {
       return;
     }
 
-    this.possoFinalizarJogo = !this.souJogador || this.administradores.length === 0 || this.salaConfig.jogadorFinalizaJogo;
-    this.possoResetarJogo = !this.souJogador || this.administradores.length === 0 || this.salaConfig.jogadorResetaJogo;
+    this.possoFinalizarJogo = !this.authService.isJogador || this.administradores.length === 0 || this.salaConfig.jogadorFinalizaJogo;
+    this.possoResetarJogo = !this.authService.isJogador || this.administradores.length === 0 || this.salaConfig.jogadorResetaJogo;
     this.jogadorFinalizaJogo.emit(this.possoFinalizarJogo);
     this.jogadorResetaJogo.emit(this.possoResetarJogo);
   }

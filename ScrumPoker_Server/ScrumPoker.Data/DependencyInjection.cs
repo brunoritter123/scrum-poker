@@ -14,11 +14,11 @@ namespace ScrumPoker.Data
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddDependencyDbContext(this IServiceCollection service, 
+        public static IServiceCollection AddDependencyDbContext(this IServiceCollection service,
             IConfiguration configuration)
         {
             service.AddDbContext<ScrumPokerContext>(options =>
-                options.UseSqlite(configuration["ConnStr"]));
+                options.UseSqlite(configuration.GetSection("ConnectionStrings:Sqlite").Value));
 
 
             service.AddScoped<ISalaRepository, SalaRepository>();

@@ -42,7 +42,8 @@ namespace ScrumPoker.API.Configurations
             services.Configure<TokenConfig>(appSettingsSection);
 
             var tokenConfig = appSettingsSection.Get<TokenConfig>();
-            var key = Encoding.ASCII.GetBytes(configuration["JwtSecretKey"]);
+
+            var key = Encoding.ASCII.GetBytes(tokenConfig.JwtSecretKey);
 
             services.AddAuthentication(x =>
             {
