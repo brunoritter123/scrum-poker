@@ -21,14 +21,14 @@
 <div>
   <div class="row">
     <po-button
-      *ngIf="possoRevotarJogo"
+      *ngIf="salaHubService.possoResetarJogo"
       class="po-p-1 po-sm-12 po-md-6 po-lg-6 po-xl-6"
       (p-click)="revotarJogo()"
       p-label="Revotar"
       p-type="primary">
     </po-button>
     <po-button
-      *ngIf="possoConcluirJogo"
+      *ngIf="salaHubService.possoFinalizarJogo"
       class="po-p-1 po-sm-12 po-md-6 po-lg-6 po-xl-6"
       (p-click)="concluirJogo()"
       p-label="Concluir"

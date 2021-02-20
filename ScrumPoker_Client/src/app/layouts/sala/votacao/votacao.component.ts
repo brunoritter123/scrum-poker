@@ -5,6 +5,7 @@ import { Carta } from 'src/app/models/carta.model';
 import { SalaConfiguracao } from 'src/app/models/sala-configuracao.model';
 import { SalaParticipante } from 'src/app/models/sala-participante.model';
 import { Sala } from 'src/app/models/sala.model';
+import { Voto } from 'src/app/models/voto.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { SalaHubService } from 'src/app/services/sala-hub.service';
 
@@ -43,6 +44,7 @@ export class VotacaoComponent implements OnInit, OnDestroy {
   private inscricaoReceberJogaodoes: Subscription;
   private inscricaoJogadorFinalizaJogo: Subscription;
   private inscricaoJogadorResetaJogo: Subscription;
+  private inscricaoReceberVoto: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -64,7 +66,8 @@ export class VotacaoComponent implements OnInit, OnDestroy {
       this.inscricaoReceberJogaodoes = this.salaHubService.receberJogadores.subscribe((x: any) => this.onReceberJogadores(x));
       this.inscricaoJogadorFinalizaJogo = this.salaHubService.jogadorFinalizaJogo.subscribe((x: any) => this.possoFinalizarJogo = x);
       this.inscricaoJogadorResetaJogo = this.salaHubService.jogadorResetaJogo.subscribe((x: any) => this.possoResetarJogo = x);
-     }
+      this.inscricaoReceberVoto = this.salaHubService.receberVoto.subscribe((x: Voto) => this.onReceberVoto(x));
+    }
 
   ngOnInit(): void {
   }
@@ -74,6 +77,7 @@ export class VotacaoComponent implements OnInit, OnDestroy {
     this.inscricaoReceberJogaodoes.unsubscribe();
     this.inscricaoJogadorFinalizaJogo.unsubscribe();
     this.inscricaoJogadorResetaJogo.unsubscribe();
+    this.inscricaoReceberVoto.unsubscribe();
   }
 
   private onReceberConfiguracaoSala(salaConfig: SalaConfiguracao): void {
@@ -83,6 +87,10 @@ export class VotacaoComponent implements OnInit, OnDestroy {
   private onReceberJogadores(jogadores: Array<SalaParticipante>): void {
     const meuVotoValue = jogadores.find(jogador => jogador.id === this.meuIdParticipante)?.votoCartaValor;
     this.meuVotoValue = !!meuVotoValue ? meuVotoValue : '';
+  }
+
+  private onReceberVoto(voto: Voto): void {
+    this.meuVotoValue = voto.jogadorId === this.meuIdParticipante ? voto.valorVoto : '';
   }
 
   public votar(carta: Carta): void {

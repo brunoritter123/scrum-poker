@@ -2,7 +2,9 @@ using Microsoft.AspNetCore.SignalR;
 using ScrumPoker.Application.DTOs.InputModels;
 using ScrumPoker.Application.DTOs.ViewModels;
 using ScrumPoker.Application.Interfaces.ApplicationServices;
+using ScrumPoker.Domain.Entities.SalaEntity;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -82,8 +84,8 @@ namespace ScrumPoker.API.HubConfig
 
         public async Task EnviarVoto(String votoValor)
         {
-            var participanteDto = await _participanteService.VotoParticipante(Context.UserIdentifier, votoValor);
-            await AtualizarParticipantesSala(participanteDto.SalaId, participanteDto.Jogador);
+            var votoDto = await _participanteService.VotoParticipante(Context.UserIdentifier, votoValor);
+            await Clients.Group(votoDto.SalaId).SendAsync("ReceberVoto", votoDto);
         }
 
         public async Task ResetarSala(string salaId)

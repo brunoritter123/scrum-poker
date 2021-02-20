@@ -19,11 +19,11 @@ WORKDIR /app
 
 RUN useradd -m myappuser
 
+RUN echo OK
 COPY --from=publish /app/publish .
 
-RUN echo OK
-COPY ./ScrumPoker_Client/dist/ ./wwwroot
 COPY ./ScrumPoker_Server/data_base.db ./
+COPY ./ScrumPoker_Client/dist/ ./wwwroot
 
 RUN chmod 777 ./data_base.db
 RUN chown -R myappuser:myappuser ./

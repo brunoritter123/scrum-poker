@@ -83,13 +83,13 @@ namespace ScrumPoker.Application.Services
             return _mapper.Map<ParticipanteViewModel>(await _repo.BuscarPorIdAsync(id));
         }
 
-        public async Task<ParticipanteViewModel> VotoParticipante(string participanteId, string votoValor)
+        public async Task<VotoViewModel> VotoParticipante(string participanteId, string votoValor)
         {
             var participante = await _repo.BuscarPorIdAsync(participanteId);
             participante.VotoCartaValor = votoValor;
             participante = await _repo.AlterarAsync(participante);
 
-            return _mapper.Map<ParticipanteViewModel>(participante);
+            return _mapper.Map<VotoViewModel>(participante);
         }
 
         public async Task<IEnumerable<ParticipanteViewModel>> BuscarParticipantesPorSala(string salaId)

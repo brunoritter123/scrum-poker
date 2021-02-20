@@ -38,6 +38,16 @@ namespace ScrumPoker.Application.Configurations
             profile.CreateMap<SalaConfiguracao, AlterarConfiguracaoSalaInputModel>().ReverseMap();
             profile.CreateMap<Carta, AlterarConfiguracaoSalaCartaInputModel>().ReverseMap();
             profile.CreateMap<SalaConfiguracao, AlterarConfiguracaoSalaCartaInputModel>().ReverseMap();
+            profile.CreateMap<Participante, VotoViewModel>()
+                .ForMember(dest => dest.JogadorId, opt => {
+                    opt.MapFrom(src => src.Id);
+                })
+                .ForMember(dest => dest.ValorVoto, opt => {
+                    opt.MapFrom(src => src.VotoCartaValor);
+                })
+                .ForMember(dest => dest.SalaId, opt => {
+                    opt.MapFrom(src => src.SalaId);
+                });
 
             return profile;
         }

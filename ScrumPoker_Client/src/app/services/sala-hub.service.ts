@@ -6,6 +6,7 @@ import { Sala } from '../models/sala.model';
 import { AuthService } from './auth.service';
 import { environment } from '../../environments/environment';
 import { SalaService } from './sala.service';
+import { Voto } from '../models/voto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,7 @@ export class SalaHubService {
   public receberAdministradores = new EventEmitter<Array<SalaParticipante>>();
   public receberParticipanteRemovido = new EventEmitter<string>();
   public receberSala = new EventEmitter<Sala>();
+  public receberVoto = new EventEmitter<Voto>();
   public jogadorFinalizaJogo = new EventEmitter<boolean>();
   public jogadorResetaJogo = new EventEmitter<boolean>();
 
@@ -70,6 +72,7 @@ export class SalaHubService {
       this.receberAdministradoresHub();
       this.receberParticipanteRemovidoHub();
       this.receberSalaHub();
+      this.receberVotoHub();
     });
   }
 
@@ -156,6 +159,12 @@ export class SalaHubService {
     this.hubConnection.on('ReceberSala', (sala: Sala) => {
       this.salaConfig = sala.configuracao;
       this.receberSala.emit(sala);
+    });
+  }
+
+  private receberVotoHub(): void {
+    this.hubConnection.on('ReceberVoto', (voto: Voto) => {
+      this.receberVoto.emit(voto);
     });
   }
 

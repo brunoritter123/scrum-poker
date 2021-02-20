@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using ScrumPoker.Data.Context;
 using ScrumPoker.Domain.Entities.SalaEntity;
 using ScrumPoker.Domain.Interfaces.Repositories;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ScrumPoker.Data.Repositories
@@ -33,7 +34,7 @@ namespace ScrumPoker.Data.Repositories
         public async Task<SalaConfiguracao> BuscarPorIdAsync(long id)
         {
             var salaConfiguracao = await _context.Set<SalaConfiguracao>()
-                                .Include(x => x.Cartas)
+                                .Include(x => x.Cartas.OrderBy(x => x.Ordem))
                                 .FirstOrDefaultAsync(x => x.Id == id);
 
             return salaConfiguracao;

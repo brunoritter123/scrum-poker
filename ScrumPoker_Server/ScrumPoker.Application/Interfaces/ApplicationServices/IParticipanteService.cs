@@ -14,7 +14,7 @@ namespace ScrumPoker.Application.Interfaces.ApplicationServices
         Task RemoverParticipante(string participanteId);
         Task<ParticipanteViewModel> Conectar(string conexaoId, string participanteId);
         Task<ParticipanteViewModel> BuscarParticipantePorId(string id);
-        Task<ParticipanteViewModel> VotoParticipante(string participanteId, string votoValor);
+        Task<VotoViewModel> VotoParticipante(string participanteId, string votoValor);
         Task<IEnumerable<ParticipanteViewModel>> BuscarParticipantesPorSala(string salaId);
     }
 }

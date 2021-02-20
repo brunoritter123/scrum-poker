@@ -1,16 +1,16 @@
 using AutoMapper;
-using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using ScrumPoker.API.Configurations;
 using ScrumPoker.API.HubConfig;
 using ScrumPoker.Application.Configurations;
 using ScrumPoker.CrossCutting.Services;
 using ScrumPoker.Data;
+using System.IO;
 
 namespace ScrumPoker.API
 {
@@ -35,6 +35,16 @@ namespace ScrumPoker.API
                         "http://localhost:5000",
                         "https://scrum-poker-br.herokuapp.com",
                         "http://scrum-poker-br.herokuapp.com",
+                        "http://scrumpoker.com.br",
+                        "https://scrumpoker.com.br",
+                        "http://www.scrumpoker.com.br",
+                        "https://www.scrumpoker.com.br",
+                        "http://*.scrumpoker.com.br",
+                        "https://*.scrumpoker.com.br",
+                        "https://master.d3reu51kx5y6mw.amplifyapp.com",
+                        "https://master.d3reu51kx5y6mw.amplifyapp.com",
+                        "https://*.amplifyapp.com",
+                        "https://*.amplifyapp.com",
                         "https://*.herokuapp.com",
                         "http://*.herokuapp.con"
                     })

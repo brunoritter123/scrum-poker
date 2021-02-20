@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { SalaConfiguracao } from 'src/app/models/sala-configuracao.model';
 import { SalaParticipante } from 'src/app/models/sala-participante.model';
 import { Sala } from 'src/app/models/sala.model';
+import { Voto } from 'src/app/models/voto.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { SalaHubService } from 'src/app/services/sala-hub.service';
 
@@ -26,6 +27,7 @@ export class JogadoresComponent implements OnInit, OnDestroy {
   private inscricaoNovoAdministrador: Subscription;
   private inscricaoSalaConfiguracaor: Subscription;
   private inscricaoReceberSala: Subscription;
+  private inscricaoReceberVoto: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -46,7 +48,8 @@ export class JogadoresComponent implements OnInit, OnDestroy {
     this.inscricaoNovoJogador = this.salaHubService.receberJogadores.subscribe((x: any) => this.onReceberJogadores(x));
     this.inscricaoNovoAdministrador = this.salaHubService.receberAdministradores.subscribe((x: any) => this.onReceberAdministradores(x));
     this.inscricaoSalaConfiguracaor = this.salaHubService.receberConfiguracaoSala.subscribe((x: any) => this.onNovaConfiguracaoSala(x));
-   }
+    this.inscricaoReceberVoto = this.salaHubService.receberVoto.subscribe((x: Voto) => this.onReceberVoto(x));
+  }
 
   ngOnInit(): void {
   }
@@ -56,6 +59,7 @@ export class JogadoresComponent implements OnInit, OnDestroy {
     this.inscricaoNovoAdministrador.unsubscribe();
     this.inscricaoSalaConfiguracaor.unsubscribe();
     this.inscricaoReceberSala.unsubscribe();
+    this.inscricaoReceberVoto.unsubscribe();
   }
 
   private onReceberSala(sala: Sala): void {
@@ -64,6 +68,13 @@ export class JogadoresComponent implements OnInit, OnDestroy {
 
   private onReceberJogadores(jogadores: Array<SalaParticipante>): void {
     this.jogadores = jogadores;
+  }
+
+  private onReceberVoto(voto: Voto): void {
+    const jogadorEncontrado = this.jogadores.find(jogador => jogador.id === voto.jogadorId);
+    if (!!jogadorEncontrado){
+      jogadorEncontrado.votoCartaValor = voto.valorVoto;
+    }
   }
 
   private onReceberAdministradores(administradores: Array<SalaParticipante>): void {
