@@ -9,6 +9,7 @@
         class="po-sm-6 po-md-6 po-lg-6"
         [class.off]="!jogador.online"
         [class.f-bold]="jogador.id === meuIdParticipante">
+        <i [class.icooff]="!jogador.online"></i>
         {{jogador.nome}}
       </h4>
       <h4 class="po-sm-6 po-md-6 po-lg-6">

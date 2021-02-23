@@ -35,45 +35,29 @@ namespace ScrumPoker.API.HubConfig
         {
             var participanteDto = await _participanteService.Desconectar(Context.UserIdentifier);
             if(participanteDto != null)
-                await AtualizarParticipantesSala(participanteDto.SalaId, participanteDto.Jogador);
+            {
+                string metodo = participanteDto.Jogador ? "RecberJogadorDesconectado" : "RecberAdministradorDesconectado";
+                await Clients.Group(participanteDto.SalaId).SendAsync(metodo, participanteDto.Id);
+            }
 
             await base.OnDisconnectedAsync(exception);
         }
 
         private async Task IncluirParticipante()
         {
-            await Clients.User(Context.UserIdentifier).SendAsync("ParticipanteRemovido", "");
+            await Clients.User(Context.UserIdentifier).SendAsync("ParticipanteRemovido", "", Context.UserIdentifier);
             var participanteDto = await _participanteService.Conectar(Context.ConnectionId, Context.UserIdentifier);
             await Groups.AddToGroupAsync(Context.ConnectionId, participanteDto.SalaId);
-            await AtualizarParticipantesSala(participanteDto.SalaId);
+
+            string metodo = participanteDto.Jogador ? "ReceberNovoJogador" : "ReceberNovoAdministrador";
+            await Clients.Group(participanteDto.SalaId).SendAsync(metodo, participanteDto);
         }
 
         public async Task RemoverParticipante(string participanteId, string participanteQueRemoveu)
         {
             var participanteDto = await _participanteService.BuscarParticipantePorId(participanteId);
             await _participanteService.RemoverParticipante(participanteId);
-            await Clients.User(participanteId).SendAsync("ParticipanteRemovido", participanteQueRemoveu);
-            await AtualizarParticipantesSala(participanteDto.SalaId, participanteDto.Jogador);
-        }
-
-        private async Task AtualizarParticipantesSala(string salaId, bool? jogador = null)
-        {
-            if (!jogador.HasValue)
-            {
-                var participantes = await _participanteService.BuscarParticipantesPorSala(salaId);
-                await Clients.Group(salaId).SendAsync("ReceberJogadores", participantes.Where(x => x.Jogador));
-                await Clients.Group(salaId).SendAsync("ReceberAdministradores", participantes.Where(x => !x.Jogador));
-            }
-            else if (jogador.Value)
-            {
-                var jogadores = await _participanteService.BuscarJogadoresPorSalaId(salaId);
-                await Clients.Group(salaId).SendAsync("ReceberJogadores", jogadores);
-            }
-            else
-            {
-                var administradores = await _participanteService.BuscarAdministradoresPorSalaId(salaId);
-                await Clients.Group(salaId).SendAsync("ReceberAdministradores", administradores);
-            }
+            await Clients.Group(participanteDto.SalaId).SendAsync("ParticipanteRemovido", participanteQueRemoveu, participanteId);
         }
 
         public async Task EnviarConfiguracaoSala(AlterarConfiguracaoSalaInputModel salaConfiguracaoDto)

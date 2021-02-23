@@ -7,11 +7,13 @@ import { AuthService } from './auth.service';
 import { environment } from '../../environments/environment';
 import { SalaService } from './sala.service';
 import { Voto } from '../models/voto.model';
+import { ParticipanteRemovido} from '../models/participante-removido';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SalaHubService {
+  private jogadores: Array<SalaParticipante> = [];
   private pAdministradores: Array<SalaParticipante> = [];
   public set administradores(v: Array<SalaParticipante>) {
     this.pAdministradores = v;
@@ -54,8 +56,11 @@ export class SalaHubService {
     }
 
 
-  public startConection(participanteId: string): Promise<void> {
+  public startConection(sala: Sala, participanteId: string): Promise<void> {
     const url = environment.SOCKET;
+    this.salaConfig = sala.configuracao;
+    this.administradores = sala.administradores;
+    this.jogadores = sala.jogadores;
 
     this.hubConnection = new singalR.HubConnectionBuilder()
     .withUrl(`${url}/sala-hub?participante-id=${participanteId}`)
@@ -73,6 +78,10 @@ export class SalaHubService {
       this.receberParticipanteRemovidoHub();
       this.receberSalaHub();
       this.receberVotoHub();
+      this.receberNovoJogadorHub();
+      this.receberNovoAdministradorHub();
+      this.recberJogadorDesconectado();
+      this.recberAdministradorDesconectado();
     });
   }
 
@@ -107,16 +116,56 @@ export class SalaHubService {
     });
   }
 
+  private recberJogadorDesconectado(): void {
+    this.hubConnection.on('RecberJogadorDesconectado', (jogadorId: string) => {
+      const jogador = this.jogadores.find(x => x.id === jogadorId);
+      if(!!jogador) jogador.online = false;
+
+      this.receberJogadores.emit(this.jogadores);
+    });
+  }
+
+  private recberAdministradorDesconectado(): void {
+    this.hubConnection.on('RecberAdministradorDesconectado', (administradorId: string) => {
+      const administrador = this.administradores.find(x => x.id === administradorId);
+      if(!!administrador) administrador.online = false;
+      this.receberAdministradores.emit(this.administradores);
+    });
+  }
+
+  private receberNovoJogadorHub(): void {
+    this.hubConnection.on('ReceberNovoJogador', (jogador: SalaParticipante) => {
+      this.jogadores = this.jogadores.filter(x => x.id !== jogador.id)
+      this.administradores = this.administradores.filter(x => x.id !== jogador.id)
+
+      this.jogadores.push(jogador);
+      this.receberJogadores.emit(this.jogadores);
+      this.receberAdministradores.emit(this.administradores);
+    });
+  }
+
+  private receberNovoAdministradorHub(): void {
+    this.hubConnection.on('ReceberNovoAdministrador', (administrador: SalaParticipante) => {
+      this.jogadores = this.jogadores.filter(x => x.id !== administrador.id)
+      this.administradores = this.administradores.filter(x => x.id !== administrador.id)
+
+      this.administradores.push(administrador)
+      this.receberJogadores.emit(this.jogadores);
+      this.receberAdministradores.emit(this.administradores);
+    });
+  }
+
   private receberJogadoresHub(): void {
     this.hubConnection.on('ReceberJogadores', (jogadores: Array<SalaParticipante>) => {
-      this.receberJogadores.emit(jogadores);
+      this.jogadores = jogadores;
+      this.receberJogadores.emit(this.jogadores);
     });
   }
 
   private receberAdministradoresHub(): void {
     this.hubConnection.on('ReceberAdministradores', (administradores: Array<SalaParticipante>) => {
       this.administradores = administradores;
-      this.receberAdministradores.emit(administradores);
+      this.receberAdministradores.emit(this.administradores);
     });
   }
 
@@ -150,8 +199,21 @@ export class SalaHubService {
   }
 
   private receberParticipanteRemovidoHub(): void {
-    this.hubConnection.on('ParticipanteRemovido', (nomeParticipanteQueRemoveu: string) => {
-      this.receberParticipanteRemovido.emit(nomeParticipanteQueRemoveu);
+    this.hubConnection.on('ParticipanteRemovido', (nomeParticipanteQueRemoveu: string, participanteRemovidoId: string) => {
+
+      if (this.authService.idParticipante === participanteRemovidoId) {
+        this.receberParticipanteRemovido.emit(nomeParticipanteQueRemoveu);
+        return
+
+      } else {
+
+        this.jogadores = this.jogadores.filter(x => x.id !== participanteRemovidoId);
+        this.receberJogadores.emit(this.jogadores);
+
+        this.administradores = this.administradores.filter(x => x.id !== participanteRemovidoId);
+        this.receberAdministradores.emit(this.administradores);
+        return
+      }
     });
   }
 

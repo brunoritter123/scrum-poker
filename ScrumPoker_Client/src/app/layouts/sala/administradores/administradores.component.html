@@ -9,6 +9,7 @@
       class="po-sm-12 po-md-12 po-lg-12"
       [class.off]="!administrador.online"
       [class.f-bold]="administrador.id === meuIdParticipante">
+      <i [class.icooff]="!administrador.online"></i>
       {{administrador.nome}}
     </h4>
   </div>

@@ -10,6 +10,7 @@ import { LoadPageService } from '../services/load-page.service';
 import { SalaHubService } from '../services/sala-hub.service';
 import { SalaService } from '../services/sala.service';
 import { SalaParticipanteService } from '../services/sala-participante.service';
+import { Sala } from '../models/sala.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,11 +36,15 @@ export class SalaGuard implements CanActivate {
           reject();
         }
         const salaId: string = route.params?.salaId;
+        let sala: Sala;
 
         this.salaService.incluirSalaPadrao(salaId)
-        .then(() => this.getParticipante(salaId))
+        .then((salaRecebida) => {
+          sala = salaRecebida
+          return this.getParticipante(salaId)
+        })
         .then((participante) => this.participanteService.incluirOuAlterarParticipante(participante))
-        .then(() => this.iniciarConexaoHub())
+        .then(() => this.iniciarConexaoHub(sala))
         .then(() => resolve(true))
         .catch((err) => {
           this.poNotification.error(err);
@@ -48,36 +53,10 @@ export class SalaGuard implements CanActivate {
         })
         .finally(() => this.loadPageService.loadPage.emit(false));
       });
-
-    // let idParticipante = this.authService.idParticipante;
-    // let isJogador = this.authService.isJogador;
-    // let nomeParticipante = this.authService.name;
-    // let salaId: string = route.params['salaId']
-
-    // if (!idParticipante || !nomeParticipante || isJogador === undefined) {
-    //   return new Promise((resolve, reject) => {
-    //     this.router.navigate([''])
-    //     reject()
-    //   })
-    // }
-
-    // return new Promise((resolve, reject) => {
-    //   this.iniciarConexaoHub()
-    //   .then(() => {
-    //     this.criarSalaPadrao(salaId)
-    //     .then(() => {
-    //       this.entrarSala(idParticipante, salaId, isJogador, nomeParticipante)
-    //       .then(() => {
-    //         this.loadPageService.loadPage.emit(false);
-    //         resolve(true);
-    //       })
-    //     })
-    //   })
-    // });
   }
 
-  private iniciarConexaoHub(): Promise<any> {
-    return this.salaHubService.startConection(this.authService.idParticipante).catch((err) => {
+  private iniciarConexaoHub(sala: Sala): Promise<any> {
+    return this.salaHubService.startConection(sala, this.authService.idParticipante).catch((err) => {
       console.error(err);
       throw new Error('Erro ao iniciar a conexão com o servidor');
     });

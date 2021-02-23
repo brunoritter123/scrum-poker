@@ -50,3 +50,8 @@ h2{
   color: #0c9abe;
   font-weight: bold;
 }
+
+.icooff:before{
+    content:url(assets/offline.png);
+    vertical-align:top;
+}
