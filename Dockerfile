@@ -3,6 +3,10 @@
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
 WORKDIR /app
 
+ARG ASPNETCORE_ENVIRONMENT="Production"
+ENV ASPNETCORE_ENVIRONMENT=$ASPNETCORE_ENVIRONMENT
+
+RUN echo OK
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
 COPY ["ScrumPoker_Server/", "ScrumPoker_Server"]
@@ -20,12 +24,11 @@ WORKDIR /app
 RUN useradd -m myappuser
 
 COPY --from=publish /app/publish .
-RUN echo OK
 
-COPY ./ScrumPoker_Server/data_base.db ./
+# COPY ./ScrumPoker_Server/data_base.db ./
 COPY ./ScrumPoker_Client/dist/ ./wwwroot
 
-RUN chmod 777 ./data_base.db
+# RUN chmod 777 ./data_base.db
 RUN chown -R myappuser:myappuser ./
 
 USER myappuser

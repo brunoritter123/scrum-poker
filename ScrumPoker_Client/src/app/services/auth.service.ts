@@ -36,6 +36,7 @@ export class AuthService {
   ) {
     this.getConfig();
     this.loadToken();
+    console.log(this.url)
   }
 
   public getConfig(): void {

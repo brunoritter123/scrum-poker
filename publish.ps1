@@ -1,5 +1,5 @@
 cd .\ScrumPoker_Client\
-ng build --prod
+ng build --configuration production
 
 cd ..
 

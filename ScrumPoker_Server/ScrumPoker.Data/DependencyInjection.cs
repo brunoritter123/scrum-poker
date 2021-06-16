@@ -18,7 +18,7 @@ namespace ScrumPoker.Data
             IConfiguration configuration)
         {
             service.AddDbContext<ScrumPokerContext>(options =>
-                options.UseSqlite(configuration.GetSection("ConnectionStrings:Sqlite").Value));
+                options.UseNpgsql(configuration.GetSection("ConnectionStrings:Npgsql").Value));
 
 
             service.AddScoped<ISalaRepository, SalaRepository>();

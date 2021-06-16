@@ -1,16 +1,19 @@
 # ScrumPoker_Server
 
-Esse projeto foi gerado com  [.Net Core](https://dotnet.microsoft.com/download/dotnet-core/3.1) versão 5.0
+Esse projeto foi gerado com  [.Net Core](https://dotnet.microsoft.com/download/dotnet-core/5.0) versão 5.0
 
 ## Instalação
 - **dotnet** - Fazer a instalção do [.NET Core 5.0](https://dotnet.microsoft.com/download/dotnet-core/5.0)
-- **dotnet ef** - Execute `dotnet tool install -g dotnet-ef --version 5.0.1`
+- **dotnet ef** - Execute `dotnet tool install -g dotnet-ef --version 5.0.5`
 
 ## Configurando 'appsettings.json'
-Acesse o arquivo appsettings.json.
+Acesse o arquivo appsettings.[Ambiente].json (Ambiente é conforme configurado na variável de ambiente ASPNETCORE_ENVIRONMENT).
 - Informe a configuração do *TokenConfig*
 - Informe a configuração do *EmailConfig*
 - Informe a configuração do *ConnectionStrings*
+- Não esqueça  de 
+
+
 
 ## Servidor de desenvolvimento
 Execute `dotnet watch run --project ScrumPoker.API/` para iniciar o servidor. Navegue em `http://localhost:5000/`. O aplicativo será recarregado automaticamente se você alterar qualquer um dos arquivos de origem.

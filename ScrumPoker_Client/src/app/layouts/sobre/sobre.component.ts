@@ -17,8 +17,8 @@ export class SobreComponent {
     window.open(`mailto:${email}`, '_self');
   }
 
-  apoiar(): void {
-    window.open('https://github.com/brunoritter123/scrum-poker', '_blank');
+  reportar(): void {
+    window.open('https://github.com/brunoritter123/scrum-poker/issues', '_blank');
   }
 
 }
