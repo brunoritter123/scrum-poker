@@ -223,7 +223,7 @@ namespace ScrumPoker.API.Controllers
                 claims.Add(new Claim(ClaimTypes.Role, role));
             }
 
-            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_config["JwtSecretKey"]));
+            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_config.GetSection("TokenConfig:JwtSecretKey").Value));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
             int expiresToken = 24;
             int.TryParse(_config.GetSection("TokenConfig:Expiration").Value, out expiresToken);

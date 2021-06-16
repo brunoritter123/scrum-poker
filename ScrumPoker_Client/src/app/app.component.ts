@@ -46,7 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public profile?: PoToolbarProfile = undefined;
   public menus: Array<PoMenuItem> = [
     { label: 'Início', link: '/', icon: 'po-icon-home', shortLabel: 'Início' },
-    { label: 'Sobre', action: this.openModal.bind(this), icon: 'po-icon-user', shortLabel: 'Sobre' }
+    { label: 'Contato', action: this.openModal.bind(this), icon: 'po-icon-chat', shortLabel: 'Contato' }
   ];
 
   public primaryActionSobre: PoModalAction = {
@@ -60,7 +60,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
     private loadPageService: LoadPageService
     ) {
       this.inscricaoLogin = this.authService.eventLogin.subscribe(() => this.eventLogin());

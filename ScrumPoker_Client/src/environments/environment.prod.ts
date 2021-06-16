@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  API: 'https://scrum-poker-br.herokuapp.com/api/v1',
-  SOCKET: 'https://scrum-poker-br.herokuapp.com'
+  API: 'http://scrumpoker.com.br/api/v1',
+  SOCKET: 'http://scrumpoker.com.br'
 };
