@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Carta } from 'src/app/models/carta.model';
@@ -13,7 +13,7 @@ import { SalaHubService } from 'src/app/services/sala-hub.service';
   selector: 'app-votacao',
   templateUrl: './votacao.component.html'
 })
-export class VotacaoComponent implements OnInit, OnDestroy {
+export class VotacaoComponent implements OnDestroy {
   public souJogador: boolean;
   public possoResetarJogo: boolean;
   public possoFinalizarJogo: boolean;
@@ -68,9 +68,6 @@ export class VotacaoComponent implements OnInit, OnDestroy {
       this.inscricaoJogadorResetaJogo = this.salaHubService.jogadorResetaJogo.subscribe((x: any) => this.possoResetarJogo = x);
       this.inscricaoReceberVoto = this.salaHubService.receberVoto.subscribe((x: Voto) => this.onReceberVoto(x));
     }
-
-  ngOnInit(): void {
-  }
 
   ngOnDestroy(): void {
     this.inscricaoSalaconfiguracao.unsubscribe();

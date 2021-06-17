@@ -23,7 +23,6 @@ export class ConfirmarResetarSenhaComponent implements OnInit {
     private poNotification: PoNotificationService
   ) {
     this.registrarForm = this.fb.group({
-      // tslint:disable-next-line: deprecation
       senhas: this.fb.group({
         senha: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]],
         confirmaSenha: ['', Validators.required ]

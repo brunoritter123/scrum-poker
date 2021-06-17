@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ScrumPoker.Application.DTOs.InputModels;
 
 namespace ScrumPoker.Application.Services
 {
@@ -31,14 +32,14 @@ namespace ScrumPoker.Application.Services
             return _mapper.Map<SalaViewModel>(sala);
         }
 
-        public async Task<SalaViewModel> IncluirSalaPadraoAsync(string id)
+        public async Task<SalaViewModel> GerarSalaPadraoAsync(GerarSalaPadraoInputModel gerarSalaInput)
         {
-            var sala = await _repo.BuscarPorIdAsync(id);
+            var sala = await _repo.BuscarPorIdAsync(gerarSalaInput.Id);
 
             if (sala != null)
                 return _mapper.Map<SalaViewModel>(sala);
 
-            sala = await _repo.IncluirAsync(GerarSalaPadrao(id));
+            sala = await _repo.IncluirAsync(GerarSalaPadrao(gerarSalaInput));
 
             return _mapper.Map<SalaViewModel>(sala);
         }
@@ -74,21 +75,29 @@ namespace ScrumPoker.Application.Services
             return;
         }
 
-        private Sala GerarSalaPadrao(string id)
+        private Sala GerarSalaPadrao(GerarSalaPadraoInputModel gerarSalaInput)
         {
-            return new Sala()
+            Sala novaSala = new Sala()
                 {
-                    Id = id,
+                    Id = gerarSalaInput.Id,
                     JogoFinalizado = false,
-                    Configuracao = new SalaConfiguracao()
-                    {
-                        SalaId = id,
-                        JogadorFinalizaJogo = false,
-                        JogadorResetaJogo = false,
-                        JogadorRemoveJogador = false,
-                        JogadorRemoveAdministrador = true,
+                };
 
-                        Cartas = new List<Carta>()
+            if (gerarSalaInput.SalaConfiguracao != null)
+            {
+                novaSala.Configuracao = _mapper.Map<SalaConfiguracao>(gerarSalaInput.SalaConfiguracao);
+            }
+            else
+            {
+                novaSala.Configuracao = new SalaConfiguracao()
+                {
+                    SalaId = gerarSalaInput.Id,
+                    JogadorFinalizaJogo = false,
+                    JogadorResetaJogo = false,
+                    JogadorRemoveJogador = false,
+                    JogadorRemoveAdministrador = true,
+
+                    Cartas = new List<Carta>()
                         {
                             new Carta()
                             {
@@ -151,8 +160,10 @@ namespace ScrumPoker.Application.Services
                                 Especial = true
                             }
                         }
-                    }
                 };
+            }           
+
+            return novaSala;
         }
 
         public async Task<SalaViewModel> ResetarSala(string salaId)

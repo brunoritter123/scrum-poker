@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -9,7 +9,7 @@ import { PoNotificationService } from '@po-ui/ng-components';
   selector: 'app-cadastro-conta-usuario',
   templateUrl: './cadastro-conta-usuario.component.html'
 })
-export class CadastroContaUsuarioComponent implements OnInit {
+export class CadastroContaUsuarioComponent {
   public registrarForm: FormGroup;
   public carregando = false;
 
@@ -23,16 +23,12 @@ export class CadastroContaUsuarioComponent implements OnInit {
       nome: ['', Validators.required],
       login: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      // tslint:disable-next-line: deprecation
       senhas: this.fb.group({
         senha: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]],
         confirmaSenha: ['', Validators.required ]
       }, {validator: this.compararSenhas})
     });
    }
-
-  ngOnInit(): void {
-  }
 
   private compararSenhas(fb: FormGroup): void {
     const senha = fb.get('senha');

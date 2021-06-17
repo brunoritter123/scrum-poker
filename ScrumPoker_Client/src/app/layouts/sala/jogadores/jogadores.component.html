@@ -5,7 +5,7 @@
     <div class="po-row">
       <h4
         (click)="remover(jogador)"
-        [class.click]="jogador.id != this.meuIdParticipante && possoRemoverJogador"
+        [class.click]="jogador.id !== this.meuIdParticipante && possoRemoverJogador"
         class="po-sm-6 po-md-6 po-lg-6"
         [class.off]="!jogador.online"
         [class.f-bold]="jogador.id === meuIdParticipante">

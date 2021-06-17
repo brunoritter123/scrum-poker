@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PoDialogService } from '@po-ui/ng-components';
 import { Subscription } from 'rxjs';
@@ -7,13 +7,13 @@ import { Sala } from 'src/app/models/sala.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { SalaHubService } from 'src/app/services/sala-hub.service';
 
-import { SalaParticipante } from '../../../models/sala-participante.model'
+import { SalaParticipante } from '../../../models/sala-participante.model';
 
 @Component({
   selector: 'app-administradores',
   templateUrl: './administradores.component.html'
 })
-export class AdministradoresComponent implements OnInit, OnDestroy {
+export class AdministradoresComponent implements OnDestroy {
 
   public administradores: Array<SalaParticipante>;
   public meuIdParticipante: string;
@@ -27,13 +27,14 @@ export class AdministradoresComponent implements OnInit, OnDestroy {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private authService: AuthService,
     private salaHubService: SalaHubService,
-    private poDialogService: PoDialogService
+    private poDialogService: PoDialogService,
+    authService: AuthService
   ) {
     this.meuIdParticipante = authService.idParticipante;
     this.souJogador = authService.isJogador;
-    let sala: Sala = this.activatedRoute.snapshot.data['sala'];
+    const salaData = 'sala';
+    const sala: Sala = this.activatedRoute.snapshot.data[salaData];
     this.administradores = sala.administradores;
     this.salaConfig = sala.configuracao;
     this.verificarSePossoRemoverAdministrador();
@@ -42,36 +43,33 @@ export class AdministradoresComponent implements OnInit, OnDestroy {
     this.inscricaoSalaConfiguracaor = this.salaHubService.receberConfiguracaoSala.subscribe((x: any) => this.onNovaConfiguracaoSala(x));
    }
 
-  ngOnInit(): void {
-  }
-
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.inscricaoNovoAdministrador.unsubscribe();
     this.inscricaoSalaConfiguracaor.unsubscribe();
   }
 
-  private onNovoAdministradores(administradores: Array<SalaParticipante>) {
+  private onNovoAdministradores(administradores: Array<SalaParticipante>): void {
     this.administradores = administradores;
     this.verificarSePossoRemoverAdministrador();
   }
 
-  private onNovaConfiguracaoSala(salaConfig: SalaConfiguracao) {
+  private onNovaConfiguracaoSala(salaConfig: SalaConfiguracao): void {
     this.salaConfig = salaConfig;
     this.verificarSePossoRemoverAdministrador();
   }
 
-  private verificarSePossoRemoverAdministrador(){
-    this.possoRemoverAdministrador = !this.souJogador || this.salaConfig.jogadorRemoveAdministrador || this.administradores.length == 0;
+  private verificarSePossoRemoverAdministrador(): void {
+    this.possoRemoverAdministrador = !this.souJogador || this.salaConfig.jogadorRemoveAdministrador || this.administradores.length === 0;
   }
 
 
   public remover(administrador: SalaParticipante): void {
-    if(administrador.id != this.meuIdParticipante && this.possoRemoverAdministrador) {
+    if (administrador.id !== this.meuIdParticipante && this.possoRemoverAdministrador) {
       this.poDialogService.confirm({
         title: 'Atenção',
         message: 'Deseja realmente remover o administrador: ' + administrador.nome + '?',
         confirm: () => this.salaHubService.removerParticipante(administrador.id)
-      })
+      });
     }
   }
 

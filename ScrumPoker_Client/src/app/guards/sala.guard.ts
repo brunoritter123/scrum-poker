@@ -38,10 +38,11 @@ export class SalaGuard implements CanActivate {
         const salaId: string = route.params?.salaId;
         let sala: Sala;
 
-        this.salaService.incluirSalaPadrao(salaId)
+        this.salaService.gerarSalaPadrao(salaId)
         .then((salaRecebida) => {
-          sala = salaRecebida
-          return this.getParticipante(salaId)
+          sala = salaRecebida;
+          this.salaService.guardarConfigSalaNoLocalStorage(salaRecebida.configuracao);
+          return this.getParticipante(salaId);
         })
         .then((participante) => this.participanteService.incluirOuAlterarParticipante(participante))
         .then(() => this.iniciarConexaoHub(sala))
@@ -93,13 +94,6 @@ export class SalaGuard implements CanActivate {
     return this.salaHubService.enviarParticipante(participante).catch((err) => {
       console.error(err);
       throw new Error('Erro ao tentar entrar na sala: ' + salaId);
-    });
-  }
-
-  private criarSalaPadrao(salaId: string): Promise<any> {
-    return this.salaService.incluirSalaPadrao(salaId).catch((err) => {
-      console.error(err);
-      throw new Error('Erro ao tentar incluir uma sala padrão');
     });
   }
 }
