@@ -24,7 +24,7 @@ export class CriarSalaComponent implements OnInit {
     private poAlert: PoDialogService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.idSala = this.authService.idSala;
     this.nome = this.authService.name;
     this.jogador = this.authService.isJogador;
@@ -38,8 +38,8 @@ export class CriarSalaComponent implements OnInit {
     });
   }
 
-  public entrar() {
-    this.authService.saveConfig(this.idSala.toUpperCase(), this.nome, this.jogador, this.integraJira)
+  public entrar(): void {
+    this.authService.saveConfig(this.idSala.toUpperCase(), this.nome, this.jogador, this.integraJira);
 
     if (this.authService.idParticipante === undefined) {
       this.confirmLogin();

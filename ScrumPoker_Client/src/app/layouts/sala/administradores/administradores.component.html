@@ -5,7 +5,7 @@
   <div *ngFor="let administrador of administradores">
     <h4
       (click)="remover(administrador)"
-      [class.click]="administrador.id != this.meuIdParticipante && possoRemoverAdministrador"
+      [class.click]="administrador.id !== this.meuIdParticipante && possoRemoverAdministrador"
       class="po-sm-12 po-md-12 po-lg-12"
       [class.off]="!administrador.online"
       [class.f-bold]="administrador.id === meuIdParticipante">

@@ -11,6 +11,7 @@ import { AuthResetarSenha } from '../interfaces/authResetarSenha.interface';
 import { Perfil } from '../interfaces/perfil.interface';
 import { Observable, OperatorFunction } from 'rxjs';
 import jwtDecode, { JwtDecodeOptions, JwtPayload } from 'jwt-decode';
+import { ConfirmarEmail } from '../models/confirmar-email.model';
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +37,6 @@ export class AuthService {
   ) {
     this.getConfig();
     this.loadToken();
-    console.log(this.url)
   }
 
   public getConfig(): void {
@@ -132,10 +132,13 @@ export class AuthService {
   }
 
   public confirmarEmail(token: string, userName: string): Observable<any> {
-    return this.http.post(`${this.url}/user/confirmar-email`, {
-      'token': token,
-      'userName': userName
-    }).pipe(this.pipeLogin());
+    const confirmarEmail = new ConfirmarEmail();
+    confirmarEmail.token = token;
+    confirmarEmail.userName = userName;
+
+    return this.http
+    .post(`${this.url}/user/confirmar-email`, confirmarEmail)
+    .pipe(this.pipeLogin());
   }
 
   private pipeLogin(): OperatorFunction<any, void> {

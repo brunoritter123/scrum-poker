@@ -1,8 +1,7 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PoModalComponent, PoNotificationService, PoPageSlideComponent } from '@po-ui/ng-components';
+import { PoNotificationService, PoPageSlideComponent } from '@po-ui/ng-components';
 import { Subscription } from 'rxjs';
-import { SalaConfiguracao } from 'src/app/models/sala-configuracao.model';
 import { Sala } from 'src/app/models/sala.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { SalaHubService } from 'src/app/services/sala-hub.service';
@@ -11,7 +10,7 @@ import { SalaHubService } from 'src/app/services/sala-hub.service';
   selector: 'app-sala',
   templateUrl: './sala.component.html'
 })
-export class SalaComponent implements OnInit, OnDestroy {
+export class SalaComponent implements OnDestroy {
 
   public carregando = false;
   public textoLoading = 'Carregando';
@@ -43,9 +42,6 @@ export class SalaComponent implements OnInit, OnDestroy {
     this.inscricaoonReconectando = this.salaHubService.onReconectando.subscribe((x: any) => this.onReconectando());
     this.inscricaoonReconectado = this.salaHubService.onReconectado.subscribe((x: any) => this.onReconectado());
    }
-
-  ngOnInit(): void {
-  }
 
   ngOnDestroy(): void {
     this.inscricaoParticipanteRemovido.unsubscribe();
@@ -81,6 +77,7 @@ export class SalaComponent implements OnInit, OnDestroy {
 
   private onReceberSala(sala: Sala): void {
     this.sala = sala;
-    this.activatedRoute.snapshot.data['sala'] = this.sala;
+    const salaData = 'sala';
+    this.activatedRoute.snapshot.data[salaData] = this.sala;
   }
 }

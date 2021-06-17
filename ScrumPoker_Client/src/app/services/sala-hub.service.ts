@@ -23,12 +23,12 @@ export class SalaHubService {
     return this.pAdministradores;
   }
 
-  private pSalaConfig: SalaConfiguracao | undefined;
-  public set salaConfig(v: SalaConfiguracao | undefined) {
+  private pSalaConfig: SalaConfiguracao = new SalaConfiguracao(); // inicializa em startConection
+  public set salaConfig(v: SalaConfiguracao) {
     this.pSalaConfig = v;
     this.verificarConfiguracoes();
   }
-  public get salaConfig(): SalaConfiguracao | undefined{
+  public get salaConfig(): SalaConfiguracao{
     return this.pSalaConfig;
   }
 
@@ -90,7 +90,7 @@ export class SalaHubService {
   }
 
   private onReconnectedConection(error: string | undefined): void {
-    this.salaService.buscarSala(this.salaConfig!.salaId)
+    this.salaService.buscarSala(this.salaConfig.salaId)
     .then((sala) => {
       this.receberSala.emit(sala);
       this.receberConfiguracaoSala.emit(sala.configuracao);
@@ -98,7 +98,7 @@ export class SalaHubService {
       this.receberAdministradores.emit(sala.administradores);
       this.receberAdministradores.emit(sala.administradores);
       this.onReconectado.emit();
-    })
+    });
   }
 
   private onReconnectingConection(error: Error | undefined): void {
@@ -113,14 +113,16 @@ export class SalaHubService {
     this.hubConnection.on('ReceberConfiguracaoSala', (salaconfig: SalaConfiguracao) => {
       this.salaConfig = salaconfig;
       this.receberConfiguracaoSala.emit(salaconfig);
+      this.salaService.guardarConfigSalaNoLocalStorage(salaconfig);
     });
   }
 
   private recberJogadorDesconectado(): void {
     this.hubConnection.on('RecberJogadorDesconectado', (jogadorId: string) => {
       const jogador = this.jogadores.find(x => x.id === jogadorId);
-      if(!!jogador) jogador.online = false;
-
+      if (!!jogador) {
+        jogador.online = false;
+      }
       this.receberJogadores.emit(this.jogadores);
     });
   }
@@ -128,15 +130,17 @@ export class SalaHubService {
   private recberAdministradorDesconectado(): void {
     this.hubConnection.on('RecberAdministradorDesconectado', (administradorId: string) => {
       const administrador = this.administradores.find(x => x.id === administradorId);
-      if(!!administrador) administrador.online = false;
+      if (!!administrador){
+        administrador.online = false;
+      }
       this.receberAdministradores.emit(this.administradores);
     });
   }
 
   private receberNovoJogadorHub(): void {
     this.hubConnection.on('ReceberNovoJogador', (jogador: SalaParticipante) => {
-      this.jogadores = this.jogadores.filter(x => x.id !== jogador.id)
-      this.administradores = this.administradores.filter(x => x.id !== jogador.id)
+      this.jogadores = this.jogadores.filter(x => x.id !== jogador.id);
+      this.administradores = this.administradores.filter(x => x.id !== jogador.id);
 
       this.jogadores.push(jogador);
       this.receberJogadores.emit(this.jogadores);
@@ -146,10 +150,10 @@ export class SalaHubService {
 
   private receberNovoAdministradorHub(): void {
     this.hubConnection.on('ReceberNovoAdministrador', (administrador: SalaParticipante) => {
-      this.jogadores = this.jogadores.filter(x => x.id !== administrador.id)
-      this.administradores = this.administradores.filter(x => x.id !== administrador.id)
+      this.jogadores = this.jogadores.filter(x => x.id !== administrador.id);
+      this.administradores = this.administradores.filter(x => x.id !== administrador.id);
 
-      this.administradores.push(administrador)
+      this.administradores.push(administrador);
       this.receberJogadores.emit(this.jogadores);
       this.receberAdministradores.emit(this.administradores);
     });
@@ -203,7 +207,7 @@ export class SalaHubService {
 
       if (this.authService.idParticipante === participanteRemovidoId) {
         this.receberParticipanteRemovido.emit(nomeParticipanteQueRemoveu);
-        return
+        return;
 
       } else {
 
@@ -212,7 +216,7 @@ export class SalaHubService {
 
         this.administradores = this.administradores.filter(x => x.id !== participanteRemovidoId);
         this.receberAdministradores.emit(this.administradores);
-        return
+        return;
       }
     });
   }

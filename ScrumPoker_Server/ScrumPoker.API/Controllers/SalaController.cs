@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ScrumPoker.Application.DTOs.InputModels;
 using ScrumPoker.Application.DTOs.ViewModels;
 using ScrumPoker.Application.Interfaces.ApplicationServices;
 using System.Threading.Tasks;
@@ -26,10 +27,10 @@ namespace ScrumPoker.API.Controllers
             return Ok(sala);
         }
 
-        [HttpPost("{id}")]
-        public async Task<ActionResult<SalaViewModel>> IncluirSalaPadraoAsync(string id)
+        [HttpPost("gerar-sala-padrao")]
+        public async Task<ActionResult<SalaViewModel>> GerarSalaPadraoAsync(GerarSalaPadraoInputModel gerarSalaInput)
         {
-            var sala = await _salaService.IncluirSalaPadraoAsync(id);
+            var sala = await _salaService.GerarSalaPadraoAsync(gerarSalaInput);
             return Ok(sala);
         }
 

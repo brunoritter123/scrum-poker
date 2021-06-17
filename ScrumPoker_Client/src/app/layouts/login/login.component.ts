@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { PoModalComponent, PoModalAction, PoNotificationService } from '@po-ui/ng-components';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-login',
   templateUrl: './login.component.html'
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnDestroy {
   @ViewChild('modalEsqueceuSenha', { static: true }) modalEsqueceuSenha?: PoModalComponent;
 
   private inscricaoLogin: Subscription;
@@ -44,9 +44,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     private poNotification: PoNotificationService
   ) {
     this.inscricaoLogin = this.authService.eventLogin.subscribe(() => this.router.navigate(['']));
-  }
-
-  ngOnInit(): void {
   }
 
   ngOnDestroy(): void {

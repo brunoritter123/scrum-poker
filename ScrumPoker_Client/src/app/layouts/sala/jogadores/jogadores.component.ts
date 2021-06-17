@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PoDialogService } from '@po-ui/ng-components';
 import { Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ import { SalaHubService } from 'src/app/services/sala-hub.service';
   selector: 'app-jogadores',
   templateUrl: './jogadores.component.html'
 })
-export class JogadoresComponent implements OnInit, OnDestroy {
+export class JogadoresComponent implements OnDestroy {
   public sala: Sala;
   public jogadores: Array<SalaParticipante>;
   public meuIdParticipante: string;
@@ -49,9 +49,6 @@ export class JogadoresComponent implements OnInit, OnDestroy {
     this.inscricaoNovoAdministrador = this.salaHubService.receberAdministradores.subscribe((x: any) => this.onReceberAdministradores(x));
     this.inscricaoSalaConfiguracaor = this.salaHubService.receberConfiguracaoSala.subscribe((x: any) => this.onNovaConfiguracaoSala(x));
     this.inscricaoReceberVoto = this.salaHubService.receberVoto.subscribe((x: Voto) => this.onReceberVoto(x));
-  }
-
-  ngOnInit(): void {
   }
 
   ngOnDestroy(): void {
