@@ -1,3 +1,4 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using ScrumPoker.Data.Context;
 using ScrumPoker.Domain.Entities.SalaEntity;
@@ -52,6 +53,24 @@ namespace ScrumPoker.Data.Repositories
         {
             var sala = await BuscarPorIdAsync(id);
             _context.Set<Carta>().RemoveRange(sala.Configuracao.Cartas);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task LimparSalasNaoUsadas()
+        {
+            int partirDeQuantasSalasSeraRealizadoLimpeza = 100;
+            int salasParaPermanecerSalvas = 60;
+
+            if (await _context.Set<Sala>().CountAsync() <= partirDeQuantasSalasSeraRealizadoLimpeza)
+            {
+                return;
+            }
+
+            var salasParaRemover = _context.Set<Sala>()
+                .OrderByDescending(x => x.UltimaDataDeUtilizacao)
+                .Skip(salasParaPermanecerSalvas);
+
+            _context.Set<Sala>().RemoveRange(salasParaRemover);
             await _context.SaveChangesAsync();
         }
     }

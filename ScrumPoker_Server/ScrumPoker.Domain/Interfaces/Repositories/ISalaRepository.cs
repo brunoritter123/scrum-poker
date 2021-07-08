@@ -10,5 +10,6 @@ namespace ScrumPoker.Domain.Interfaces.Repositories
         Task<Sala> IncluirAsync(Sala sala);
         Task<Sala> AlterarAsync(Sala sala);
         Task ExcluirCartasAsync(string id);
+        Task LimparSalasNaoUsadas();
     }
 }

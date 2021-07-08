@@ -15,16 +15,16 @@ namespace ScrumPoker.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityByDefaultColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
-                .HasAnnotation("ProductVersion", "5.0.1");
+                .HasAnnotation("ProductVersion", "5.0.5")
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .UseIdentityByDefaultColumn();
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("text");
@@ -47,7 +47,7 @@ namespace ScrumPoker.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .UseIdentityByDefaultColumn();
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("text");
@@ -110,7 +110,7 @@ namespace ScrumPoker.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .UseIdentityByDefaultColumn();
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Especial")
                         .HasColumnType("boolean");
@@ -175,6 +175,9 @@ namespace ScrumPoker.Data.Migrations
                     b.Property<string>("Titulo")
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("UltimaDataDeUtilizacao")
+                        .HasColumnType("timestamp without time zone");
+
                     b.HasKey("Id");
 
                     b.ToTable("Sala");
@@ -185,7 +188,7 @@ namespace ScrumPoker.Data.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
-                        .UseIdentityByDefaultColumn();
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("JogadorFinalizaJogo")
                         .HasColumnType("boolean");
@@ -400,7 +403,8 @@ namespace ScrumPoker.Data.Migrations
                 {
                     b.HasOne("ScrumPoker.Domain.Entities.SalaEntity.Sala", "Sala")
                         .WithOne("Configuracao")
-                        .HasForeignKey("ScrumPoker.Domain.Entities.SalaEntity.SalaConfiguracao", "SalaId");
+                        .HasForeignKey("ScrumPoker.Domain.Entities.SalaEntity.SalaConfiguracao", "SalaId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Sala");
                 });
