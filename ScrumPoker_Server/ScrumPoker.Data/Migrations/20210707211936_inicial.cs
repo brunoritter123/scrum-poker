@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ScrumPoker.Data.Migrations
 {
-    public partial class nomedamigration : Migration
+    public partial class inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,7 +40,8 @@ namespace ScrumPoker.Data.Migrations
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
                     Titulo = table.Column<string>(type: "text", nullable: true),
-                    JogoFinalizado = table.Column<bool>(type: "boolean", nullable: false)
+                    JogoFinalizado = table.Column<bool>(type: "boolean", nullable: false),
+                    UltimaDataDeUtilizacao = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -143,7 +144,7 @@ namespace ScrumPoker.Data.Migrations
                         column: x => x.SalaId,
                         principalTable: "Sala",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

@@ -35,32 +35,11 @@ namespace ScrumPoker.Application.Services
         public async Task<SalaViewModel> GerarSalaPadraoAsync(GerarSalaPadraoInputModel gerarSalaInput)
         {
             var sala = await _repo.BuscarPorIdAsync(gerarSalaInput.Id);
-
             if (sala != null)
                 return _mapper.Map<SalaViewModel>(sala);
 
+            await _repo.LimparSalasNaoUsadas();
             sala = await _repo.IncluirAsync(GerarSalaPadrao(gerarSalaInput));
-
-            return _mapper.Map<SalaViewModel>(sala);
-        }
-
-        public async Task<SalaViewModel> IncluiAsync(SalaViewModel SalaViewModel)
-        {
-            if (await _repo.ExisteSalaAsync(SalaViewModel.Id))
-                throw new Exception($"Id da sala {SalaViewModel.Id}, já existe no banco de dados");
-
-            var sala = await _repo.IncluirAsync(_mapper.Map<Sala>(SalaViewModel));
-            return _mapper.Map<SalaViewModel>(sala);
-        }
-
-        public async Task<SalaViewModel> AlterarAsync(SalaViewModel SalaViewModel)
-        {
-            var sala = await _repo.BuscarPorIdAsync(SalaViewModel.Id);
-            if (sala is null) throw new Exception("Não foi encontrado o registro");
-
-            sala.Configuracao.Cartas = sala.Configuracao.Cartas.ToList();
-            _mapper.Map(SalaViewModel, sala);
-            await _repo.AlterarAsync(sala);
 
             return _mapper.Map<SalaViewModel>(sala);
         }
@@ -81,6 +60,7 @@ namespace ScrumPoker.Application.Services
                 {
                     Id = gerarSalaInput.Id,
                     JogoFinalizado = false,
+                    UltimaDataDeUtilizacao = DateTime.Now,
                 };
 
             if (gerarSalaInput.SalaConfiguracao != null)
@@ -161,7 +141,7 @@ namespace ScrumPoker.Application.Services
                             }
                         }
                 };
-            }           
+            }
 
             return novaSala;
         }
@@ -171,6 +151,7 @@ namespace ScrumPoker.Application.Services
             Sala sala = await _repo.BuscarPorIdAsync(salaId);
             sala.JogoFinalizado = false;
             sala.Titulo = null;
+            sala.UltimaDataDeUtilizacao = DateTime.Now;
             foreach (var participante in sala.Participantes)
             {
                 participante.VotoCartaValor = null;
@@ -184,6 +165,7 @@ namespace ScrumPoker.Application.Services
         {
             Sala sala = await _repo.BuscarPorIdAsync(salaId);
             sala.JogoFinalizado = true;
+            sala.UltimaDataDeUtilizacao = DateTime.Now;
             sala = await _repo.AlterarAsync(sala);
 
             return _mapper.Map<SalaViewModel>(sala);

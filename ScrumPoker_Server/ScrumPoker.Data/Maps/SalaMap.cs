@@ -17,10 +17,12 @@ namespace ScrumPoker.Data.Maps
                 .IsRequired();
 
             builder.HasOne(x => x.Configuracao)
-                .WithOne(x => x.Sala);
+                .WithOne(x => x.Sala)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(x => x.Participantes)
-                .WithOne(x => x.Sala);
+                .WithOne(x => x.Sala)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
