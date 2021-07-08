@@ -1,5 +1,12 @@
+$env:ASPNETCORE_ENVIRONMENT='Production'
+
 cd .\ScrumPoker_Client\
 ng build --configuration production
+
+cd ..
+
+cd .\ScrumPoker_Server\
+dotnet ef database update --project ./ScrumPoker.Data/ --startup-project ./ScrumPoker.API/
 
 cd ..
 
