@@ -165,18 +165,8 @@ export class ConfigurarSalaComponent implements OnInit, OnDestroy {
         }
       });
     }
-
-    if (lAltCartas){
-
-      this.salaService.excluirCarta(this.configSala.salaId)
-      .then( () => {
-        this.configSala.cartas = cartasNew;
-        this.salvarSala();
-      });
-    } else {
-
-      this.salvarSala();
-    }
+    this.configSala.cartas = cartasNew;
+    this.salvarSala();
   }
 
   private salvarSala(): void {

@@ -53,11 +53,6 @@ export class SalaService {
     });
   }
 
-  public excluirCarta(salaId: string): Promise<any> {
-    return this.http.delete(`${this.url}/sala/${salaId}/cartas`)
-    .toPromise();
-  }
-
   public guardarConfigSalaNoLocalStorage(config: SalaConfiguracao): void{
     localStorage.setItem(config.salaId + 'Config', JSON.stringify(config));
   }
