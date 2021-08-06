@@ -26,18 +26,19 @@ namespace ScrumPoker.Application.Services
             SalaConfiguracao sala = await _repo.BuscarPorIdAsync(id);
 
             if (sala is null)
-                throw new Exception("Não foi encontrado a Configuracao da Sala");
+                throw new ApplicationException($"Configuração Sala Id: '{id}' não foi encontrado");
 
             return _mapper.Map<SalaConfiguracaoViewModel>(sala);
         }
 
-        public async Task<SalaConfiguracaoViewModel> AlterarAsync(AlterarConfiguracaoSalaInputModel SalaConfiguracaoViewModel)
+        public async Task<SalaConfiguracaoViewModel> AlterarAsync(AlterarConfiguracaoSalaInputModel salaConfiguracaoViewModel)
         {
-            SalaConfiguracao salaConfig = await _repo.BuscarPorIdAsync(SalaConfiguracaoViewModel.Id);
-            if (salaConfig is null) throw new Exception("Não foi encontrado o registro");
+            SalaConfiguracao salaConfig = await _repo.BuscarPorIdAsync(salaConfiguracaoViewModel.Id);
+            if (salaConfig is null) 
+                throw new ApplicationException($"Configuração Sala Id: '{salaConfiguracaoViewModel.Id}' não foi encontrado");
 
             salaConfig.Cartas = salaConfig.Cartas.ToList();
-            _mapper.Map(SalaConfiguracaoViewModel, salaConfig);
+            _mapper.Map(salaConfiguracaoViewModel, salaConfig);
             await _repo.AlterarAsync(salaConfig);
 
             return _mapper.Map<SalaConfiguracaoViewModel>(salaConfig);

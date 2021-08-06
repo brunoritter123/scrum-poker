@@ -44,16 +44,6 @@ namespace ScrumPoker.Application.Services
             return _mapper.Map<SalaViewModel>(sala);
         }
 
-        public async Task ExcluirCartasAsync(string id)
-        {
-            if ( !(await _repo.ExisteSalaAsync(id)) )
-                throw new Exception("Não foi encontrado o registro");
-
-            await _repo.ExcluirCartasAsync(id);
-
-            return;
-        }
-
         private Sala GerarSalaPadrao(GerarSalaPadraoInputModel gerarSalaInput)
         {
             Sala novaSala = new Sala()

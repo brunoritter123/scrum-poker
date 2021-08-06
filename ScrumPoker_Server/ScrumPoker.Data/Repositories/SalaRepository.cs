@@ -36,7 +36,9 @@ namespace ScrumPoker.Data.Repositories
         {
             var sala = await _context.Set<Sala>()
                                 .Include(x => x.Configuracao)
-                                .Include(x => x.Configuracao.Cartas.OrderBy(x => x.Ordem))
+                                .Include(x => x.Configuracao.Cartas
+                                                                    .OrderBy(x => x.Especial)
+                                                                    .ThenBy(x => x.Ordem))
                                 .Include(x => x.Participantes)
                                 .FirstOrDefaultAsync(x => x.Id == id);
 
@@ -47,13 +49,6 @@ namespace ScrumPoker.Data.Repositories
         {
             return await _context.Set<Sala>()
                            .AnyAsync(x => x.Id == id);
-        }
-
-        public async Task ExcluirCartasAsync(string id)
-        {
-            var sala = await BuscarPorIdAsync(id);
-            _context.Set<Carta>().RemoveRange(sala.Configuracao.Cartas);
-            await _context.SaveChangesAsync();
         }
 
         public async Task LimparSalasNaoUsadas()

@@ -9,7 +9,6 @@ namespace ScrumPoker.Domain.Interfaces.Repositories
         Task<bool> ExisteSalaAsync(string id);
         Task<Sala> IncluirAsync(Sala sala);
         Task<Sala> AlterarAsync(Sala sala);
-        Task ExcluirCartasAsync(string id);
         Task LimparSalasNaoUsadas();
     }
 }

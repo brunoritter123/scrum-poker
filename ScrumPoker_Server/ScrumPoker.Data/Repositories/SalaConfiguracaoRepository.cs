@@ -4,6 +4,7 @@ using ScrumPoker.Domain.Entities.SalaEntity;
 using ScrumPoker.Domain.Interfaces.Repositories;
 using System.Linq;
 using System.Threading.Tasks;
+using System;
 
 namespace ScrumPoker.Data.Repositories
 {

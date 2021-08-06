@@ -8,7 +8,6 @@ namespace ScrumPoker.Application.Interfaces.ApplicationServices
     {
         Task<SalaViewModel> ObterPorIdAsync(string id);
         Task<SalaViewModel> GerarSalaPadraoAsync(GerarSalaPadraoInputModel gerarSalaInput);
-        Task ExcluirCartasAsync(string id);
         Task<SalaViewModel> ResetarSala(string salaId);
         Task<SalaViewModel> FinalizarJogo(string salaId);
     }

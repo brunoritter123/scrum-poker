@@ -33,13 +33,5 @@ namespace ScrumPoker.API.Controllers
             var sala = await _salaService.GerarSalaPadraoAsync(gerarSalaInput);
             return Ok(sala);
         }
-
-        [HttpDelete("{id}/cartas")]
-        public async Task<ActionResult> ExcluirCartasAsync(string id)
-        {
-            await _salaService.ExcluirCartasAsync(id);
-
-            return NoContent();
-        }
     }
 }
