@@ -19,7 +19,23 @@
 <p>Projeto desenvolvido com a finalidade de ser util nas plannings que eu participo no dia a dia.</p>
 
 ## 🎨 Layout
-🚧 Em construção... 🚧
+
+### Mobile
+
+<p align="center">
+  <img alt="ScrumPoker" title="#ScrumPoker" src="./prints/mobile/home.png" width="200px">
+
+  <img alt="ScrumPoker" title="#ScrumPoker" src="./prints/mobile/sala_jogador.png" width="200px">
+</p>
+
+### Web
+
+<p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
+
+  <img alt="ScrumPoker" title="#ScrumPoker" src="./prints/web/home.png" width="400px">
+  <img alt="ScrumPoker" title="#ScrumPoker" src="./prints/web/sala_jogador.png" width="400px">
+</p>
+
 
 ## 🛠 Tecnologias
 
