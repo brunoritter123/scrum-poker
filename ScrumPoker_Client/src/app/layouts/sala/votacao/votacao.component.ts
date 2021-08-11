@@ -87,7 +87,9 @@ export class VotacaoComponent implements OnDestroy {
   }
 
   private onReceberVoto(voto: Voto): void {
-    this.meuVotoValue = voto.jogadorId === this.meuIdParticipante ? voto.valorVoto : '';
+    if (voto.jogadorId === this.meuIdParticipante) {
+      this.meuVotoValue = voto.valorVoto;
+    }
   }
 
   public votar(carta: Carta): void {
