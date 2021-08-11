@@ -1,11 +1,8 @@
 <h1 align="center">
-    <img src="https://github.com/brunoritter123/scrum-poker/blob/master/logo.png"  title="#Scrum Poker" height="150" width="150" alt="Scrum Poker"/>
+    <img src="https://github.com/brunoritter123/scrum-poker/blob/master/logo.png"  title="#Scrum Poker" height="250" width="250" alt="Scrum Poker"/>
 </h1>
 
-<h4 align="center">Planning poker online fácil e simples de participar 🚀🐱‍👤</h4>
-<h4 align="center"> 
-	🚧  Projeto em construção...  🚧
-</h4>
+<h4 align="center">🚀 Planning poker online fácil e simples de participar 🐱‍👤</h4>
 
 ## 💻 Sobre o projeto
 
@@ -44,7 +41,7 @@ Podemos considerar este projeto como sendo divido em duas partes:
 2. Front End (pasta ScrumPoker_Client)
 
 💡Front End precisa que o Back End esteja sendo executado para funcionar.
-🚧 Em construção... 🚧
+<p>🚧 Em construção... 🚧</p>
 
 ## 😯 Como contribuir para o projeto
 
