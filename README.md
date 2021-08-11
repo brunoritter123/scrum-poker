@@ -7,17 +7,16 @@
 ## 💻 Sobre o projeto
 
 ✔ ScrumPoker - é uma forma de jogar o planning poker online de forma que cada squad pode customizar suas cartas e facilitar a mensuração de esforço para cada história.
+- [x] As pessoas não precisam se cadastrar para utilizar o ScrumPoker.
+- [x] Nome das salas para planning poker é customizável e aberto a todos entrarem.
+- [x] As pessoas podem acessar como um jogar e mensurar as histórias ou como administrador para ser um facilitador da planning e ou apenas observar o andamento.
+- [x] As pessoas podem customizar as cartas que normalmente elas usam no planning poker.
+- [x] As pessoas podem escolher as permissões dos jogadores e administradores.
+- [x] As pessoas podem remover outras pessoas da sala.
+- [x] As pessoas que ficam offline, não são removidos automaticamente para evitar remoções indevidas para os casos de instabilidade de internet, desta forma o voto da pessoa não é removido quando a internet dela fica instável.
+- [x] ScrumPoker é responsivo para as pessoas poderem acessar pelo Browser no PC ou em smartphones.
 
-- As pessoas não precisam se cadastrar para utilizar o ScrumPoker.
-- Nome das salas para planning poker é customizável e aberto a todos entrarem.
-- As pessoas podem acessar como um jogar e mensurar as histórias ou como administrador para ser um facilitador da planning e ou apenas observar o andamento.
-- As pessoas podem customizar as cartas que normalmente elas usam no planning poker.
-- As pessoas podem escolher as permissões dos jogadores e administradores.
-- As pessoas podem remover outras pessoas da sala.
-- As pessoas que ficam offline, não são removidos automaticamente para evitar remoções indevidas para os casos de instabilidade de internet, desta forma o voto da pessoa não é removido quando a internet dela fica instável.
-- ScrumPoker é responsivo para as pessoas poderem acessar pelo Browser no PC ou em smartphones.
-
-Projeto desenvolvido com a finalidade de ser util nas plannings que eu participo no dia a dia.
+<p>Projeto desenvolvido com a finalidade de ser util nas plannings que eu participo no dia a dia.</p>
 
 ## 🎨 Layout
 🚧 Em construção... 🚧
