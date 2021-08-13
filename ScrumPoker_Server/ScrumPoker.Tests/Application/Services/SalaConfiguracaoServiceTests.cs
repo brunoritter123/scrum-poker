@@ -86,6 +86,7 @@ namespace ScrumPoker.Tests.Application.Services
             var mockRepo = new Mock<ISalaConfiguracaoRepository>();
             mockRepo.Setup(repo => repo.BuscarPorIdAsync(inputModel.Id))
                     .ReturnsAsync(salaConfigBd);
+
             mockRepo.Setup(repo => repo.AlterarAsync(It.IsAny<SalaConfiguracao>()))
                     .Callback<SalaConfiguracao>(x => salaConfigReturnoAlteracao = x)
                     .ReturnsAsync(salaConfigReturnoAlteracao);
@@ -100,7 +101,8 @@ namespace ScrumPoker.Tests.Application.Services
             Assert.IsType<SalaConfiguracaoViewModel>(result);
             Assert.Equal(inputModel.Id, result.Id);
             Assert.Equal(inputModel.JogadorFinalizaJogo, result.JogadorFinalizaJogo);
-            Assert.Equal(inputModel.JogadorRemoveAdministrador, result.JogadorResetaJogo);
+            Assert.Equal(inputModel.JogadorRemoveAdministrador, result.JogadorRemoveAdministrador);
+            Assert.Equal(inputModel.JogadorResetaJogo, result.JogadorResetaJogo);
         }
 
         [Fact(DisplayName = "Alterar de uma SalaConfiguracao que não existe")]

@@ -1,7 +1,44 @@
-﻿namespace ScrumPoker.Tests.Core.Domain
+﻿using AutoMapper;
+using Moq;
+using ScrumPoker.Application.Configurations;
+using ScrumPoker.Application.Services;
+using ScrumPoker.Domain.Interfaces.Repositories;
+using System;
+using System.Threading.Tasks;
+using Xunit;
+
+namespace ScrumPoker.Tests.Application.Services
 {
     public class ParticipanteTests
     {
+        private readonly IMapper _mapper;
+        public ParticipanteTests()
+        {
+            var mockMapper = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new AutoMapperApiConfig());
+            });
+            _mapper = mockMapper.CreateMapper();
+        }
+
+        [Fact(DisplayName = "Remover Participante")]
+        public async void RemoverParticipanteTest()
+        {
+            // Arrange
+            string participanteId = "teste123456";
+
+            var mockRepo = new Mock<IParticipanteRepository>();
+            //mockRepo.Setup(repo => repo.RemoverAsync(participanteId))
+            //        .ReturnsAsync(null);
+
+            var subject = new ParticipanteService(mockRepo.Object, _mapper);
+
+            // Act
+            await subject.RemoverParticipante(participanteId);
+
+            // Assert
+            mockRepo.Verify(mock => mock.RemoverAsync(participanteId), Times.Once());
+        }
 
         //[Theory]
         //[InlineData("1213asdf", "SalaTeste", "Participante1", true)]
