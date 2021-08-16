@@ -1,0 +1,4610 @@
+{
+  "ScrumPoker.API.dll": {
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.API\\Program.cs": {
+      "ScrumPoker.API.Program": {
+        "System.Void ScrumPoker.API.Program::Main(System.String[])": {
+          "Lines": {
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0
+          },
+          "Branches": [
+            {
+              "Line": 14,
+              "Offset": 14,
+              "EndOffset": 16,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 14,
+              "Offset": 14,
+              "EndOffset": 25,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "Microsoft.Extensions.Hosting.IHostBuilder ScrumPoker.API.Program::CreateHostBuilder(System.String[])": {
+          "Lines": {
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.API\\Startup.cs": {
+      "ScrumPoker.API.Startup": {
+        "Microsoft.Extensions.Configuration.IConfiguration ScrumPoker.API.Startup::get_Configuration()": {
+          "Lines": {
+            "24": 0
+          },
+          "Branches": []
+        },
+        "System.Void ScrumPoker.API.Startup::ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)": {
+          "Lines": {
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "58": 0,
+            "60": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "65": 0,
+            "66": 0,
+            "67": 0,
+            "69": 0,
+            "70": 0,
+            "72": 0,
+            "73": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "78": 0
+          },
+          "Branches": []
+        },
+        "System.Void ScrumPoker.API.Startup::Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)": {
+          "Lines": {
+            "82": 0,
+            "83": 0,
+            "84": 0,
+            "85": 0,
+            "86": 0,
+            "88": 0,
+            "90": 0,
+            "92": 0,
+            "93": 0,
+            "95": 0,
+            "97": 0,
+            "98": 0,
+            "99": 0,
+            "100": 0,
+            "102": 0,
+            "103": 0,
+            "104": 0,
+            "105": 0,
+            "107": 0,
+            "108": 0,
+            "110": 0,
+            "111": 0,
+            "112": 0,
+            "113": 0,
+            "114": 0,
+            "115": 0,
+            "116": 0
+          },
+          "Branches": [
+            {
+              "Line": 83,
+              "Offset": 9,
+              "EndOffset": 11,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 83,
+              "Offset": 9,
+              "EndOffset": 20,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 97,
+              "Offset": 68,
+              "EndOffset": 70,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 97,
+              "Offset": 68,
+              "EndOffset": 132,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void ScrumPoker.API.Startup::.ctor(Microsoft.Extensions.Configuration.IConfiguration)": {
+          "Lines": {
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.API\\Services\\HubUserIdService.cs": {
+      "ScrumPoker.API.Services.HubUserIdService": {
+        "System.String ScrumPoker.API.Services.HubUserIdService::GetUserId(Microsoft.AspNetCore.SignalR.HubConnectionContext)": {
+          "Lines": {
+            "8": 0,
+            "9": 0,
+            "10": 0,
+            "11": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.API\\HubConfig\\SalaHub.cs": {
+      "ScrumPoker.API.HubConfig.SalaHub": {
+        "System.Void ScrumPoker.API.HubConfig.SalaHub::.ctor(ScrumPoker.Application.Interfaces.ApplicationServices.ISalaConfiguracaoService,ScrumPoker.Application.Interfaces.ApplicationServices.IParticipanteService,ScrumPoker.Application.Interfaces.ApplicationServices.ISalaService)": {
+          "Lines": {
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.API.HubConfig.SalaHub/<OnConnectedAsync>d__4": {
+        "System.Void ScrumPoker.API.HubConfig.SalaHub/<OnConnectedAsync>d__4::MoveNext()": {
+          "Lines": {
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.API.HubConfig.SalaHub/<OnDisconnectedAsync>d__5": {
+        "System.Void ScrumPoker.API.HubConfig.SalaHub/<OnDisconnectedAsync>d__5::MoveNext()": {
+          "Lines": {
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "43": 0,
+            "44": 0
+          },
+          "Branches": [
+            {
+              "Line": 37,
+              "Offset": 197,
+              "EndOffset": 202,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 39,
+              "Offset": 215,
+              "EndOffset": 217,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 39,
+              "Offset": 215,
+              "EndOffset": 224,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 37,
+              "Offset": 197,
+              "EndOffset": 394,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "ScrumPoker.API.HubConfig.SalaHub/<IncluirParticipante>d__6": {
+        "System.Void ScrumPoker.API.HubConfig.SalaHub/<IncluirParticipante>d__6::MoveNext()": {
+          "Lines": {
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0
+          },
+          "Branches": [
+            {
+              "Line": 52,
+              "Offset": 536,
+              "EndOffset": 538,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 52,
+              "Offset": 536,
+              "EndOffset": 545,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "ScrumPoker.API.HubConfig.SalaHub/<RemoverParticipante>d__7": {
+        "System.Void ScrumPoker.API.HubConfig.SalaHub/<RemoverParticipante>d__7::MoveNext()": {
+          "Lines": {
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.API.HubConfig.SalaHub/<EnviarConfiguracaoSala>d__8": {
+        "System.Void ScrumPoker.API.HubConfig.SalaHub/<EnviarConfiguracaoSala>d__8::MoveNext()": {
+          "Lines": {
+            "64": 0,
+            "65": 0,
+            "66": 0,
+            "67": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.API.HubConfig.SalaHub/<EnviarVoto>d__9": {
+        "System.Void ScrumPoker.API.HubConfig.SalaHub/<EnviarVoto>d__9::MoveNext()": {
+          "Lines": {
+            "70": 0,
+            "71": 0,
+            "72": 0,
+            "73": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.API.HubConfig.SalaHub/<ResetarSala>d__10": {
+        "System.Void ScrumPoker.API.HubConfig.SalaHub/<ResetarSala>d__10::MoveNext()": {
+          "Lines": {
+            "76": 0,
+            "77": 0,
+            "78": 0,
+            "79": 0,
+            "80": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.API.HubConfig.SalaHub/<FinalizarJogo>d__11": {
+        "System.Void ScrumPoker.API.HubConfig.SalaHub/<FinalizarJogo>d__11::MoveNext()": {
+          "Lines": {
+            "83": 0,
+            "84": 0,
+            "85": 0,
+            "86": 0,
+            "87": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.API.HubConfig.SalaHub/<RevotarSala>d__12": {
+        "System.Void ScrumPoker.API.HubConfig.SalaHub/<RevotarSala>d__12::MoveNext()": {
+          "Lines": {
+            "90": 0,
+            "91": 0,
+            "92": 0,
+            "93": 0,
+            "94": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.API.HubConfig.SalaHub/<ConcluirSala>d__13": {
+        "System.Void ScrumPoker.API.HubConfig.SalaHub/<ConcluirSala>d__13::MoveNext()": {
+          "Lines": {
+            "97": 0,
+            "98": 0,
+            "99": 0,
+            "100": 0,
+            "101": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.API\\Dtos\\ErroRequestDto.cs": {
+      "ScrumPoker.API.Dtos.ErroRequestDto": {
+        "System.String ScrumPoker.API.Dtos.ErroRequestDto::get_Code()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.API.Dtos.ErroRequestDto::get_Description()": {
+          "Lines": {
+            "6": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.API\\Dtos\\UserConfirmaEmailDto.cs": {
+      "ScrumPoker.API.Dtos.UserConfirmaEmailDto": {
+        "System.String ScrumPoker.API.Dtos.UserConfirmaEmailDto::get_UserName()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.API.Dtos.UserConfirmaEmailDto::get_Token()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.API\\Dtos\\UserLoginDto.cs": {
+      "ScrumPoker.API.Dtos.UserLoginDto": {
+        "System.String ScrumPoker.API.Dtos.UserLoginDto::get_UserName()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.API.Dtos.UserLoginDto::get_Password()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.API\\Dtos\\UserRegistroDto.cs": {
+      "ScrumPoker.API.Dtos.UserRegistroDto": {
+        "System.String ScrumPoker.API.Dtos.UserRegistroDto::get_Nome()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.API.Dtos.UserRegistroDto::get_UserName()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.API.Dtos.UserRegistroDto::get_Email()": {
+          "Lines": {
+            "16": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.API.Dtos.UserRegistroDto::get_Password()": {
+          "Lines": {
+            "20": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.API\\Dtos\\UserResetarSenhaDto.cs": {
+      "ScrumPoker.API.Dtos.UserResetarSenhaDto": {
+        "System.String ScrumPoker.API.Dtos.UserResetarSenhaDto::get_UserName()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.API.Dtos.UserResetarSenhaDto::get_Password()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.API.Dtos.UserResetarSenhaDto::get_Token()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.API\\Controllers\\ParticipanteController.cs": {
+      "ScrumPoker.API.Controllers.ParticipanteController": {
+        "System.Void ScrumPoker.API.Controllers.ParticipanteController::.ctor(ScrumPoker.Application.Interfaces.ApplicationServices.IParticipanteService)": {
+          "Lines": {
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.API.Controllers.ParticipanteController/<IncluirOuAlterarSalaParticipanteAsync>d__2": {
+        "System.Void ScrumPoker.API.Controllers.ParticipanteController/<IncluirOuAlterarSalaParticipanteAsync>d__2::MoveNext()": {
+          "Lines": {
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.API\\Controllers\\PerfilController.cs": {
+      "ScrumPoker.API.Controllers.PerfilController": {
+        "System.Void ScrumPoker.API.Controllers.PerfilController::.ctor(ScrumPoker.Application.Interfaces.ApplicationServices.IPerfilService,Microsoft.AspNetCore.Identity.UserManager`1<ScrumPoker.Domain.Identity.User>)": {
+          "Lines": {
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.API.Controllers.PerfilController/<BuscarPorIdAsync>d__3": {
+        "System.Void ScrumPoker.API.Controllers.PerfilController/<BuscarPorIdAsync>d__3::MoveNext()": {
+          "Lines": {
+            "33": 0,
+            "34": 0,
+            "36": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0
+          },
+          "Branches": [
+            {
+              "Line": 36,
+              "Offset": 175,
+              "EndOffset": 177,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 36,
+              "Offset": 175,
+              "EndOffset": 199,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "ScrumPoker.API.Controllers.PerfilController/<AlterarAsync>d__4": {
+        "System.Void ScrumPoker.API.Controllers.PerfilController/<AlterarAsync>d__4::MoveNext()": {
+          "Lines": {
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.API\\Controllers\\SalaController.cs": {
+      "ScrumPoker.API.Controllers.SalaController": {
+        "System.Void ScrumPoker.API.Controllers.SalaController::.ctor(ScrumPoker.Application.Interfaces.ApplicationServices.ISalaService)": {
+          "Lines": {
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.API.Controllers.SalaController/<ObterPorIdAsync>d__2": {
+        "System.Void ScrumPoker.API.Controllers.SalaController/<ObterPorIdAsync>d__2::MoveNext()": {
+          "Lines": {
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.API.Controllers.SalaController/<GerarSalaPadraoAsync>d__3": {
+        "System.Void ScrumPoker.API.Controllers.SalaController/<GerarSalaPadraoAsync>d__3::MoveNext()": {
+          "Lines": {
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.API\\Controllers\\UserController.cs": {
+      "ScrumPoker.API.Controllers.UserController": {
+        "System.Void ScrumPoker.API.Controllers.UserController::.ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Identity.UserManager`1<ScrumPoker.Domain.Identity.User>,Microsoft.AspNetCore.Identity.SignInManager`1<ScrumPoker.Domain.Identity.User>,Microsoft.AspNetCore.Identity.UI.Services.IEmailSender,AutoMapper.IMapper,ScrumPoker.Application.Interfaces.ApplicationServices.IPerfilService)": {
+          "Lines": {
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.API.Controllers.UserController/<Registrar>d__7": {
+        "System.Void ScrumPoker.API.Controllers.UserController/<Registrar>d__7::MoveNext()": {
+          "Lines": {
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "66": 0,
+            "68": 0,
+            "69": 0,
+            "71": 0,
+            "73": 0,
+            "75": 0,
+            "76": 0
+          },
+          "Branches": [
+            {
+              "Line": 56,
+              "Offset": 35,
+              "EndOffset": 37,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 56,
+              "Offset": 35,
+              "EndOffset": 54,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 56,
+              "Offset": 57,
+              "EndOffset": 59,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 56,
+              "Offset": 57,
+              "EndOffset": 117,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 71,
+              "Offset": 339,
+              "EndOffset": 341,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 71,
+              "Offset": 339,
+              "EndOffset": 369,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "ScrumPoker.API.Controllers.UserController/<Login>d__8": {
+        "System.Void ScrumPoker.API.Controllers.UserController/<Login>d__8::MoveNext()": {
+          "Lines": {
+            "80": 0,
+            "81": 0,
+            "82": 0,
+            "83": 0,
+            "84": 0,
+            "85": 0,
+            "86": 0,
+            "87": 0,
+            "89": 0,
+            "91": 0,
+            "92": 0,
+            "93": 0,
+            "94": 0,
+            "95": 0,
+            "96": 0,
+            "98": 0,
+            "99": 0,
+            "100": 0,
+            "101": 0,
+            "102": 0,
+            "103": 0,
+            "105": 0,
+            "106": 0,
+            "107": 0,
+            "108": 0,
+            "110": 0,
+            "111": 0,
+            "112": 0,
+            "113": 0,
+            "114": 0
+          },
+          "Branches": [
+            {
+              "Line": 82,
+              "Offset": 227,
+              "EndOffset": 229,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 82,
+              "Offset": 227,
+              "EndOffset": 275,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 91,
+              "Offset": 449,
+              "EndOffset": 451,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 91,
+              "Offset": 449,
+              "EndOffset": 497,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 98,
+              "Offset": 515,
+              "EndOffset": 517,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 98,
+              "Offset": 515,
+              "EndOffset": 563,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "ScrumPoker.API.Controllers.UserController/<ResetarSenha>d__9": {
+        "System.Void ScrumPoker.API.Controllers.UserController/<ResetarSenha>d__9::MoveNext()": {
+          "Lines": {
+            "118": 0,
+            "119": 0,
+            "120": 0,
+            "122": 0,
+            "124": 0,
+            "126": 0,
+            "127": 0
+          },
+          "Branches": [
+            {
+              "Line": 120,
+              "Offset": 180,
+              "EndOffset": 182,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 120,
+              "Offset": 180,
+              "EndOffset": 199,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 124,
+              "Offset": 378,
+              "EndOffset": 380,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 124,
+              "Offset": 378,
+              "EndOffset": 405,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "ScrumPoker.API.Controllers.UserController/<ConfirmarEmail>d__10": {
+        "System.Void ScrumPoker.API.Controllers.UserController/<ConfirmarEmail>d__10::MoveNext()": {
+          "Lines": {
+            "131": 0,
+            "132": 0,
+            "133": 0,
+            "135": 0,
+            "137": 0,
+            "139": 0,
+            "140": 0,
+            "141": 0,
+            "142": 0,
+            "144": 0,
+            "145": 0,
+            "146": 0,
+            "147": 0,
+            "148": 0
+          },
+          "Branches": [
+            {
+              "Line": 133,
+              "Offset": 227,
+              "EndOffset": 229,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 133,
+              "Offset": 227,
+              "EndOffset": 246,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 137,
+              "Offset": 419,
+              "EndOffset": 421,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 137,
+              "Offset": 419,
+              "EndOffset": 449,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "ScrumPoker.API.Controllers.UserController/<EnviarConfirmacaoEmail>d__11": {
+        "System.Void ScrumPoker.API.Controllers.UserController/<EnviarConfirmacaoEmail>d__11::MoveNext()": {
+          "Lines": {
+            "152": 0,
+            "153": 0,
+            "154": 0,
+            "156": 0,
+            "157": 0,
+            "158": 0,
+            "159": 0,
+            "160": 0,
+            "161": 0,
+            "162": 0,
+            "163": 0,
+            "164": 0,
+            "166": 0,
+            "168": 0,
+            "169": 0,
+            "171": 0,
+            "172": 0,
+            "174": 0,
+            "175": 0,
+            "176": 0,
+            "178": 0,
+            "179": 0
+          },
+          "Branches": [
+            {
+              "Line": 154,
+              "Offset": 207,
+              "EndOffset": 209,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 154,
+              "Offset": 207,
+              "EndOffset": 226,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 156,
+              "Offset": 232,
+              "EndOffset": 234,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 156,
+              "Offset": 232,
+              "EndOffset": 251,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 156,
+              "Offset": 256,
+              "EndOffset": 258,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 156,
+              "Offset": 256,
+              "EndOffset": 316,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 168,
+              "Offset": 472,
+              "EndOffset": 474,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 168,
+              "Offset": 472,
+              "EndOffset": 505,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "ScrumPoker.API.Controllers.UserController/<SolicitacaoResetarSenha>d__12": {
+        "System.Void ScrumPoker.API.Controllers.UserController/<SolicitacaoResetarSenha>d__12::MoveNext()": {
+          "Lines": {
+            "183": 0,
+            "184": 0,
+            "185": 0,
+            "187": 0,
+            "188": 0,
+            "189": 0,
+            "190": 0,
+            "191": 0,
+            "192": 0,
+            "193": 0,
+            "194": 0,
+            "195": 0,
+            "197": 0,
+            "199": 0,
+            "200": 0,
+            "202": 0,
+            "203": 0,
+            "205": 0,
+            "206": 0,
+            "208": 0,
+            "209": 0
+          },
+          "Branches": [
+            {
+              "Line": 185,
+              "Offset": 198,
+              "EndOffset": 200,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 185,
+              "Offset": 198,
+              "EndOffset": 217,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 187,
+              "Offset": 223,
+              "EndOffset": 225,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 187,
+              "Offset": 223,
+              "EndOffset": 242,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 187,
+              "Offset": 247,
+              "EndOffset": 249,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 187,
+              "Offset": 247,
+              "EndOffset": 307,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 199,
+              "Offset": 463,
+              "EndOffset": 465,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 199,
+              "Offset": 463,
+              "EndOffset": 496,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "ScrumPoker.API.Controllers.UserController/<GenerateJWToken>d__13": {
+        "System.Void ScrumPoker.API.Controllers.UserController/<GenerateJWToken>d__13::MoveNext()": {
+          "Lines": {
+            "212": 0,
+            "213": 0,
+            "214": 0,
+            "215": 0,
+            "216": 0,
+            "217": 0,
+            "218": 0,
+            "220": 0,
+            "221": 0,
+            "222": 0,
+            "223": 0,
+            "224": 0,
+            "226": 0,
+            "227": 0,
+            "228": 0,
+            "229": 0,
+            "231": 0,
+            "232": 0,
+            "233": 0,
+            "234": 0,
+            "235": 0,
+            "236": 0,
+            "237": 0,
+            "238": 0,
+            "240": 0,
+            "241": 0,
+            "243": 0,
+            "244": 0
+          },
+          "Branches": [
+            {
+              "Line": 221,
+              "Offset": 339,
+              "EndOffset": 274,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 221,
+              "Offset": 339,
+              "EndOffset": 341,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.API\\Configurations\\IdentityConfig.cs": {
+      "ScrumPoker.API.Configurations.IdentityConfig": {
+        "System.Void ScrumPoker.API.Configurations.IdentityConfig::AdicionarIdentityConfig(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)": {
+          "Lines": {
+            "16": 0,
+            "17": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "41": 0,
+            "42": 0,
+            "44": 0,
+            "46": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "66": 0
+          },
+          "Branches": [
+            {
+              "Line": 17,
+              "Offset": 13,
+              "EndOffset": 15,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 17,
+              "Offset": 13,
+              "EndOffset": 26,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.API\\Configurations\\InjecaoDependenciaConfig.cs": {
+      "ScrumPoker.API.Configurations.InjecaoDependenciaConfig": {
+        "System.Void ScrumPoker.API.Configurations.InjecaoDependenciaConfig::AdicionarInjecaoDependenciaConfig(Microsoft.Extensions.DependencyInjection.IServiceCollection)": {
+          "Lines": {
+            "15": 0,
+            "16": 0,
+            "18": 0,
+            "19": 0,
+            "21": 0
+          },
+          "Branches": [
+            {
+              "Line": 16,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 16,
+              "Offset": 7,
+              "EndOffset": 20,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.API\\Configurations\\SwaggerConfig.cs": {
+      "ScrumPoker.API.Configurations.SwaggerConfig": {
+        "System.Void ScrumPoker.API.Configurations.SwaggerConfig::AdicionarSwaggerConfig(Microsoft.Extensions.DependencyInjection.IServiceCollection)": {
+          "Lines": {
+            "11": 0,
+            "12": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0
+          },
+          "Branches": [
+            {
+              "Line": 12,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 12,
+              "Offset": 7,
+              "EndOffset": 20,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void ScrumPoker.API.Configurations.SwaggerConfig::UsarSwaggerConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder)": {
+          "Lines": {
+            "38": 0,
+            "39": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0
+          },
+          "Branches": [
+            {
+              "Line": 39,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 39,
+              "Offset": 7,
+              "EndOffset": 20,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.API\\Configurations\\TokenConfig.cs": {
+      "ScrumPoker.API.Configurations.TokenConfig": {
+        "System.Int32 ScrumPoker.API.Configurations.TokenConfig::get_Expiration()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.API.Configurations.TokenConfig::get_Issuer()": {
+          "Lines": {
+            "6": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.API.Configurations.TokenConfig::get_Audience()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.API.Configurations.TokenConfig::get_JwtSecretKey()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.API\\Configurations\\VercionamentoConfig.cs": {
+      "ScrumPoker.API.Configurations.VersionamentoConfig": {
+        "System.Void ScrumPoker.API.Configurations.VersionamentoConfig::AdicionarVersionamentoConfig(Microsoft.Extensions.DependencyInjection.IServiceCollection)": {
+          "Lines": {
+            "10": 0,
+            "11": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0
+          },
+          "Branches": [
+            {
+              "Line": 11,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 11,
+              "Offset": 7,
+              "EndOffset": 20,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.API\\Configurations\\AutoMapperApiConfig.cs": {
+      "ScrumPoker.Application.Configurations.AutoMapperApiConfig": {
+        "AutoMapper.MapperConfiguration ScrumPoker.Application.Configurations.AutoMapperApiConfig::RegisterMappings()": {
+          "Lines": {
+            "15": 0,
+            "16": 0,
+            "17": 0
+          },
+          "Branches": []
+        },
+        "System.Void ScrumPoker.Application.Configurations.AutoMapperApiConfig::.ctor()": {
+          "Lines": {
+            "19": 11,
+            "20": 11,
+            "21": 11,
+            "23": 11,
+            "24": 11,
+            "25": 11,
+            "26": 11,
+            "27": 22,
+            "28": 11,
+            "29": 11,
+            "30": 11,
+            "31": 11,
+            "32": 11,
+            "33": 11,
+            "34": 11,
+            "35": 22,
+            "36": 11
+          },
+          "Branches": []
+        }
+      }
+    }
+  },
+  "ScrumPoker.Application.dll": {
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Application\\Services\\ParticipanteService.cs": {
+      "ScrumPoker.Application.Services.ParticipanteService": {
+        "System.Void ScrumPoker.Application.Services.ParticipanteService::.ctor(ScrumPoker.Domain.Interfaces.Repositories.IParticipanteRepository,AutoMapper.IMapper)": {
+          "Lines": {
+            "18": 7,
+            "19": 7,
+            "20": 7,
+            "21": 7,
+            "22": 7
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Application.Services.ParticipanteService/<IncluirOuAlterarAsync>d__3": {
+        "System.Void ScrumPoker.Application.Services.ParticipanteService/<IncluirOuAlterarAsync>d__3::MoveNext()": {
+          "Lines": {
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "38": 0,
+            "39": 0
+          },
+          "Branches": [
+            {
+              "Line": 27,
+              "Offset": 194,
+              "EndOffset": 199,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 27,
+              "Offset": 194,
+              "EndOffset": 373,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "ScrumPoker.Application.Services.ParticipanteService/<Desconectar>d__4": {
+        "System.Void ScrumPoker.Application.Services.ParticipanteService/<Desconectar>d__4::MoveNext()": {
+          "Lines": {
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "52": 0,
+            "53": 0
+          },
+          "Branches": [
+            {
+              "Line": 44,
+              "Offset": 175,
+              "EndOffset": 180,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 44,
+              "Offset": 175,
+              "EndOffset": 344,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "ScrumPoker.Application.Services.ParticipanteService/<RemoverParticipante>d__5": {
+        "System.Void ScrumPoker.Application.Services.ParticipanteService/<RemoverParticipante>d__5::MoveNext()": {
+          "Lines": {
+            "56": 1,
+            "57": 1,
+            "58": 1
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Application.Services.ParticipanteService/<Conectar>d__6": {
+        "System.Void ScrumPoker.Application.Services.ParticipanteService/<Conectar>d__6::MoveNext()": {
+          "Lines": {
+            "61": 2,
+            "62": 2,
+            "63": 2,
+            "64": 1,
+            "66": 1,
+            "67": 1,
+            "68": 1,
+            "70": 1,
+            "71": 1
+          },
+          "Branches": [
+            {
+              "Line": 63,
+              "Offset": 175,
+              "EndOffset": 177,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 63,
+              "Offset": 175,
+              "EndOffset": 204,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "ScrumPoker.Application.Services.ParticipanteService/<BuscarParticipantePorId>d__7": {
+        "System.Void ScrumPoker.Application.Services.ParticipanteService/<BuscarParticipantePorId>d__7::MoveNext()": {
+          "Lines": {
+            "74": 2,
+            "75": 2,
+            "76": 2
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Application.Services.ParticipanteService/<VotoParticipante>d__8": {
+        "System.Void ScrumPoker.Application.Services.ParticipanteService/<VotoParticipante>d__8::MoveNext()": {
+          "Lines": {
+            "79": 2,
+            "80": 2,
+            "81": 2,
+            "82": 1,
+            "84": 1,
+            "85": 1,
+            "87": 1,
+            "88": 1
+          },
+          "Branches": [
+            {
+              "Line": 81,
+              "Offset": 175,
+              "EndOffset": 177,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 81,
+              "Offset": 175,
+              "EndOffset": 204,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Application\\Services\\PerfilService.cs": {
+      "ScrumPoker.Application.Services.PerfilService": {
+        "System.Void ScrumPoker.Application.Services.PerfilService::.ctor(ScrumPoker.Domain.Interfaces.Repositories.IPerfilRepository,AutoMapper.IMapper)": {
+          "Lines": {
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Application.Services.PerfilService/<AlterarAsync>d__3": {
+        "System.Void ScrumPoker.Application.Services.PerfilService/<AlterarAsync>d__3::MoveNext()": {
+          "Lines": {
+            "23": 0,
+            "24": 0,
+            "26": 0,
+            "27": 0,
+            "29": 0,
+            "30": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Application.Services.PerfilService/<BuscarPorIdAsync>d__4": {
+        "System.Void ScrumPoker.Application.Services.PerfilService/<BuscarPorIdAsync>d__4::MoveNext()": {
+          "Lines": {
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Application\\Services\\SalaConfiguracaoService.cs": {
+      "ScrumPoker.Application.Services.SalaConfiguracaoService": {
+        "System.Void ScrumPoker.Application.Services.SalaConfiguracaoService::.ctor(ScrumPoker.Domain.Interfaces.Repositories.ISalaConfiguracaoRepository,AutoMapper.IMapper)": {
+          "Lines": {
+            "18": 4,
+            "19": 4,
+            "20": 4,
+            "21": 4,
+            "22": 4
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Application.Services.SalaConfiguracaoService/<BuscarPorIdAsync>d__3": {
+        "System.Void ScrumPoker.Application.Services.SalaConfiguracaoService/<BuscarPorIdAsync>d__3::MoveNext()": {
+          "Lines": {
+            "25": 2,
+            "26": 2,
+            "28": 2,
+            "29": 1,
+            "31": 1,
+            "32": 1
+          },
+          "Branches": [
+            {
+              "Line": 28,
+              "Offset": 164,
+              "EndOffset": 166,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 28,
+              "Offset": 164,
+              "EndOffset": 193,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "ScrumPoker.Application.Services.SalaConfiguracaoService/<AlterarAsync>d__4": {
+        "System.Void ScrumPoker.Application.Services.SalaConfiguracaoService/<AlterarAsync>d__4::MoveNext()": {
+          "Lines": {
+            "35": 2,
+            "36": 2,
+            "37": 2,
+            "38": 1,
+            "40": 1,
+            "41": 1,
+            "42": 1,
+            "44": 1,
+            "45": 1
+          },
+          "Branches": [
+            {
+              "Line": 37,
+              "Offset": 180,
+              "EndOffset": 182,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 37,
+              "Offset": 180,
+              "EndOffset": 214,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Application\\Services\\SalaService.cs": {
+      "ScrumPoker.Application.Services.SalaService": {
+        "ScrumPoker.Domain.Entities.SalaEntity.Sala ScrumPoker.Application.Services.SalaService::GerarSalaPadrao(ScrumPoker.Application.DTOs.InputModels.GerarSalaPadraoInputModel)": {
+          "Lines": {
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "69": 0,
+            "70": 0,
+            "71": 0,
+            "72": 0,
+            "73": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "78": 0,
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "82": 0,
+            "83": 0,
+            "84": 0,
+            "85": 0,
+            "86": 0,
+            "87": 0,
+            "88": 0,
+            "89": 0,
+            "90": 0,
+            "91": 0,
+            "92": 0,
+            "93": 0,
+            "94": 0,
+            "95": 0,
+            "96": 0,
+            "97": 0,
+            "98": 0,
+            "99": 0,
+            "100": 0,
+            "101": 0,
+            "102": 0,
+            "103": 0,
+            "104": 0,
+            "105": 0,
+            "106": 0,
+            "107": 0,
+            "108": 0,
+            "109": 0,
+            "110": 0,
+            "111": 0,
+            "112": 0,
+            "113": 0,
+            "114": 0,
+            "115": 0,
+            "116": 0,
+            "117": 0,
+            "118": 0,
+            "119": 0,
+            "120": 0,
+            "121": 0,
+            "122": 0,
+            "123": 0,
+            "124": 0,
+            "125": 0,
+            "126": 0,
+            "127": 0,
+            "128": 0,
+            "129": 0,
+            "130": 0,
+            "131": 0,
+            "132": 0,
+            "133": 0,
+            "134": 0,
+            "136": 0,
+            "137": 0
+          },
+          "Branches": [
+            {
+              "Line": 56,
+              "Offset": 51,
+              "EndOffset": 53,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 56,
+              "Offset": 51,
+              "EndOffset": 84,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void ScrumPoker.Application.Services.SalaService::.ctor(ScrumPoker.Domain.Interfaces.Repositories.ISalaRepository,AutoMapper.IMapper)": {
+          "Lines": {
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Application.Services.SalaService/<ObterPorIdAsync>d__3": {
+        "System.Void ScrumPoker.Application.Services.SalaService/<ObterPorIdAsync>d__3::MoveNext()": {
+          "Lines": {
+            "26": 0,
+            "27": 0,
+            "29": 0,
+            "30": 0,
+            "32": 0,
+            "33": 0
+          },
+          "Branches": [
+            {
+              "Line": 29,
+              "Offset": 164,
+              "EndOffset": 166,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 29,
+              "Offset": 164,
+              "EndOffset": 177,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "ScrumPoker.Application.Services.SalaService/<GerarSalaPadraoAsync>d__4": {
+        "System.Void ScrumPoker.Application.Services.SalaService/<GerarSalaPadraoAsync>d__4::MoveNext()": {
+          "Lines": {
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "41": 0,
+            "42": 0,
+            "44": 0,
+            "45": 0
+          },
+          "Branches": [
+            {
+              "Line": 38,
+              "Offset": 194,
+              "EndOffset": 196,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 38,
+              "Offset": 194,
+              "EndOffset": 224,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "ScrumPoker.Application.Services.SalaService/<ResetarSala>d__6": {
+        "System.Void ScrumPoker.Application.Services.SalaService/<ResetarSala>d__6::MoveNext()": {
+          "Lines": {
+            "140": 0,
+            "141": 0,
+            "142": 0,
+            "143": 0,
+            "144": 0,
+            "145": 0,
+            "146": 0,
+            "147": 0,
+            "148": 0,
+            "149": 0,
+            "151": 0,
+            "152": 0
+          },
+          "Branches": [
+            {
+              "Line": 145,
+              "Offset": 280,
+              "EndOffset": 230,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 145,
+              "Offset": 280,
+              "EndOffset": 282,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "ScrumPoker.Application.Services.SalaService/<FinalizarJogo>d__7": {
+        "System.Void ScrumPoker.Application.Services.SalaService/<FinalizarJogo>d__7::MoveNext()": {
+          "Lines": {
+            "155": 0,
+            "156": 0,
+            "157": 0,
+            "158": 0,
+            "159": 0,
+            "161": 0,
+            "162": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Application\\DTOs\\ViewModels\\CartaViewModel.cs": {
+      "ScrumPoker.Application.DTOs.ViewModels.CartaViewModel": {
+        "System.Int32 ScrumPoker.Application.DTOs.ViewModels.CartaViewModel::get_Ordem()": {
+          "Lines": {
+            "9": 1
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.ViewModels.CartaViewModel::get_Value()": {
+          "Lines": {
+            "10": 1
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Application.DTOs.ViewModels.CartaViewModel::get_Especial()": {
+          "Lines": {
+            "11": 1
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.ViewModels.CartaViewModel::get_SalaId()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Application\\DTOs\\ViewModels\\ParticipanteViewModel.cs": {
+      "ScrumPoker.Application.DTOs.ViewModels.ParticipanteViewModel": {
+        "System.String ScrumPoker.Application.DTOs.ViewModels.ParticipanteViewModel::get_Id()": {
+          "Lines": {
+            "9": 4
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.ViewModels.ParticipanteViewModel::get_SalaId()": {
+          "Lines": {
+            "10": 2
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.ViewModels.ParticipanteViewModel::get_Nome()": {
+          "Lines": {
+            "11": 2
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Application.DTOs.ViewModels.ParticipanteViewModel::get_Jogador()": {
+          "Lines": {
+            "12": 2
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Application.DTOs.ViewModels.ParticipanteViewModel::get_Online()": {
+          "Lines": {
+            "13": 3
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.ViewModels.ParticipanteViewModel::get_VotoCartaValor()": {
+          "Lines": {
+            "14": 2
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Application\\DTOs\\ViewModels\\PerfilViewModel.cs": {
+      "ScrumPoker.Application.DTOs.ViewModels.PerfilViewModel": {
+        "System.Guid ScrumPoker.Application.DTOs.ViewModels.PerfilViewModel::get_Id()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.ViewModels.PerfilViewModel::get_Nome()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.ViewModels.PerfilViewModel::get_Email()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Application\\DTOs\\ViewModels\\SalaConfiguracaoViewModel.cs": {
+      "ScrumPoker.Application.DTOs.ViewModels.SalaConfiguracaoViewModel": {
+        "System.Int64 ScrumPoker.Application.DTOs.ViewModels.SalaConfiguracaoViewModel::get_Id()": {
+          "Lines": {
+            "9": 4
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.ViewModels.SalaConfiguracaoViewModel::get_SalaId()": {
+          "Lines": {
+            "10": 2
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Application.DTOs.ViewModels.SalaConfiguracaoViewModel::get_JogadorFinalizaJogo()": {
+          "Lines": {
+            "12": 3
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Application.DTOs.ViewModels.SalaConfiguracaoViewModel::get_JogadorResetaJogo()": {
+          "Lines": {
+            "13": 3
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Application.DTOs.ViewModels.SalaConfiguracaoViewModel::get_JogadorRemoveJogador()": {
+          "Lines": {
+            "14": 2
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Application.DTOs.ViewModels.SalaConfiguracaoViewModel::get_JogadorRemoveAdministrador()": {
+          "Lines": {
+            "15": 3
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.IEnumerable`1<ScrumPoker.Application.DTOs.ViewModels.CartaViewModel> ScrumPoker.Application.DTOs.ViewModels.SalaConfiguracaoViewModel::get_Cartas()": {
+          "Lines": {
+            "16": 2
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Application\\DTOs\\ViewModels\\SalaViewModel.cs": {
+      "ScrumPoker.Application.DTOs.ViewModels.SalaViewModel": {
+        "System.String ScrumPoker.Application.DTOs.ViewModels.SalaViewModel::get_Id()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.ViewModels.SalaViewModel::get_Titulo()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Application.DTOs.ViewModels.SalaViewModel::get_JogoFinalizado()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "ScrumPoker.Application.DTOs.ViewModels.SalaConfiguracaoViewModel ScrumPoker.Application.DTOs.ViewModels.SalaViewModel::get_Configuracao()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.IEnumerable`1<ScrumPoker.Application.DTOs.ViewModels.ParticipanteViewModel> ScrumPoker.Application.DTOs.ViewModels.SalaViewModel::get_Administradores()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.IEnumerable`1<ScrumPoker.Application.DTOs.ViewModels.ParticipanteViewModel> ScrumPoker.Application.DTOs.ViewModels.SalaViewModel::get_Jogadores()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Application\\DTOs\\ViewModels\\VotoViewModel.cs": {
+      "ScrumPoker.Application.DTOs.ViewModels.VotoViewModel": {
+        "System.String ScrumPoker.Application.DTOs.ViewModels.VotoViewModel::get_JogadorId()": {
+          "Lines": {
+            "9": 2
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.ViewModels.VotoViewModel::get_SalaId()": {
+          "Lines": {
+            "10": 2
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.ViewModels.VotoViewModel::get_ValorVoto()": {
+          "Lines": {
+            "11": 2
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Application\\DTOs\\InputModels\\AlterarConfiguracaoSalaCartaInputModel.cs": {
+      "ScrumPoker.Application.DTOs.InputModels.AlterarConfiguracaoSalaCartaInputModel": {
+        "System.Int32 ScrumPoker.Application.DTOs.InputModels.AlterarConfiguracaoSalaCartaInputModel::get_Id()": {
+          "Lines": {
+            "12": 3
+          },
+          "Branches": []
+        },
+        "System.Int32 ScrumPoker.Application.DTOs.InputModels.AlterarConfiguracaoSalaCartaInputModel::get_Ordem()": {
+          "Lines": {
+            "16": 3
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.InputModels.AlterarConfiguracaoSalaCartaInputModel::get_Value()": {
+          "Lines": {
+            "19": 3
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Application.DTOs.InputModels.AlterarConfiguracaoSalaCartaInputModel::get_Especial()": {
+          "Lines": {
+            "22": 3
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.InputModels.AlterarConfiguracaoSalaCartaInputModel::get_SalaId()": {
+          "Lines": {
+            "24": 2
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Application\\DTOs\\InputModels\\AlterarConfiguracaoSalaInputModel.cs": {
+      "ScrumPoker.Application.DTOs.InputModels.AlterarConfiguracaoSalaInputModel": {
+        "System.Int64 ScrumPoker.Application.DTOs.InputModels.AlterarConfiguracaoSalaInputModel::get_Id()": {
+          "Lines": {
+            "13": 12
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.InputModels.AlterarConfiguracaoSalaInputModel::get_SalaId()": {
+          "Lines": {
+            "16": 3
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Application.DTOs.InputModels.AlterarConfiguracaoSalaInputModel::get_JogadorFinalizaJogo()": {
+          "Lines": {
+            "19": 5
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Application.DTOs.InputModels.AlterarConfiguracaoSalaInputModel::get_JogadorResetaJogo()": {
+          "Lines": {
+            "22": 5
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Application.DTOs.InputModels.AlterarConfiguracaoSalaInputModel::get_JogadorRemoveJogador()": {
+          "Lines": {
+            "25": 3
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Application.DTOs.InputModels.AlterarConfiguracaoSalaInputModel::get_JogadorRemoveAdministrador()": {
+          "Lines": {
+            "28": 5
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.IEnumerable`1<ScrumPoker.Application.DTOs.InputModels.AlterarConfiguracaoSalaCartaInputModel> ScrumPoker.Application.DTOs.InputModels.AlterarConfiguracaoSalaInputModel::get_Cartas()": {
+          "Lines": {
+            "32": 3
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Application\\DTOs\\InputModels\\ConectarSalaInputModel.cs": {
+      "ScrumPoker.Application.DTOs.InputModels.ConectarSalaInputModel": {
+        "System.String ScrumPoker.Application.DTOs.InputModels.ConectarSalaInputModel::get_IdSala()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.InputModels.ConectarSalaInputModel::get_IdParticipante()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.InputModels.ConectarSalaInputModel::get_SalaId()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.InputModels.ConectarSalaInputModel::get_Nome()": {
+          "Lines": {
+            "17": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Application.DTOs.InputModels.ConectarSalaInputModel::get_Jogador()": {
+          "Lines": {
+            "20": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Application\\DTOs\\InputModels\\GerarSalaPadraoInputModel.cs": {
+      "ScrumPoker.Application.DTOs.InputModels.GerarSalaPadraoInputModel": {
+        "System.String ScrumPoker.Application.DTOs.InputModels.GerarSalaPadraoInputModel::get_Id()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "ScrumPoker.Application.DTOs.ViewModels.SalaConfiguracaoViewModel ScrumPoker.Application.DTOs.InputModels.GerarSalaPadraoInputModel::get_SalaConfiguracao()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Application\\DTOs\\InputModels\\IncluirParticipanteSalaInputModel.cs": {
+      "ScrumPoker.Application.DTOs.InputModels.IncluirParticipanteSalaInputModel": {
+        "System.String ScrumPoker.Application.DTOs.InputModels.IncluirParticipanteSalaInputModel::get_Id()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.InputModels.IncluirParticipanteSalaInputModel::get_SalaId()": {
+          "Lines": {
+            "16": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.InputModels.IncluirParticipanteSalaInputModel::get_Nome()": {
+          "Lines": {
+            "19": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Application.DTOs.InputModels.IncluirParticipanteSalaInputModel::get_Jogador()": {
+          "Lines": {
+            "22": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Application.DTOs.InputModels.IncluirParticipanteSalaInputModel::get_Online()": {
+          "Lines": {
+            "24": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Application\\DTOs\\InputModels\\PerfilAlteracaoInputModel.cs": {
+      "ScrumPoker.Application.DTOs.InputModels.PerfilAlteracaoInputModel": {
+        "System.Guid ScrumPoker.Application.DTOs.InputModels.PerfilAlteracaoInputModel::get_Id()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.InputModels.PerfilAlteracaoInputModel::get_Nome()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Application.DTOs.InputModels.PerfilAlteracaoInputModel::get_Email()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Application\\Configurations\\ApplicationServicesConfig.cs": {
+      "ScrumPoker.Application.Configurations.ApplicationServicesConfig": {
+        "Microsoft.Extensions.DependencyInjection.IServiceCollection ScrumPoker.Application.Configurations.ApplicationServicesConfig::AddApplicationServicesConfig(Microsoft.Extensions.DependencyInjection.IServiceCollection)": {
+          "Lines": {
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Application\\Configurations\\AutoMapperConfig.cs": {
+      "ScrumPoker.Application.Configurations.ApplicationAutoMapperConfig": {
+        "AutoMapper.Profile ScrumPoker.Application.Configurations.ApplicationAutoMapperConfig::AddApplicationAutoMapperConfig(AutoMapper.Profile)": {
+          "Lines": {
+            "13": 11,
+            "14": 11,
+            "15": 11,
+            "16": 11,
+            "17": 11,
+            "18": 11,
+            "19": 11,
+            "20": 22,
+            "21": 11,
+            "22": 11,
+            "23": 11,
+            "24": 11,
+            "25": 11,
+            "26": 11,
+            "27": 22,
+            "28": 11,
+            "29": 11,
+            "30": 11,
+            "31": 11,
+            "32": 11,
+            "33": 11,
+            "34": 11,
+            "35": 22,
+            "36": 11,
+            "37": 11,
+            "38": 11,
+            "39": 11,
+            "40": 11,
+            "41": 11,
+            "42": 11,
+            "43": 11,
+            "44": 11,
+            "45": 11,
+            "46": 11,
+            "47": 11,
+            "48": 11,
+            "49": 11,
+            "50": 22,
+            "52": 11,
+            "53": 11
+          },
+          "Branches": []
+        }
+      }
+    }
+  },
+  "ScrumPoker.CrossCutting.dll": {
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.CrossCutting\\Templates\\EmailTemplate.cs": {
+      "ScrumPoker.CrossCutting.Templates.EmailTemplate/<GetEmailConfirmarEmailAsync>d__0": {
+        "System.Void ScrumPoker.CrossCutting.Templates.EmailTemplate/<GetEmailConfirmarEmailAsync>d__0::MoveNext()": {
+          "Lines": {
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "16": 0,
+            "18": 0,
+            "20": 0,
+            "22": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.CrossCutting.Templates.EmailTemplate/<GetEmailRestarSenhaAsync>d__1": {
+        "System.Void ScrumPoker.CrossCutting.Templates.EmailTemplate/<GetEmailRestarSenhaAsync>d__1::MoveNext()": {
+          "Lines": {
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "31": 0,
+            "33": 0,
+            "35": 0,
+            "37": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.CrossCutting.Templates.EmailTemplate/<GetTemplateAsync>d__2": {
+        "System.Void ScrumPoker.CrossCutting.Templates.EmailTemplate/<GetTemplateAsync>d__2::MoveNext()": {
+          "Lines": {
+            "40": 0,
+            "41": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "56": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.CrossCutting\\Services\\EmailConfig.cs": {
+      "ScrumPoker.CrossCutting.Services.EmailConfig": {
+        "System.String ScrumPoker.CrossCutting.Services.EmailConfig::get_From()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.CrossCutting.Services.EmailConfig::get_SmtpServer()": {
+          "Lines": {
+            "6": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 ScrumPoker.CrossCutting.Services.EmailConfig::get_Port()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.CrossCutting.Services.EmailConfig::get_UserName()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.CrossCutting.Services.EmailConfig::get_Password()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.CrossCutting\\Services\\EmailSender.cs": {
+      "ScrumPoker.CrossCutting.Services.EmailSender": {
+        "MimeKit.MimeMessage ScrumPoker.CrossCutting.Services.EmailSender::CreateEmailMessage(System.String,System.String,System.String)": {
+          "Lines": {
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "49": 0,
+            "50": 0
+          },
+          "Branches": []
+        },
+        "System.Void ScrumPoker.CrossCutting.Services.EmailSender::.ctor(Microsoft.Extensions.Configuration.IConfiguration)": {
+          "Lines": {
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.CrossCutting.Services.EmailSender/<SendEmailAsync>d__2": {
+        "System.Void ScrumPoker.CrossCutting.Services.EmailSender/<SendEmailAsync>d__2::MoveNext()": {
+          "Lines": {
+            "24": 0,
+            "25": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0
+          },
+          "Branches": []
+        }
+      }
+    }
+  },
+  "ScrumPoker.Data.dll": {
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Data\\DependencyInjection.cs": {
+      "ScrumPoker.Data.DependencyInjection": {
+        "Microsoft.Extensions.DependencyInjection.IServiceCollection ScrumPoker.Data.DependencyInjection::AddDependencyDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)": {
+          "Lines": {
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "30": 0,
+            "31": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Data\\Repositories\\CartaRepository.cs": {
+      "ScrumPoker.Data.Repositories.CartaRepository": {
+        "System.Void ScrumPoker.Data.Repositories.CartaRepository::Excluir(System.Int32)": {
+          "Lines": {
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0
+          },
+          "Branches": []
+        },
+        "ScrumPoker.Domain.Entities.SalaEntity.Carta ScrumPoker.Data.Repositories.CartaRepository::BuscarPorId(System.Int32)": {
+          "Lines": {
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Data.Repositories.CartaRepository::ExisteEntity(System.Int32)": {
+          "Lines": {
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0
+          },
+          "Branches": []
+        },
+        "System.Void ScrumPoker.Data.Repositories.CartaRepository::.ctor(ScrumPoker.Data.Context.ScrumPokerContext)": {
+          "Lines": {
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Data\\Repositories\\ParticipanteRepository.cs": {
+      "ScrumPoker.Data.Repositories.ParticipanteRepository": {
+        "System.Void ScrumPoker.Data.Repositories.ParticipanteRepository::.ctor(ScrumPoker.Data.Context.ScrumPokerContext)": {
+          "Lines": {
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.ParticipanteRepository/<IncluirAsync>d__2": {
+        "System.Void ScrumPoker.Data.Repositories.ParticipanteRepository/<IncluirAsync>d__2::MoveNext()": {
+          "Lines": {
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "24": 0,
+            "25": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.ParticipanteRepository/<AlterarAsync>d__3": {
+        "System.Void ScrumPoker.Data.Repositories.ParticipanteRepository/<AlterarAsync>d__3::MoveNext()": {
+          "Lines": {
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "32": 0,
+            "33": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.ParticipanteRepository/<BuscarPorIdAsync>d__4": {
+        "System.Void ScrumPoker.Data.Repositories.ParticipanteRepository/<BuscarPorIdAsync>d__4::MoveNext()": {
+          "Lines": {
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "40": 0,
+            "41": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.ParticipanteRepository/<ExisteEntityAsync>d__5": {
+        "System.Void ScrumPoker.Data.Repositories.ParticipanteRepository/<ExisteEntityAsync>d__5::MoveNext()": {
+          "Lines": {
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.ParticipanteRepository/<BuscarJogadoresPorSalaAsync>d__6": {
+        "System.Void ScrumPoker.Data.Repositories.ParticipanteRepository/<BuscarJogadoresPorSalaAsync>d__6::MoveNext()": {
+          "Lines": {
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.ParticipanteRepository/<BuscarAdministradoresPorSalaAsync>d__7": {
+        "System.Void ScrumPoker.Data.Repositories.ParticipanteRepository/<BuscarAdministradoresPorSalaAsync>d__7::MoveNext()": {
+          "Lines": {
+            "58": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.ParticipanteRepository/<RemoverAsync>d__8": {
+        "System.Void ScrumPoker.Data.Repositories.ParticipanteRepository/<RemoverAsync>d__8::MoveNext()": {
+          "Lines": {
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "69": 0,
+            "70": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.ParticipanteRepository/<BuscarParticipantesPorSalaAsync>d__9": {
+        "System.Void ScrumPoker.Data.Repositories.ParticipanteRepository/<BuscarParticipantesPorSalaAsync>d__9::MoveNext()": {
+          "Lines": {
+            "73": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "78": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Data\\Repositories\\PerfilRepository.cs": {
+      "ScrumPoker.Data.Repositories.PerfilRepository": {
+        "System.Void ScrumPoker.Data.Repositories.PerfilRepository::.ctor(ScrumPoker.Data.Context.ScrumPokerContext)": {
+          "Lines": {
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.PerfilRepository/<BuscarPorIdAsync>d__2": {
+        "System.Void ScrumPoker.Data.Repositories.PerfilRepository/<BuscarPorIdAsync>d__2::MoveNext()": {
+          "Lines": {
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.PerfilRepository/<IncluirAsync>d__3": {
+        "System.Void ScrumPoker.Data.Repositories.PerfilRepository/<IncluirAsync>d__3::MoveNext()": {
+          "Lines": {
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "30": 0,
+            "31": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.PerfilRepository/<AlterarAsync>d__4": {
+        "System.Void ScrumPoker.Data.Repositories.PerfilRepository/<AlterarAsync>d__4::MoveNext()": {
+          "Lines": {
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "38": 0,
+            "39": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.PerfilRepository/<ExisteEntityAsync>d__5": {
+        "System.Void ScrumPoker.Data.Repositories.PerfilRepository/<ExisteEntityAsync>d__5::MoveNext()": {
+          "Lines": {
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Data\\Repositories\\SalaConfiguracaoRepository.cs": {
+      "ScrumPoker.Data.Repositories.SalaConfiguracaoRepository": {
+        "System.Void ScrumPoker.Data.Repositories.SalaConfiguracaoRepository::.ctor(ScrumPoker.Data.Context.ScrumPokerContext)": {
+          "Lines": {
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.SalaConfiguracaoRepository/<IncluirAsync>d__2": {
+        "System.Void ScrumPoker.Data.Repositories.SalaConfiguracaoRepository/<IncluirAsync>d__2::MoveNext()": {
+          "Lines": {
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "24": 0,
+            "25": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.SalaConfiguracaoRepository/<AlterarAsync>d__3": {
+        "System.Void ScrumPoker.Data.Repositories.SalaConfiguracaoRepository/<AlterarAsync>d__3::MoveNext()": {
+          "Lines": {
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "32": 0,
+            "33": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.SalaConfiguracaoRepository/<BuscarPorIdAsync>d__4": {
+        "System.Void ScrumPoker.Data.Repositories.SalaConfiguracaoRepository/<BuscarPorIdAsync>d__4::MoveNext()": {
+          "Lines": {
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "41": 0,
+            "42": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.SalaConfiguracaoRepository/<ExisteEntityAsync>d__5": {
+        "System.Void ScrumPoker.Data.Repositories.SalaConfiguracaoRepository/<ExisteEntityAsync>d__5::MoveNext()": {
+          "Lines": {
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.SalaConfiguracaoRepository/<ExcluirCartasAsync>d__6": {
+        "System.Void ScrumPoker.Data.Repositories.SalaConfiguracaoRepository/<ExcluirCartasAsync>d__6::MoveNext()": {
+          "Lines": {
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Data\\Repositories\\SalaRepository.cs": {
+      "ScrumPoker.Data.Repositories.SalaRepository": {
+        "System.Void ScrumPoker.Data.Repositories.SalaRepository::.ctor(ScrumPoker.Data.Context.ScrumPokerContext)": {
+          "Lines": {
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.SalaRepository/<IncluirAsync>d__2": {
+        "System.Void ScrumPoker.Data.Repositories.SalaRepository/<IncluirAsync>d__2::MoveNext()": {
+          "Lines": {
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "24": 0,
+            "25": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.SalaRepository/<AlterarAsync>d__3": {
+        "System.Void ScrumPoker.Data.Repositories.SalaRepository/<AlterarAsync>d__3::MoveNext()": {
+          "Lines": {
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "32": 0,
+            "33": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.SalaRepository/<BuscarPorIdAsync>d__4": {
+        "System.Void ScrumPoker.Data.Repositories.SalaRepository/<BuscarPorIdAsync>d__4::MoveNext()": {
+          "Lines": {
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "45": 0,
+            "46": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.SalaRepository/<ExisteSalaAsync>d__5": {
+        "System.Void ScrumPoker.Data.Repositories.SalaRepository/<ExisteSalaAsync>d__5::MoveNext()": {
+          "Lines": {
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0
+          },
+          "Branches": []
+        }
+      },
+      "ScrumPoker.Data.Repositories.SalaRepository/<LimparSalasNaoUsadas>d__6": {
+        "System.Void ScrumPoker.Data.Repositories.SalaRepository/<LimparSalasNaoUsadas>d__6::MoveNext()": {
+          "Lines": {
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0,
+            "64": 0,
+            "65": 0,
+            "66": 0,
+            "68": 0,
+            "69": 0,
+            "70": 0
+          },
+          "Branches": [
+            {
+              "Line": 59,
+              "Offset": 187,
+              "EndOffset": 189,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 59,
+              "Offset": 187,
+              "EndOffset": 195,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Data\\Migrations\\20210707211936_inicial.cs": {
+      "ScrumPoker.Data.Migrations.inicial": {
+        "System.Void ScrumPoker.Data.Migrations.inicial::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)": {
+          "Lines": {
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "69": 0,
+            "70": 0,
+            "72": 0,
+            "73": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "78": 0,
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "82": 0,
+            "83": 0,
+            "84": 0,
+            "85": 0,
+            "86": 0,
+            "87": 0,
+            "88": 0,
+            "89": 0,
+            "90": 0,
+            "91": 0,
+            "92": 0,
+            "93": 0,
+            "94": 0,
+            "95": 0,
+            "96": 0,
+            "97": 0,
+            "98": 0,
+            "99": 0,
+            "100": 0,
+            "101": 0,
+            "102": 0,
+            "104": 0,
+            "105": 0,
+            "106": 0,
+            "107": 0,
+            "108": 0,
+            "109": 0,
+            "110": 0,
+            "111": 0,
+            "112": 0,
+            "113": 0,
+            "114": 0,
+            "115": 0,
+            "116": 0,
+            "117": 0,
+            "118": 0,
+            "119": 0,
+            "120": 0,
+            "121": 0,
+            "122": 0,
+            "123": 0,
+            "124": 0,
+            "125": 0,
+            "127": 0,
+            "128": 0,
+            "129": 0,
+            "130": 0,
+            "131": 0,
+            "132": 0,
+            "133": 0,
+            "134": 0,
+            "135": 0,
+            "136": 0,
+            "137": 0,
+            "138": 0,
+            "139": 0,
+            "140": 0,
+            "141": 0,
+            "142": 0,
+            "143": 0,
+            "144": 0,
+            "145": 0,
+            "146": 0,
+            "147": 0,
+            "148": 0,
+            "150": 0,
+            "151": 0,
+            "152": 0,
+            "153": 0,
+            "154": 0,
+            "155": 0,
+            "156": 0,
+            "157": 0,
+            "158": 0,
+            "159": 0,
+            "160": 0,
+            "161": 0,
+            "162": 0,
+            "163": 0,
+            "164": 0,
+            "165": 0,
+            "166": 0,
+            "167": 0,
+            "168": 0,
+            "169": 0,
+            "171": 0,
+            "172": 0,
+            "173": 0,
+            "174": 0,
+            "175": 0,
+            "176": 0,
+            "177": 0,
+            "178": 0,
+            "179": 0,
+            "180": 0,
+            "181": 0,
+            "182": 0,
+            "183": 0,
+            "184": 0,
+            "185": 0,
+            "186": 0,
+            "187": 0,
+            "188": 0,
+            "189": 0,
+            "191": 0,
+            "192": 0,
+            "193": 0,
+            "194": 0,
+            "195": 0,
+            "196": 0,
+            "197": 0,
+            "198": 0,
+            "199": 0,
+            "200": 0,
+            "201": 0,
+            "202": 0,
+            "203": 0,
+            "204": 0,
+            "205": 0,
+            "206": 0,
+            "207": 0,
+            "208": 0,
+            "209": 0,
+            "211": 0,
+            "212": 0,
+            "213": 0,
+            "214": 0,
+            "215": 0,
+            "216": 0,
+            "217": 0,
+            "218": 0,
+            "219": 0,
+            "220": 0,
+            "221": 0,
+            "222": 0,
+            "223": 0,
+            "224": 0,
+            "225": 0,
+            "226": 0,
+            "227": 0,
+            "228": 0,
+            "229": 0,
+            "230": 0,
+            "231": 0,
+            "232": 0,
+            "233": 0,
+            "234": 0,
+            "235": 0,
+            "236": 0,
+            "237": 0,
+            "238": 0,
+            "239": 0,
+            "241": 0,
+            "242": 0,
+            "243": 0,
+            "244": 0,
+            "245": 0,
+            "246": 0,
+            "247": 0,
+            "248": 0,
+            "249": 0,
+            "250": 0,
+            "251": 0,
+            "252": 0,
+            "253": 0,
+            "254": 0,
+            "255": 0,
+            "256": 0,
+            "257": 0,
+            "258": 0,
+            "259": 0,
+            "260": 0,
+            "261": 0,
+            "263": 0,
+            "264": 0,
+            "265": 0,
+            "266": 0,
+            "268": 0,
+            "269": 0,
+            "270": 0,
+            "271": 0,
+            "272": 0,
+            "274": 0,
+            "275": 0,
+            "276": 0,
+            "277": 0,
+            "279": 0,
+            "280": 0,
+            "281": 0,
+            "282": 0,
+            "284": 0,
+            "285": 0,
+            "286": 0,
+            "287": 0,
+            "289": 0,
+            "290": 0,
+            "291": 0,
+            "292": 0,
+            "293": 0,
+            "295": 0,
+            "296": 0,
+            "297": 0,
+            "298": 0,
+            "299": 0,
+            "301": 0,
+            "302": 0,
+            "303": 0,
+            "304": 0,
+            "306": 0,
+            "307": 0,
+            "308": 0,
+            "309": 0,
+            "311": 0,
+            "312": 0,
+            "313": 0,
+            "314": 0,
+            "315": 0,
+            "317": 0,
+            "318": 0,
+            "319": 0,
+            "320": 0,
+            "321": 0
+          },
+          "Branches": []
+        },
+        "System.Void ScrumPoker.Data.Migrations.inicial::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)": {
+          "Lines": {
+            "324": 0,
+            "325": 0,
+            "326": 0,
+            "328": 0,
+            "329": 0,
+            "331": 0,
+            "332": 0,
+            "334": 0,
+            "335": 0,
+            "337": 0,
+            "338": 0,
+            "340": 0,
+            "341": 0,
+            "343": 0,
+            "344": 0,
+            "346": 0,
+            "347": 0,
+            "349": 0,
+            "350": 0,
+            "352": 0,
+            "353": 0,
+            "355": 0,
+            "356": 0,
+            "358": 0,
+            "359": 0,
+            "360": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Data\\Migrations\\20210707211936_inicial.Designer.cs": {
+      "ScrumPoker.Data.Migrations.inicial": {
+        "System.Void ScrumPoker.Data.Migrations.inicial::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "17": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "70": 0,
+            "71": 0,
+            "72": 0,
+            "73": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "78": 0,
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "82": 0,
+            "83": 0,
+            "84": 0,
+            "85": 0,
+            "86": 0,
+            "87": 0,
+            "88": 0,
+            "89": 0,
+            "91": 0,
+            "92": 0,
+            "93": 0,
+            "94": 0,
+            "95": 0,
+            "96": 0,
+            "97": 0,
+            "98": 0,
+            "99": 0,
+            "100": 0,
+            "101": 0,
+            "102": 0,
+            "103": 0,
+            "104": 0,
+            "105": 0,
+            "106": 0,
+            "107": 0,
+            "108": 0,
+            "110": 0,
+            "111": 0,
+            "112": 0,
+            "113": 0,
+            "114": 0,
+            "115": 0,
+            "116": 0,
+            "117": 0,
+            "118": 0,
+            "119": 0,
+            "120": 0,
+            "121": 0,
+            "122": 0,
+            "123": 0,
+            "124": 0,
+            "125": 0,
+            "126": 0,
+            "127": 0,
+            "128": 0,
+            "129": 0,
+            "130": 0,
+            "131": 0,
+            "132": 0,
+            "133": 0,
+            "134": 0,
+            "135": 0,
+            "137": 0,
+            "138": 0,
+            "139": 0,
+            "140": 0,
+            "141": 0,
+            "142": 0,
+            "143": 0,
+            "144": 0,
+            "145": 0,
+            "146": 0,
+            "147": 0,
+            "148": 0,
+            "149": 0,
+            "150": 0,
+            "151": 0,
+            "152": 0,
+            "153": 0,
+            "154": 0,
+            "155": 0,
+            "156": 0,
+            "157": 0,
+            "158": 0,
+            "159": 0,
+            "160": 0,
+            "161": 0,
+            "162": 0,
+            "163": 0,
+            "164": 0,
+            "165": 0,
+            "166": 0,
+            "167": 0,
+            "169": 0,
+            "170": 0,
+            "171": 0,
+            "172": 0,
+            "173": 0,
+            "174": 0,
+            "175": 0,
+            "176": 0,
+            "177": 0,
+            "178": 0,
+            "179": 0,
+            "180": 0,
+            "181": 0,
+            "182": 0,
+            "183": 0,
+            "184": 0,
+            "185": 0,
+            "186": 0,
+            "188": 0,
+            "189": 0,
+            "190": 0,
+            "191": 0,
+            "192": 0,
+            "193": 0,
+            "194": 0,
+            "195": 0,
+            "196": 0,
+            "197": 0,
+            "198": 0,
+            "199": 0,
+            "200": 0,
+            "201": 0,
+            "202": 0,
+            "203": 0,
+            "204": 0,
+            "205": 0,
+            "206": 0,
+            "207": 0,
+            "208": 0,
+            "209": 0,
+            "210": 0,
+            "211": 0,
+            "212": 0,
+            "213": 0,
+            "214": 0,
+            "215": 0,
+            "216": 0,
+            "218": 0,
+            "219": 0,
+            "220": 0,
+            "221": 0,
+            "222": 0,
+            "223": 0,
+            "224": 0,
+            "225": 0,
+            "226": 0,
+            "227": 0,
+            "228": 0,
+            "229": 0,
+            "230": 0,
+            "231": 0,
+            "233": 0,
+            "234": 0,
+            "235": 0,
+            "236": 0,
+            "237": 0,
+            "238": 0,
+            "239": 0,
+            "240": 0,
+            "241": 0,
+            "242": 0,
+            "243": 0,
+            "244": 0,
+            "245": 0,
+            "246": 0,
+            "247": 0,
+            "248": 0,
+            "249": 0,
+            "250": 0,
+            "251": 0,
+            "252": 0,
+            "253": 0,
+            "254": 0,
+            "255": 0,
+            "256": 0,
+            "257": 0,
+            "258": 0,
+            "260": 0,
+            "261": 0,
+            "262": 0,
+            "263": 0,
+            "264": 0,
+            "265": 0,
+            "266": 0,
+            "267": 0,
+            "268": 0,
+            "269": 0,
+            "270": 0,
+            "271": 0,
+            "272": 0,
+            "273": 0,
+            "274": 0,
+            "275": 0,
+            "276": 0,
+            "277": 0,
+            "278": 0,
+            "279": 0,
+            "280": 0,
+            "281": 0,
+            "282": 0,
+            "283": 0,
+            "284": 0,
+            "285": 0,
+            "286": 0,
+            "287": 0,
+            "288": 0,
+            "289": 0,
+            "290": 0,
+            "291": 0,
+            "292": 0,
+            "293": 0,
+            "294": 0,
+            "295": 0,
+            "296": 0,
+            "297": 0,
+            "298": 0,
+            "299": 0,
+            "300": 0,
+            "301": 0,
+            "302": 0,
+            "303": 0,
+            "304": 0,
+            "305": 0,
+            "306": 0,
+            "307": 0,
+            "308": 0,
+            "309": 0,
+            "310": 0,
+            "311": 0,
+            "312": 0,
+            "313": 0,
+            "314": 0,
+            "315": 0,
+            "316": 0,
+            "317": 0,
+            "318": 0,
+            "319": 0,
+            "320": 0,
+            "321": 0,
+            "322": 0,
+            "323": 0,
+            "324": 0,
+            "325": 0,
+            "326": 0,
+            "327": 0,
+            "328": 0,
+            "329": 0,
+            "331": 0,
+            "332": 0,
+            "333": 0,
+            "334": 0,
+            "335": 0,
+            "336": 0,
+            "337": 0,
+            "338": 0,
+            "339": 0,
+            "340": 0,
+            "341": 0,
+            "342": 0,
+            "343": 0,
+            "344": 0,
+            "346": 0,
+            "347": 0,
+            "348": 0,
+            "349": 0,
+            "350": 0,
+            "351": 0,
+            "352": 0,
+            "353": 0,
+            "355": 0,
+            "356": 0,
+            "357": 0,
+            "358": 0,
+            "359": 0,
+            "360": 0,
+            "361": 0,
+            "362": 0,
+            "364": 0,
+            "365": 0,
+            "366": 0,
+            "367": 0,
+            "368": 0,
+            "369": 0,
+            "370": 0,
+            "371": 0,
+            "373": 0,
+            "374": 0,
+            "375": 0,
+            "376": 0,
+            "377": 0,
+            "378": 0,
+            "379": 0,
+            "380": 0,
+            "382": 0,
+            "383": 0,
+            "384": 0,
+            "385": 0,
+            "386": 0,
+            "387": 0,
+            "388": 0,
+            "389": 0,
+            "390": 0,
+            "391": 0,
+            "393": 0,
+            "394": 0,
+            "395": 0,
+            "396": 0,
+            "397": 0,
+            "398": 0,
+            "399": 0,
+            "400": 0,
+            "401": 0,
+            "402": 0,
+            "404": 0,
+            "405": 0,
+            "406": 0,
+            "407": 0,
+            "408": 0,
+            "409": 0,
+            "410": 0,
+            "411": 0,
+            "412": 0,
+            "414": 0,
+            "415": 0,
+            "416": 0,
+            "417": 0,
+            "418": 0,
+            "419": 0,
+            "420": 0,
+            "421": 0,
+            "422": 0,
+            "423": 0,
+            "425": 0,
+            "426": 0,
+            "427": 0,
+            "428": 0,
+            "429": 0,
+            "430": 0,
+            "431": 0,
+            "432": 0,
+            "433": 0,
+            "434": 0,
+            "435": 0,
+            "436": 0,
+            "437": 0,
+            "438": 0,
+            "439": 0,
+            "440": 0,
+            "441": 0,
+            "442": 0,
+            "443": 0,
+            "444": 0,
+            "445": 0,
+            "446": 0,
+            "447": 0,
+            "448": 0,
+            "450": 0,
+            "451": 0,
+            "452": 0,
+            "453": 0,
+            "454": 0,
+            "455": 0,
+            "457": 0,
+            "458": 0,
+            "459": 0,
+            "460": 0,
+            "462": 0,
+            "463": 0,
+            "464": 0,
+            "465": 0,
+            "467": 0,
+            "468": 0,
+            "469": 0,
+            "470": 0,
+            "472": 0,
+            "473": 0,
+            "474": 0,
+            "475": 0,
+            "477": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Data\\Migrations\\ScrumPokerContextModelSnapshot.cs": {
+      "ScrumPoker.Data.Migrations.ScrumPokerContextModelSnapshot": {
+        "System.Void ScrumPoker.Data.Migrations.ScrumPokerContextModelSnapshot::BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "15": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "66": 0,
+            "68": 0,
+            "69": 0,
+            "70": 0,
+            "71": 0,
+            "72": 0,
+            "73": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "78": 0,
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "82": 0,
+            "83": 0,
+            "84": 0,
+            "85": 0,
+            "86": 0,
+            "87": 0,
+            "89": 0,
+            "90": 0,
+            "91": 0,
+            "92": 0,
+            "93": 0,
+            "94": 0,
+            "95": 0,
+            "96": 0,
+            "97": 0,
+            "98": 0,
+            "99": 0,
+            "100": 0,
+            "101": 0,
+            "102": 0,
+            "103": 0,
+            "104": 0,
+            "105": 0,
+            "106": 0,
+            "108": 0,
+            "109": 0,
+            "110": 0,
+            "111": 0,
+            "112": 0,
+            "113": 0,
+            "114": 0,
+            "115": 0,
+            "116": 0,
+            "117": 0,
+            "118": 0,
+            "119": 0,
+            "120": 0,
+            "121": 0,
+            "122": 0,
+            "123": 0,
+            "124": 0,
+            "125": 0,
+            "126": 0,
+            "127": 0,
+            "128": 0,
+            "129": 0,
+            "130": 0,
+            "131": 0,
+            "132": 0,
+            "133": 0,
+            "135": 0,
+            "136": 0,
+            "137": 0,
+            "138": 0,
+            "139": 0,
+            "140": 0,
+            "141": 0,
+            "142": 0,
+            "143": 0,
+            "144": 0,
+            "145": 0,
+            "146": 0,
+            "147": 0,
+            "148": 0,
+            "149": 0,
+            "150": 0,
+            "151": 0,
+            "152": 0,
+            "153": 0,
+            "154": 0,
+            "155": 0,
+            "156": 0,
+            "157": 0,
+            "158": 0,
+            "159": 0,
+            "160": 0,
+            "161": 0,
+            "162": 0,
+            "163": 0,
+            "164": 0,
+            "165": 0,
+            "167": 0,
+            "168": 0,
+            "169": 0,
+            "170": 0,
+            "171": 0,
+            "172": 0,
+            "173": 0,
+            "174": 0,
+            "175": 0,
+            "176": 0,
+            "177": 0,
+            "178": 0,
+            "179": 0,
+            "180": 0,
+            "181": 0,
+            "182": 0,
+            "183": 0,
+            "184": 0,
+            "186": 0,
+            "187": 0,
+            "188": 0,
+            "189": 0,
+            "190": 0,
+            "191": 0,
+            "192": 0,
+            "193": 0,
+            "194": 0,
+            "195": 0,
+            "196": 0,
+            "197": 0,
+            "198": 0,
+            "199": 0,
+            "200": 0,
+            "201": 0,
+            "202": 0,
+            "203": 0,
+            "204": 0,
+            "205": 0,
+            "206": 0,
+            "207": 0,
+            "208": 0,
+            "209": 0,
+            "210": 0,
+            "211": 0,
+            "212": 0,
+            "213": 0,
+            "214": 0,
+            "216": 0,
+            "217": 0,
+            "218": 0,
+            "219": 0,
+            "220": 0,
+            "221": 0,
+            "222": 0,
+            "223": 0,
+            "224": 0,
+            "225": 0,
+            "226": 0,
+            "227": 0,
+            "228": 0,
+            "229": 0,
+            "231": 0,
+            "232": 0,
+            "233": 0,
+            "234": 0,
+            "235": 0,
+            "236": 0,
+            "237": 0,
+            "238": 0,
+            "239": 0,
+            "240": 0,
+            "241": 0,
+            "242": 0,
+            "243": 0,
+            "244": 0,
+            "245": 0,
+            "246": 0,
+            "247": 0,
+            "248": 0,
+            "249": 0,
+            "250": 0,
+            "251": 0,
+            "252": 0,
+            "253": 0,
+            "254": 0,
+            "255": 0,
+            "256": 0,
+            "258": 0,
+            "259": 0,
+            "260": 0,
+            "261": 0,
+            "262": 0,
+            "263": 0,
+            "264": 0,
+            "265": 0,
+            "266": 0,
+            "267": 0,
+            "268": 0,
+            "269": 0,
+            "270": 0,
+            "271": 0,
+            "272": 0,
+            "273": 0,
+            "274": 0,
+            "275": 0,
+            "276": 0,
+            "277": 0,
+            "278": 0,
+            "279": 0,
+            "280": 0,
+            "281": 0,
+            "282": 0,
+            "283": 0,
+            "284": 0,
+            "285": 0,
+            "286": 0,
+            "287": 0,
+            "288": 0,
+            "289": 0,
+            "290": 0,
+            "291": 0,
+            "292": 0,
+            "293": 0,
+            "294": 0,
+            "295": 0,
+            "296": 0,
+            "297": 0,
+            "298": 0,
+            "299": 0,
+            "300": 0,
+            "301": 0,
+            "302": 0,
+            "303": 0,
+            "304": 0,
+            "305": 0,
+            "306": 0,
+            "307": 0,
+            "308": 0,
+            "309": 0,
+            "310": 0,
+            "311": 0,
+            "312": 0,
+            "313": 0,
+            "314": 0,
+            "315": 0,
+            "316": 0,
+            "317": 0,
+            "318": 0,
+            "319": 0,
+            "320": 0,
+            "321": 0,
+            "322": 0,
+            "323": 0,
+            "324": 0,
+            "325": 0,
+            "326": 0,
+            "327": 0,
+            "329": 0,
+            "330": 0,
+            "331": 0,
+            "332": 0,
+            "333": 0,
+            "334": 0,
+            "335": 0,
+            "336": 0,
+            "337": 0,
+            "338": 0,
+            "339": 0,
+            "340": 0,
+            "341": 0,
+            "342": 0,
+            "344": 0,
+            "345": 0,
+            "346": 0,
+            "347": 0,
+            "348": 0,
+            "349": 0,
+            "350": 0,
+            "351": 0,
+            "353": 0,
+            "354": 0,
+            "355": 0,
+            "356": 0,
+            "357": 0,
+            "358": 0,
+            "359": 0,
+            "360": 0,
+            "362": 0,
+            "363": 0,
+            "364": 0,
+            "365": 0,
+            "366": 0,
+            "367": 0,
+            "368": 0,
+            "369": 0,
+            "371": 0,
+            "372": 0,
+            "373": 0,
+            "374": 0,
+            "375": 0,
+            "376": 0,
+            "377": 0,
+            "378": 0,
+            "380": 0,
+            "381": 0,
+            "382": 0,
+            "383": 0,
+            "384": 0,
+            "385": 0,
+            "386": 0,
+            "387": 0,
+            "388": 0,
+            "389": 0,
+            "391": 0,
+            "392": 0,
+            "393": 0,
+            "394": 0,
+            "395": 0,
+            "396": 0,
+            "397": 0,
+            "398": 0,
+            "399": 0,
+            "400": 0,
+            "402": 0,
+            "403": 0,
+            "404": 0,
+            "405": 0,
+            "406": 0,
+            "407": 0,
+            "408": 0,
+            "409": 0,
+            "410": 0,
+            "412": 0,
+            "413": 0,
+            "414": 0,
+            "415": 0,
+            "416": 0,
+            "417": 0,
+            "418": 0,
+            "419": 0,
+            "420": 0,
+            "421": 0,
+            "423": 0,
+            "424": 0,
+            "425": 0,
+            "426": 0,
+            "427": 0,
+            "428": 0,
+            "429": 0,
+            "430": 0,
+            "431": 0,
+            "432": 0,
+            "433": 0,
+            "434": 0,
+            "435": 0,
+            "436": 0,
+            "437": 0,
+            "438": 0,
+            "439": 0,
+            "440": 0,
+            "441": 0,
+            "442": 0,
+            "443": 0,
+            "444": 0,
+            "445": 0,
+            "446": 0,
+            "448": 0,
+            "449": 0,
+            "450": 0,
+            "451": 0,
+            "452": 0,
+            "453": 0,
+            "455": 0,
+            "456": 0,
+            "457": 0,
+            "458": 0,
+            "460": 0,
+            "461": 0,
+            "462": 0,
+            "463": 0,
+            "465": 0,
+            "466": 0,
+            "467": 0,
+            "468": 0,
+            "470": 0,
+            "471": 0,
+            "472": 0,
+            "473": 0,
+            "475": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Data\\Maps\\CartaMap.cs": {
+      "ScrumPoker.Data.Maps.CartaMap": {
+        "System.Void ScrumPoker.Data.Maps.CartaMap::Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder`1<ScrumPoker.Domain.Entities.SalaEntity.Carta>)": {
+          "Lines": {
+            "10": 0,
+            "11": 0,
+            "13": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Data\\Maps\\ParticipanteMap.cs": {
+      "ScrumPoker.Data.Maps.ParticipanteMap": {
+        "System.Void ScrumPoker.Data.Maps.ParticipanteMap::Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder`1<ScrumPoker.Domain.Entities.SalaEntity.Participante>)": {
+          "Lines": {
+            "10": 0,
+            "11": 0,
+            "13": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Data\\Maps\\PerfilMap.cs": {
+      "ScrumPoker.Data.Maps.PerfilMap": {
+        "System.Void ScrumPoker.Data.Maps.PerfilMap::Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder`1<ScrumPoker.Domain.Entities.UsuarioEntity.Perfil>)": {
+          "Lines": {
+            "11": 0,
+            "12": 0,
+            "14": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Data\\Maps\\SalaConfiguracaoMap.cs": {
+      "ScrumPoker.Data.Maps.SalaConfiguracaoMap": {
+        "System.Void ScrumPoker.Data.Maps.SalaConfiguracaoMap::Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder`1<ScrumPoker.Domain.Entities.SalaEntity.SalaConfiguracao>)": {
+          "Lines": {
+            "10": 0,
+            "11": 0,
+            "13": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Data\\Maps\\SalaMap.cs": {
+      "ScrumPoker.Data.Maps.SalaMap": {
+        "System.Void ScrumPoker.Data.Maps.SalaMap::Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder`1<ScrumPoker.Domain.Entities.SalaEntity.Sala>)": {
+          "Lines": {
+            "10": 0,
+            "11": 0,
+            "13": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Data\\Maps\\UserRoleMap.cs": {
+      "ScrumPoker.Data.Maps.UserRoleMap": {
+        "System.Void ScrumPoker.Data.Maps.UserRoleMap::Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder`1<ScrumPoker.Domain.Identity.UserRole>)": {
+          "Lines": {
+            "10": 0,
+            "11": 0,
+            "13": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Data\\Context\\ScrumPokerContext.cs": {
+      "ScrumPoker.Data.Context.ScrumPokerContext": {
+        "Microsoft.EntityFrameworkCore.DbSet`1<ScrumPoker.Domain.Entities.SalaEntity.Sala> ScrumPoker.Data.Context.ScrumPokerContext::get_Sala()": {
+          "Lines": {
+            "19": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<ScrumPoker.Domain.Entities.SalaEntity.SalaConfiguracao> ScrumPoker.Data.Context.ScrumPokerContext::get_SalaConfiguracao()": {
+          "Lines": {
+            "20": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<ScrumPoker.Domain.Entities.SalaEntity.Carta> ScrumPoker.Data.Context.ScrumPokerContext::get_Carta()": {
+          "Lines": {
+            "21": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<ScrumPoker.Domain.Entities.UsuarioEntity.Perfil> ScrumPoker.Data.Context.ScrumPokerContext::get_Perfil()": {
+          "Lines": {
+            "22": 0
+          },
+          "Branches": []
+        },
+        "System.Void ScrumPoker.Data.Context.ScrumPokerContext::OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "25": 0,
+            "26": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0
+          },
+          "Branches": []
+        },
+        "System.Void ScrumPoker.Data.Context.ScrumPokerContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<ScrumPoker.Data.Context.ScrumPokerContext>)": {
+          "Lines": {
+            "17": 0
+          },
+          "Branches": []
+        }
+      }
+    }
+  },
+  "ScrumPoker.Domain.dll": {
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Domain\\Exceptions\\EntidadeNaoEncontradaException.cs": {
+      "ScrumPoker.Core.Exceptions.EntidadeNaoEncontradaException": {
+        "System.String ScrumPoker.Core.Exceptions.EntidadeNaoEncontradaException::get_Entidade()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Core.Exceptions.EntidadeNaoEncontradaException::get_Chave()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.Void ScrumPoker.Core.Exceptions.EntidadeNaoEncontradaException::.ctor(System.String,System.String)": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.Void ScrumPoker.Core.Exceptions.EntidadeNaoEncontradaException::.ctor(System.String,System.String,System.String)": {
+          "Lines": {
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Domain\\Identity\\Role.cs": {
+      "ScrumPoker.Domain.Identity.Role": {
+        "System.Collections.Generic.IEnumerable`1<ScrumPoker.Domain.Identity.UserRole> ScrumPoker.Domain.Identity.Role::get_UserRoles()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Domain\\Identity\\User.cs": {
+      "ScrumPoker.Domain.Identity.User": {
+        "System.Collections.Generic.IEnumerable`1<ScrumPoker.Domain.Identity.UserRole> ScrumPoker.Domain.Identity.User::get_UserRoles()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.Guid ScrumPoker.Domain.Identity.User::get_PerfilId()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "ScrumPoker.Domain.Entities.UsuarioEntity.Perfil ScrumPoker.Domain.Identity.User::get_Perfil()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Domain\\Identity\\UserRole.cs": {
+      "ScrumPoker.Domain.Identity.UserRole": {
+        "ScrumPoker.Domain.Identity.User ScrumPoker.Domain.Identity.UserRole::get_User()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "ScrumPoker.Domain.Identity.Role ScrumPoker.Domain.Identity.UserRole::get_Role()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Domain\\Entities\\UsuarioEntity\\Perfil.cs": {
+      "ScrumPoker.Domain.Entities.UsuarioEntity.Perfil": {
+        "System.Guid ScrumPoker.Domain.Entities.UsuarioEntity.Perfil::get_Id()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Domain.Entities.UsuarioEntity.Perfil::get_Nome()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "ScrumPoker.Domain.Identity.User ScrumPoker.Domain.Entities.UsuarioEntity.Perfil::get_User()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Domain\\Entities\\SalaEntity\\Carta.cs": {
+      "ScrumPoker.Domain.Entities.SalaEntity.Carta": {
+        "System.Int32 ScrumPoker.Domain.Entities.SalaEntity.Carta::get_Id()": {
+          "Lines": {
+            "5": 1
+          },
+          "Branches": []
+        },
+        "System.Int32 ScrumPoker.Domain.Entities.SalaEntity.Carta::get_Ordem()": {
+          "Lines": {
+            "6": 2
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Domain.Entities.SalaEntity.Carta::get_Value()": {
+          "Lines": {
+            "7": 2
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Domain.Entities.SalaEntity.Carta::get_Especial()": {
+          "Lines": {
+            "8": 2
+          },
+          "Branches": []
+        },
+        "System.Int64 ScrumPoker.Domain.Entities.SalaEntity.Carta::get_SalaConfiguracaoId()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "ScrumPoker.Domain.Entities.SalaEntity.SalaConfiguracao ScrumPoker.Domain.Entities.SalaEntity.Carta::get_SalaConfiguracao()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Domain\\Entities\\SalaEntity\\Participante.cs": {
+      "ScrumPoker.Domain.Entities.SalaEntity.Participante": {
+        "System.String ScrumPoker.Domain.Entities.SalaEntity.Participante::get_Id()": {
+          "Lines": {
+            "5": 13
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Domain.Entities.SalaEntity.Participante::get_SalaId()": {
+          "Lines": {
+            "6": 9
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Domain.Entities.SalaEntity.Participante::get_ConexaoId()": {
+          "Lines": {
+            "7": 7
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Domain.Entities.SalaEntity.Participante::get_Nome()": {
+          "Lines": {
+            "8": 7
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Domain.Entities.SalaEntity.Participante::get_Jogador()": {
+          "Lines": {
+            "9": 7
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Domain.Entities.SalaEntity.Participante::get_Online()": {
+          "Lines": {
+            "10": 8
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Domain.Entities.SalaEntity.Participante::get_VotoCartaValor()": {
+          "Lines": {
+            "12": 13
+          },
+          "Branches": []
+        },
+        "ScrumPoker.Domain.Entities.SalaEntity.Sala ScrumPoker.Domain.Entities.SalaEntity.Participante::get_Sala()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Domain\\Entities\\SalaEntity\\Sala.cs": {
+      "ScrumPoker.Domain.Entities.SalaEntity.Sala": {
+        "System.String ScrumPoker.Domain.Entities.SalaEntity.Sala::get_Id()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Domain.Entities.SalaEntity.Sala::get_Titulo()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Domain.Entities.SalaEntity.Sala::get_JogoFinalizado()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.DateTime ScrumPoker.Domain.Entities.SalaEntity.Sala::get_UltimaDataDeUtilizacao()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "ScrumPoker.Domain.Entities.SalaEntity.SalaConfiguracao ScrumPoker.Domain.Entities.SalaEntity.Sala::get_Configuracao()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.IEnumerable`1<ScrumPoker.Domain.Entities.SalaEntity.Participante> ScrumPoker.Domain.Entities.SalaEntity.Sala::get_Participantes()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bruno\\projetos\\scrum-poker\\ScrumPoker_Server\\ScrumPoker.Domain\\Entities\\SalaEntity\\SalaConfiguracao.cs": {
+      "ScrumPoker.Domain.Entities.SalaEntity.SalaConfiguracao": {
+        "System.Int64 ScrumPoker.Domain.Entities.SalaEntity.SalaConfiguracao::get_Id()": {
+          "Lines": {
+            "7": 6
+          },
+          "Branches": []
+        },
+        "System.String ScrumPoker.Domain.Entities.SalaEntity.SalaConfiguracao::get_SalaId()": {
+          "Lines": {
+            "8": 5
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Domain.Entities.SalaEntity.SalaConfiguracao::get_JogadorFinalizaJogo()": {
+          "Lines": {
+            "9": 5
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Domain.Entities.SalaEntity.SalaConfiguracao::get_JogadorResetaJogo()": {
+          "Lines": {
+            "10": 5
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Domain.Entities.SalaEntity.SalaConfiguracao::get_JogadorRemoveJogador()": {
+          "Lines": {
+            "11": 5
+          },
+          "Branches": []
+        },
+        "System.Boolean ScrumPoker.Domain.Entities.SalaEntity.SalaConfiguracao::get_JogadorRemoveAdministrador()": {
+          "Lines": {
+            "12": 5
+          },
+          "Branches": []
+        },
+        "ScrumPoker.Domain.Entities.SalaEntity.Sala ScrumPoker.Domain.Entities.SalaEntity.SalaConfiguracao::get_Sala()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.IEnumerable`1<ScrumPoker.Domain.Entities.SalaEntity.Carta> ScrumPoker.Domain.Entities.SalaEntity.SalaConfiguracao::get_Cartas()": {
+          "Lines": {
+            "16": 8
+          },
+          "Branches": []
+        }
+      }
+    }
+  }
+}

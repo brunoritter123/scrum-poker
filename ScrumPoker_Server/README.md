@@ -29,6 +29,7 @@ Execute `dotnet build ScrumPoker.sln` para contruir os executaveis do projeto.
 
 ## Teste unitários
 Execute `dotnet test ScrumPoker.sln` para iniciar os testes unitários via [xUnit](https://xunit.net/).
+Execute `dotnet test /p:CollectCoverage=true .\ScrumPoker.Tests\` para avaliar a combertura de testes via [Coverlet](https://github.com/coverlet-coverage/coverlet).
 
 docker-compose.exe build
 heroku apps:create scrum-poker-br

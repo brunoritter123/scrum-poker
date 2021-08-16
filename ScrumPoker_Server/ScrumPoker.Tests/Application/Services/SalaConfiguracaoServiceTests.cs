@@ -81,15 +81,13 @@ namespace ScrumPoker.Tests.Application.Services
             inputModel.JogadorResetaJogo = false;
 
             var salaConfigBd = SalaValida();
-            SalaConfiguracao salaConfigReturnoAlteracao =  new SalaConfiguracao();
 
             var mockRepo = new Mock<ISalaConfiguracaoRepository>();
             mockRepo.Setup(repo => repo.BuscarPorIdAsync(inputModel.Id))
                     .ReturnsAsync(salaConfigBd);
 
             mockRepo.Setup(repo => repo.AlterarAsync(It.IsAny<SalaConfiguracao>()))
-                    .Callback<SalaConfiguracao>(x => salaConfigReturnoAlteracao = x)
-                    .ReturnsAsync(salaConfigReturnoAlteracao);
+                    .ReturnsAsync((SalaConfiguracao salaConfigInput) => salaConfigInput);
 
             var subject = new SalaConfiguracaoService(mockRepo.Object, _mapper);
 

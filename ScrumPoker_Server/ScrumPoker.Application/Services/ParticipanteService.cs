@@ -6,6 +6,7 @@ using ScrumPoker.Application.Interfaces.ApplicationServices;
 using ScrumPoker.Domain.Interfaces.Repositories;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 namespace ScrumPoker.Application.Services
 {
@@ -18,18 +19,6 @@ namespace ScrumPoker.Application.Services
         {
             _repo = repo;
             _mapper = mapper;
-        }
-
-        public async Task<IEnumerable<ParticipanteViewModel>> BuscarAdministradoresPorSalaId(string salaId)
-        {
-            var administradores = await _repo.BuscarAdministradoresPorSalaAsync(salaId);
-            return _mapper.Map<IEnumerable<ParticipanteViewModel>>(administradores);
-        }
-
-        public async Task<IEnumerable<ParticipanteViewModel>> BuscarJogadoresPorSalaId(string salaId)
-        {
-            var jogadores = await _repo.BuscarJogadoresPorSalaAsync(salaId);
-            return _mapper.Map<IEnumerable<ParticipanteViewModel>>(jogadores);
         }
 
         public async Task<ParticipanteViewModel> IncluirOuAlterarAsync(IncluirParticipanteSalaInputModel participanteDto)
@@ -71,6 +60,9 @@ namespace ScrumPoker.Application.Services
         public async Task<ParticipanteViewModel> Conectar(string conexaoId, string participanteId)
         {
             var participante = await _repo.BuscarPorIdAsync(participanteId);
+            if (participante is null)
+                throw new ApplicationException($"Participante '{participanteId}' não foi encontrado");
+
             participante.ConexaoId = conexaoId;
             participante.Online = true;
             participante = await _repo.AlterarAsync(participante);
@@ -86,16 +78,13 @@ namespace ScrumPoker.Application.Services
         public async Task<VotoViewModel> VotoParticipante(string participanteId, string votoValor)
         {
             var participante = await _repo.BuscarPorIdAsync(participanteId);
+            if (participante is null)
+                throw new ApplicationException($"Participante '{participanteId}' não foi encontrado");
+
             participante.VotoCartaValor = votoValor;
             participante = await _repo.AlterarAsync(participante);
 
             return _mapper.Map<VotoViewModel>(participante);
-        }
-
-        public async Task<IEnumerable<ParticipanteViewModel>> BuscarParticipantesPorSala(string salaId)
-        {
-            var participantes = await _repo.BuscarParticipantesPorSalaAsync(salaId);
-            return _mapper.Map<IEnumerable<ParticipanteViewModel>>(participantes);
-        }
+        }      
     }
 }
