@@ -145,6 +145,7 @@ namespace ScrumPoker.Tests.Application.Services
             var participanteBd = ParticipanteValido();
             participanteBd.Id = participanteId;
             participanteBd.VotoCartaValor = "03";
+            participanteBd.Online = false;
 
             var mockRepo = new Mock<IParticipanteRepository>();
             mockRepo.Setup(repo => repo.BuscarPorIdAsync(participanteId))
@@ -172,9 +173,6 @@ namespace ScrumPoker.Tests.Application.Services
             // Arrange
             string participanteId = "teste123456";
             string conexaoId = "11testete";
-            var participanteBd = ParticipanteValido();
-            participanteBd.Id = participanteId;
-            participanteBd.VotoCartaValor = "03";
 
             var mockRepo = new Mock<IParticipanteRepository>();
             mockRepo.Setup(repo => repo.BuscarPorIdAsync(participanteId))
@@ -188,6 +186,53 @@ namespace ScrumPoker.Tests.Application.Services
             // Assert
             var exception = await Assert.ThrowsAsync<ApplicationException>(act);
             Assert.Contains(participanteId, exception.Message);
+        }
+
+        [Fact(DisplayName = "Desconectar Participante")]
+        public async void DesconectarTest()
+        {
+            // Arrange
+            string participanteId = "teste123456";
+            var participanteBd = ParticipanteValido();
+            participanteBd.Id = participanteId;
+            participanteBd.Online = true;
+
+            var mockRepo = new Mock<IParticipanteRepository>();
+            mockRepo.Setup(repo => repo.BuscarPorIdAsync(participanteId))
+                    .ReturnsAsync(participanteBd);
+
+            var participanteReturnoAlteracao = new Participante();
+            mockRepo.Setup(repo => repo.AlterarAsync(It.IsAny<Participante>()))
+                    .ReturnsAsync((Participante part) => part)
+                    .Callback((Participante part) => participanteReturnoAlteracao = part);
+
+            var subject = new ParticipanteService(mockRepo.Object, _mapper);
+
+            // Act
+            var result = await subject.Desconectar(participanteId);
+
+            // Assert
+            Assert.Equal(participanteId, result.Id);
+            Assert.False(result.Online);
+        }
+
+        [Fact(DisplayName = "Desconectar Participante que não existe")]
+        public async void DesconectarParticipanteQueNaoExisteTest()
+        {
+            // Arrange
+            string participanteId = "teste123456";
+
+            var mockRepo = new Mock<IParticipanteRepository>();
+            mockRepo.Setup(repo => repo.BuscarPorIdAsync(participanteId))
+                    .ReturnsAsync((Participante)null);
+
+            var subject = new ParticipanteService(mockRepo.Object, _mapper);
+
+            // Act
+            var result = await subject.Desconectar(participanteId);
+
+            // Assert
+            Assert.Null(result);
         }
 
         private Participante ParticipanteValido()
