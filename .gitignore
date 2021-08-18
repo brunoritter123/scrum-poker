@@ -480,3 +480,4 @@ $RECYCLE.BIN/
 *.sln.iml
 .vscode/tasks.json
 .vscode/launch.json
+ScrumPoker_Server/ScrumPoker.Tests/coverage.json

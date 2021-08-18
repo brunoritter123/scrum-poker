@@ -1380,23 +1380,23 @@
         },
         "System.Void ScrumPoker.Application.Configurations.AutoMapperApiConfig::.ctor()": {
           "Lines": {
-            "19": 11,
-            "20": 11,
-            "21": 11,
-            "23": 11,
-            "24": 11,
-            "25": 11,
-            "26": 11,
-            "27": 22,
-            "28": 11,
-            "29": 11,
-            "30": 11,
-            "31": 11,
-            "32": 11,
-            "33": 11,
-            "34": 11,
-            "35": 22,
-            "36": 11
+            "19": 15,
+            "20": 15,
+            "21": 15,
+            "23": 15,
+            "24": 15,
+            "25": 15,
+            "26": 15,
+            "27": 30,
+            "28": 15,
+            "29": 15,
+            "30": 15,
+            "31": 15,
+            "32": 15,
+            "33": 15,
+            "34": 15,
+            "35": 30,
+            "36": 15
           },
           "Branches": []
         }
@@ -1408,11 +1408,11 @@
       "ScrumPoker.Application.Services.ParticipanteService": {
         "System.Void ScrumPoker.Application.Services.ParticipanteService::.ctor(ScrumPoker.Domain.Interfaces.Repositories.IParticipanteRepository,AutoMapper.IMapper)": {
           "Lines": {
-            "18": 7,
-            "19": 7,
-            "20": 7,
-            "21": 7,
-            "22": 7
+            "18": 11,
+            "19": 11,
+            "20": 11,
+            "21": 11,
+            "22": 11
           },
           "Branches": []
         }
@@ -1420,19 +1420,19 @@
       "ScrumPoker.Application.Services.ParticipanteService/<IncluirOuAlterarAsync>d__3": {
         "System.Void ScrumPoker.Application.Services.ParticipanteService/<IncluirOuAlterarAsync>d__3::MoveNext()": {
           "Lines": {
-            "25": 0,
-            "26": 0,
-            "27": 0,
-            "28": 0,
-            "29": 0,
-            "30": 0,
-            "31": 0,
-            "33": 0,
-            "34": 0,
-            "35": 0,
-            "36": 0,
-            "38": 0,
-            "39": 0
+            "25": 2,
+            "26": 2,
+            "27": 2,
+            "28": 1,
+            "29": 1,
+            "30": 1,
+            "31": 1,
+            "33": 1,
+            "34": 1,
+            "35": 1,
+            "36": 1,
+            "38": 2,
+            "39": 2
           },
           "Branches": [
             {
@@ -1441,7 +1441,7 @@
               "EndOffset": 199,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 0
+              "Hits": 1
             },
             {
               "Line": 27,
@@ -1449,7 +1449,7 @@
               "EndOffset": 373,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 0
+              "Hits": 1
             }
           ]
         }
@@ -1457,16 +1457,16 @@
       "ScrumPoker.Application.Services.ParticipanteService/<Desconectar>d__4": {
         "System.Void ScrumPoker.Application.Services.ParticipanteService/<Desconectar>d__4::MoveNext()": {
           "Lines": {
-            "42": 0,
-            "43": 0,
-            "44": 0,
-            "45": 0,
-            "46": 0,
-            "47": 0,
-            "48": 0,
-            "49": 0,
-            "52": 0,
-            "53": 0
+            "42": 2,
+            "43": 2,
+            "44": 2,
+            "45": 1,
+            "46": 1,
+            "47": 1,
+            "48": 1,
+            "49": 1,
+            "52": 1,
+            "53": 2
           },
           "Branches": [
             {
@@ -1475,7 +1475,7 @@
               "EndOffset": 180,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 0
+              "Hits": 1
             },
             {
               "Line": 44,
@@ -1483,7 +1483,7 @@
               "EndOffset": 344,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 0
+              "Hits": 1
             }
           ]
         }
@@ -1956,37 +1956,37 @@
       "ScrumPoker.Application.DTOs.ViewModels.ParticipanteViewModel": {
         "System.String ScrumPoker.Application.DTOs.ViewModels.ParticipanteViewModel::get_Id()": {
           "Lines": {
-            "9": 4
+            "9": 10
           },
           "Branches": []
         },
         "System.String ScrumPoker.Application.DTOs.ViewModels.ParticipanteViewModel::get_SalaId()": {
           "Lines": {
-            "10": 2
+            "10": 7
           },
           "Branches": []
         },
         "System.String ScrumPoker.Application.DTOs.ViewModels.ParticipanteViewModel::get_Nome()": {
           "Lines": {
-            "11": 2
+            "11": 7
           },
           "Branches": []
         },
         "System.Boolean ScrumPoker.Application.DTOs.ViewModels.ParticipanteViewModel::get_Jogador()": {
           "Lines": {
-            "12": 2
+            "12": 7
           },
           "Branches": []
         },
         "System.Boolean ScrumPoker.Application.DTOs.ViewModels.ParticipanteViewModel::get_Online()": {
           "Lines": {
-            "13": 3
+            "13": 9
           },
           "Branches": []
         },
         "System.String ScrumPoker.Application.DTOs.ViewModels.ParticipanteViewModel::get_VotoCartaValor()": {
           "Lines": {
-            "14": 2
+            "14": 5
           },
           "Branches": []
         }
@@ -2256,31 +2256,31 @@
       "ScrumPoker.Application.DTOs.InputModels.IncluirParticipanteSalaInputModel": {
         "System.String ScrumPoker.Application.DTOs.InputModels.IncluirParticipanteSalaInputModel::get_Id()": {
           "Lines": {
-            "13": 0
+            "13": 11
           },
           "Branches": []
         },
         "System.String ScrumPoker.Application.DTOs.InputModels.IncluirParticipanteSalaInputModel::get_SalaId()": {
           "Lines": {
-            "16": 0
+            "16": 6
           },
           "Branches": []
         },
         "System.String ScrumPoker.Application.DTOs.InputModels.IncluirParticipanteSalaInputModel::get_Nome()": {
           "Lines": {
-            "19": 0
+            "19": 6
           },
           "Branches": []
         },
         "System.Boolean ScrumPoker.Application.DTOs.InputModels.IncluirParticipanteSalaInputModel::get_Jogador()": {
           "Lines": {
-            "22": 0
+            "22": 6
           },
           "Branches": []
         },
         "System.Boolean ScrumPoker.Application.DTOs.InputModels.IncluirParticipanteSalaInputModel::get_Online()": {
           "Lines": {
-            "24": 0
+            "24": 8
           },
           "Branches": []
         }
@@ -2328,46 +2328,46 @@
       "ScrumPoker.Application.Configurations.ApplicationAutoMapperConfig": {
         "AutoMapper.Profile ScrumPoker.Application.Configurations.ApplicationAutoMapperConfig::AddApplicationAutoMapperConfig(AutoMapper.Profile)": {
           "Lines": {
-            "13": 11,
-            "14": 11,
-            "15": 11,
-            "16": 11,
-            "17": 11,
-            "18": 11,
-            "19": 11,
-            "20": 22,
-            "21": 11,
-            "22": 11,
-            "23": 11,
-            "24": 11,
-            "25": 11,
-            "26": 11,
-            "27": 22,
-            "28": 11,
-            "29": 11,
-            "30": 11,
-            "31": 11,
-            "32": 11,
-            "33": 11,
-            "34": 11,
-            "35": 22,
-            "36": 11,
-            "37": 11,
-            "38": 11,
-            "39": 11,
-            "40": 11,
-            "41": 11,
-            "42": 11,
-            "43": 11,
-            "44": 11,
-            "45": 11,
-            "46": 11,
-            "47": 11,
-            "48": 11,
-            "49": 11,
-            "50": 22,
-            "52": 11,
-            "53": 11
+            "13": 15,
+            "14": 15,
+            "15": 15,
+            "16": 15,
+            "17": 15,
+            "18": 15,
+            "19": 15,
+            "20": 30,
+            "21": 15,
+            "22": 15,
+            "23": 15,
+            "24": 15,
+            "25": 15,
+            "26": 15,
+            "27": 30,
+            "28": 15,
+            "29": 15,
+            "30": 15,
+            "31": 15,
+            "32": 15,
+            "33": 15,
+            "34": 15,
+            "35": 30,
+            "36": 15,
+            "37": 15,
+            "38": 15,
+            "39": 15,
+            "40": 15,
+            "41": 15,
+            "42": 15,
+            "43": 15,
+            "44": 15,
+            "45": 15,
+            "46": 15,
+            "47": 15,
+            "48": 15,
+            "49": 15,
+            "50": 30,
+            "52": 15,
+            "53": 15
           },
           "Branches": []
         }
@@ -4466,43 +4466,43 @@
       "ScrumPoker.Domain.Entities.SalaEntity.Participante": {
         "System.String ScrumPoker.Domain.Entities.SalaEntity.Participante::get_Id()": {
           "Lines": {
-            "5": 13
+            "5": 20
           },
           "Branches": []
         },
         "System.String ScrumPoker.Domain.Entities.SalaEntity.Participante::get_SalaId()": {
           "Lines": {
-            "6": 9
+            "6": 15
           },
           "Branches": []
         },
         "System.String ScrumPoker.Domain.Entities.SalaEntity.Participante::get_ConexaoId()": {
           "Lines": {
-            "7": 7
+            "7": 11
           },
           "Branches": []
         },
         "System.String ScrumPoker.Domain.Entities.SalaEntity.Participante::get_Nome()": {
           "Lines": {
-            "8": 7
+            "8": 13
           },
           "Branches": []
         },
         "System.Boolean ScrumPoker.Domain.Entities.SalaEntity.Participante::get_Jogador()": {
           "Lines": {
-            "9": 7
+            "9": 13
           },
           "Branches": []
         },
         "System.Boolean ScrumPoker.Domain.Entities.SalaEntity.Participante::get_Online()": {
           "Lines": {
-            "10": 8
+            "10": 17
           },
           "Branches": []
         },
         "System.String ScrumPoker.Domain.Entities.SalaEntity.Participante::get_VotoCartaValor()": {
           "Lines": {
-            "12": 13
+            "12": 18
           },
           "Branches": []
         },

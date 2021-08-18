@@ -4,7 +4,11 @@ Esse projeto foi gerado com  [.Net Core](https://dotnet.microsoft.com/download/d
 
 ## Instalação
 - **dotnet** - Fazer a instalção do [.NET Core 5.0](https://dotnet.microsoft.com/download/dotnet-core/5.0)
-- **dotnet ef** - Execute `dotnet tool install -g dotnet-ef --version 5.0.5`
+
+## Ferramentas
+Execute `dotnet tool restore` para instalar as ferramentas.
+- **dotnet ef**
+- **Stryker.Net**
 
 ## Configurando 'appsettings.json'
 Acesse o arquivo appsettings.[Ambiente].json (Ambiente é conforme configurado na variável de ambiente ASPNETCORE_ENVIRONMENT).
@@ -28,12 +32,22 @@ Execute `dotnet ef database update --project ./ScrumPoker.Data/ --startup-projec
 Execute `dotnet build ScrumPoker.sln` para contruir os executaveis do projeto.
 
 ## Teste unitários
-Execute `dotnet test ScrumPoker.sln` para iniciar os testes unitários via [xUnit](https://xunit.net/).
-Execute `dotnet test /p:CollectCoverage=true .\ScrumPoker.Tests\` para avaliar a combertura de testes via [Coverlet](https://github.com/coverlet-coverage/coverlet).
+Execute `dotnet test ScrumPoker.sln` para iniciar os testes unitários via [xUnit](https://xunit.net/).\
+Execute `dotnet test /p:CollectCoverage=true .\ScrumPoker.Tests\` para avaliar a combertura de testes via [Coverlet](https://github.com/coverlet-coverage/coverlet).\
 
-docker-compose.exe build
-heroku apps:create scrum-poker-br
-heroku container:push web -a scrum-poker-br
-heroku container:release web -a scrum-poker-br
-heroku logs --tail -a scrum-poker-br
-heroku apps:destroy scrum-poker-br
+## Testes mutantes
+	Entre na pasta de testes, execute `cd .\ScrumPoker.Tests\`\
+	Execute o teste mutante para cada projeto e avaliar se todos os mutantes foram mortos:\
+	- `dotnet stryker --project-file=ScrumPoker.API.csproj`
+	- `dotnet stryker --project-file=ScrumPoker.Application.csproj`
+	- `dotnet stryker --project-file=ScrumPoker.CrossCutting.csproj`
+	- `dotnet stryker --project-file=ScrumPoker.Data.csproj`
+	- `dotnet stryker --project-file=ScrumPoker.Domain.csproj`
+
+
+docker-compose.exe build\
+heroku apps:create scrum-poker-br\
+heroku container:push web -a scrum-poker-br\
+heroku container:release web -a scrum-poker-br\
+heroku logs --tail -a scrum-poker-br\
+heroku apps:destroy scrum-poker-br\
