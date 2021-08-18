@@ -3,6 +3,7 @@
 </h1>
 
 <h4 align="center">🚀 Planning poker online fácil e simples de participar 🐱‍👤</h4>
+<h4 align="center">http://www.scrumpoker.com.br/</h4>
 
 ## 💻 Sobre o projeto
 
