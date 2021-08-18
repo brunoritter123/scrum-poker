@@ -32,22 +32,14 @@ Execute `dotnet ef database update --project ./ScrumPoker.Data/ --startup-projec
 Execute `dotnet build ScrumPoker.sln` para contruir os executaveis do projeto.
 
 ## Teste unitários
-Execute `dotnet test ScrumPoker.sln` para iniciar os testes unitários via [xUnit](https://xunit.net/).\
-Execute `dotnet test /p:CollectCoverage=true .\ScrumPoker.Tests\` para avaliar a combertura de testes via [Coverlet](https://github.com/coverlet-coverage/coverlet).\
+Execute `dotnet test ScrumPoker.sln` para iniciar os testes unitários via [xUnit](https://xunit.net/). \
+Execute `dotnet test /p:CollectCoverage=true .\ScrumPoker.Tests\` para avaliar a combertura de testes via [Coverlet](https://github.com/coverlet-coverage/coverlet).
 
-## Testes mutantes
-	Entre na pasta de testes, execute `cd .\ScrumPoker.Tests\`\
-	Execute o teste mutante para cada projeto e avaliar se todos os mutantes foram mortos:\
-	- `dotnet stryker --project-file=ScrumPoker.API.csproj`
-	- `dotnet stryker --project-file=ScrumPoker.Application.csproj`
-	- `dotnet stryker --project-file=ScrumPoker.CrossCutting.csproj`
-	- `dotnet stryker --project-file=ScrumPoker.Data.csproj`
-	- `dotnet stryker --project-file=ScrumPoker.Domain.csproj`
-
-
-docker-compose.exe build\
-heroku apps:create scrum-poker-br\
-heroku container:push web -a scrum-poker-br\
-heroku container:release web -a scrum-poker-br\
-heroku logs --tail -a scrum-poker-br\
-heroku apps:destroy scrum-poker-br\
+### Testes mutantes
+Entre na pasta de testes, execute `cd .\ScrumPoker.Tests\` \
+Execute o teste mutante para cada projeto e avaliar se todos os mutantes foram mortos:
+- `dotnet stryker --project-file=ScrumPoker.API.csproj`
+- `dotnet stryker --project-file=ScrumPoker.Application.csproj`
+- `dotnet stryker --project-file=ScrumPoker.CrossCutting.csproj`
+- `dotnet stryker --project-file=ScrumPoker.Data.csproj`
+- `dotnet stryker --project-file=ScrumPoker.Domain.csproj`
