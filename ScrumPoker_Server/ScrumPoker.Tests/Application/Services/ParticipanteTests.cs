@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Moq;
 using ScrumPoker.Application.Configurations;
+using ScrumPoker.Application.DTOs.InputModels;
 using ScrumPoker.Application.DTOs.ViewModels;
 using ScrumPoker.Application.Services;
 using ScrumPoker.Domain.Entities.SalaEntity;
@@ -97,7 +98,6 @@ namespace ScrumPoker.Tests.Application.Services
             mockRepo.Setup(repo => repo.BuscarPorIdAsync(participanteId))
                     .ReturnsAsync(participanteBd);
 
-            var participanteReturnoAlteracao = new Participante();
             mockRepo.Setup(repo => repo.AlterarAsync(It.IsAny<Participante>()))
                     .ReturnsAsync((Participante part) => part);
 
@@ -151,10 +151,10 @@ namespace ScrumPoker.Tests.Application.Services
             mockRepo.Setup(repo => repo.BuscarPorIdAsync(participanteId))
                     .ReturnsAsync(participanteBd);
 
-            var participanteReturnoAlteracao = new Participante();
+            var participanteInputAlteracao = new Participante();
             mockRepo.Setup(repo => repo.AlterarAsync(It.IsAny<Participante>()))
                     .ReturnsAsync((Participante part) => part)
-                    .Callback((Participante part) => participanteReturnoAlteracao = part);
+                    .Callback((Participante part) => participanteInputAlteracao = part);
 
             var subject = new ParticipanteService(mockRepo.Object, _mapper);
 
@@ -163,7 +163,7 @@ namespace ScrumPoker.Tests.Application.Services
 
             // Assert
             Assert.Equal(participanteId, result.Id);
-            Assert.Equal(conexaoId, participanteReturnoAlteracao.ConexaoId);
+            Assert.Equal(conexaoId, participanteInputAlteracao.ConexaoId);
             Assert.True(result.Online);
         }
 
@@ -201,10 +201,8 @@ namespace ScrumPoker.Tests.Application.Services
             mockRepo.Setup(repo => repo.BuscarPorIdAsync(participanteId))
                     .ReturnsAsync(participanteBd);
 
-            var participanteReturnoAlteracao = new Participante();
             mockRepo.Setup(repo => repo.AlterarAsync(It.IsAny<Participante>()))
-                    .ReturnsAsync((Participante part) => part)
-                    .Callback((Participante part) => participanteReturnoAlteracao = part);
+                    .ReturnsAsync((Participante part) => part);
 
             var subject = new ParticipanteService(mockRepo.Object, _mapper);
 
@@ -235,6 +233,67 @@ namespace ScrumPoker.Tests.Application.Services
             Assert.Null(result);
         }
 
+        [Fact(DisplayName = "Incluir Novo Participante")]
+        public async void IncluirOuAlterarAsyncNovoParticipanteTest()
+        {
+            // Arrange
+            var participanteInput = ParticipanteSalaInputModelValido();
+
+            var mockRepo = new Mock<IParticipanteRepository>();
+            mockRepo.Setup(repo => repo.BuscarPorIdAsync(participanteInput.Id))
+                    .ReturnsAsync((Participante)null);
+
+            mockRepo.Setup(repo => repo.IncluirAsync(It.IsAny<Participante>()))
+                    .ReturnsAsync((Participante part) => part);
+
+            var subject = new ParticipanteService(mockRepo.Object, _mapper);
+
+            // Act
+            var result = await subject.IncluirOuAlterarAsync(participanteInput);
+
+            // Assert
+            Assert.Equal(participanteInput.Id, result.Id);
+            Assert.Equal(participanteInput.Jogador, result.Jogador);
+            Assert.Equal(participanteInput.Nome, result.Nome);
+            Assert.Equal(participanteInput.Online, result.Online);
+            Assert.Equal(participanteInput.SalaId, result.SalaId);
+        }
+
+        [Fact(DisplayName = "Alterar Participante")]
+        public async void IncluirOuAlterarAsyncAlterarParticipanteTest()
+        {
+            // Arrange
+            string participanteId = "teste123456";
+            var participanteInput = ParticipanteSalaInputModelValido();
+            participanteInput.Id = "teste123456";
+
+            var participanteBd = ParticipanteValido();
+            participanteBd.Id = participanteId;
+
+            var mockRepo = new Mock<IParticipanteRepository>();
+            mockRepo.Setup(repo => repo.BuscarPorIdAsync(participanteId))
+                    .ReturnsAsync(participanteBd);
+
+            var participanteInputAlteracao = new Participante();
+            mockRepo.Setup(repo => repo.AlterarAsync(It.IsAny<Participante>()))
+                    .ReturnsAsync((Participante part) => part)
+                    .Callback((Participante part) => participanteInputAlteracao = part);
+
+            var subject = new ParticipanteService(mockRepo.Object, _mapper);
+
+            // Act
+            var result = await subject.IncluirOuAlterarAsync(participanteInput);
+
+            // Assert
+            Assert.Equal(participanteInput.Id, result.Id);
+            Assert.Equal(participanteInput.Jogador, result.Jogador);
+            Assert.Equal(participanteInput.Nome, result.Nome);
+            Assert.Equal(participanteInput.Online, result.Online);
+            Assert.Equal(participanteInput.SalaId, result.SalaId);
+            Assert.Equal(participanteBd.VotoCartaValor, participanteInputAlteracao.VotoCartaValor);
+            Assert.Equal(participanteBd.ConexaoId, participanteInputAlteracao.ConexaoId);
+        }
+
         private Participante ParticipanteValido()
         {
             return new Participante()
@@ -248,72 +307,19 @@ namespace ScrumPoker.Tests.Application.Services
                 VotoCartaValor = "03"
             };
         }
-        //[Theory]
-        //[InlineData("1213asdf", "SalaTeste", "Participante1", true)]
-        //public async void IncluirParticipanteEmUmaSalaAsync_NovaSalaEParticipante
-        //    (string id, string salaId, string nome, bool jogador)
-        //{
-        //    // Arrange
-        //    var mockRepo = new Mock<IParticipanteGateway>();
-        //    mockRepo.Setup(repo => repo.BuscarPorIdAsync(id))
-        //        .ThrowsAsync(new EntidadeNaoEncontradaException(nameof(Participante), id));
-        //    mockRepo.Setup(repo => repo.AlterarAsync(It.IsAny<Participante>()));
-        //    mockRepo.Setup(repo => repo.IncluirAsync(It.IsAny<Participante>()));
 
-        //    var mockRepoSala = new Mock<ISalaGateway>();
-        //    mockRepoSala.Setup(repoSala => repoSala.NaoExisteSalaAsync(salaId))
-        //        .Returns(Task.FromResult(false));
-        //    mockRepoSala.Setup(repoSala => repoSala.IncluirAsync(It.IsAny<Sala>()))
-        //        .Returns(Task.FromResult<Sala>(null));
-
-
-        //    var act = new ParticipanteUserCase(mockRepo.Object, mockRepoSala.Object);
-
-        //    // Act
-        //    var result = await act.IncluirParticipanteEmUmaSalaAsync(id, salaId, nome, jogador);
-
-        //    // Assert
-        //    Assert.NotNull(result);
-        //    Assert.Equal(id, result.Id);
-        //    Assert.Equal(salaId, result.SalaId);
-        //    Assert.Equal(nome, result.Nome);
-        //    Assert.Equal(jogador, result.Jogador);
-        //}
-
-        //[Theory]
-        //[InlineData("1213asdf", "SalaTeste", "Participante1", true)]
-        //public async void IncluirParticipanteEmUmaSalaAsync_NovaSalaEParticipanteExistente
-        //    (string id, string salaId, string nome, bool jogador)
-        //{
-        //    // Arrange
-        //    var participanteExistente = new Participante(id, salaId, nome, jogador);
-        //    participanteExistente.Online = false;
-        //    participanteExistente.VotoCartaValor = "100";
-
-        //    var mockRepo = new Mock<IParticipanteGateway>();
-        //    mockRepo.Setup(repo => repo.BuscarPorIdAsync(id))
-        //        .ThrowsAsync(new EntidadeNaoEncontradaException(nameof(Participante), id));
-        //    mockRepo.Setup(repo => repo.AlterarAsync(It.IsAny<Participante>()));
-        //    mockRepo.Setup(repo => repo.IncluirAsync(It.IsAny<Participante>()));
-
-        //    var mockRepoSala = new Mock<ISalaGateway>();
-        //    mockRepoSala.Setup(repoSala => repoSala.NaoExisteSalaAsync(salaId))
-        //        .Returns(Task.FromResult(false));
-        //    mockRepoSala.Setup(repoSala => repoSala.IncluirAsync(It.IsAny<Sala>()))
-        //        .Returns(Task.FromResult<Sala>(null));
-
-
-        //    var act = new ParticipanteUserCase(mockRepo.Object, mockRepoSala.Object);
-
-        //    // Act
-        //    var result = await act.IncluirParticipanteEmUmaSalaAsync(id, salaId, nome, jogador);
-
-        //    // Assert
-        //    Assert.NotNull(result);
-        //    Assert.Equal(id, result.Id);
-        //    Assert.Equal(salaId, result.SalaId);
-        //    Assert.Equal(nome, result.Nome);
-        //    Assert.Equal(jogador, result.Jogador);
-        //}
+        private IncluirParticipanteSalaInputModel ParticipanteSalaInputModelValido()
+        {
+            return new IncluirParticipanteSalaInputModel()
+            {
+                Id = "participante123",
+                SalaId = "teste123",
+                //ConexaoId = "conexao123",
+                Nome = "Bruno",
+                Jogador = true,
+                Online = true
+                //VotoCartaValor = "03"
+            };
+        }
     }
 }

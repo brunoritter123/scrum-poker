@@ -31,8 +31,8 @@ namespace ScrumPoker.Application.Services
             }
             else
             {
-                _mapper.Map(participanteDto, participante);
-                await _repo.AlterarAsync(participante);
+                participante = _mapper.Map(participanteDto, participante);
+                participante = await _repo.AlterarAsync(participante);
             }
 
             return _mapper.Map<ParticipanteViewModel>(participante);
