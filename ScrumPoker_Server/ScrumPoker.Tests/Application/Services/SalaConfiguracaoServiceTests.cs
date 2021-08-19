@@ -51,7 +51,7 @@ namespace ScrumPoker.Tests.Application.Services
             Assert.Equal(id, result.Id);
         }
 
-        [Fact(DisplayName = "Buscar por ID que não existe")]
+        [Fact(DisplayName = "Buscar Configuração por ID que não existe")]
         public async void BuscarPorIdAsync_OndeIdNaoExisteTest()
         {
             // Arrange

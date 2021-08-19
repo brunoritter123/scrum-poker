@@ -255,8 +255,8 @@ namespace ScrumPoker.Tests.Application.Services
             Assert.Equal(participanteInput.Id, result.Id);
             Assert.Equal(participanteInput.Jogador, result.Jogador);
             Assert.Equal(participanteInput.Nome, result.Nome);
-            Assert.Equal(participanteInput.Online, result.Online);
             Assert.Equal(participanteInput.SalaId, result.SalaId);
+            Assert.True(result.Online);
         }
 
         [Fact(DisplayName = "Alterar Participante")]
@@ -317,7 +317,7 @@ namespace ScrumPoker.Tests.Application.Services
                 //ConexaoId = "conexao123",
                 Nome = "Bruno",
                 Jogador = true,
-                Online = true
+                // Online = true
                 //VotoCartaValor = "03"
             };
         }
