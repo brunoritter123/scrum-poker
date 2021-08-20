@@ -37,7 +37,7 @@ Execute `dotnet test ScrumPoker.sln` para iniciar os testes unitários via [xUni
 ### Cobertura de testes
 Entre na pasta de testes, execute `cd .\ScrumPoker.Tests\` \
 Execute `dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura` para avaliar a combertura de testes via [Coverlet](https://github.com/coverlet-coverage/coverlet).
-Execute `dotnet reportgenerator -targetdir:C:\report` para gerar um relatório detalhado de cobertura.
+Execute `dotnet reportgenerator -targetdir:C:\report` para gerar um relatório detalhado de cobertura via [ReportGenerator](https://github.com/danielpalme/ReportGenerator).
 
 ### Testes mutantes
 Entre na pasta de testes, execute `cd .\ScrumPoker.Tests\` \
