@@ -12,10 +12,10 @@ using Xunit;
 
 namespace ScrumPoker.Tests.Application.Services
 {
-    public class ParticipanteTests
+    public class ParticipanteServiceTests
     {
         private readonly IMapper _mapper;
-        public ParticipanteTests()
+        public ParticipanteServiceTests()
         {
             var mockMapper = new MapperConfiguration(cfg =>
             {

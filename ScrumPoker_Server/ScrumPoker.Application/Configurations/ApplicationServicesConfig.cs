@@ -7,9 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ScrumPoker.Application.Configurations
 {
+    [ExcludeFromCodeCoverage]
     public static class ApplicationServicesConfig
     {
         public static IServiceCollection AddApplicationServicesConfig(this IServiceCollection services)
