@@ -33,7 +33,11 @@ Execute `dotnet build ScrumPoker.sln` para contruir os executaveis do projeto.
 
 ## Teste unitários
 Execute `dotnet test ScrumPoker.sln` para iniciar os testes unitários via [xUnit](https://xunit.net/). \
-Execute `dotnet test /p:CollectCoverage=true .\ScrumPoker.Tests\` para avaliar a combertura de testes via [Coverlet](https://github.com/coverlet-coverage/coverlet).
+
+### Cobertura de testes
+Entre na pasta de testes, execute `cd .\ScrumPoker.Tests\` \
+Execute `dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura` para avaliar a combertura de testes via [Coverlet](https://github.com/coverlet-coverage/coverlet).
+Execute `dotnet reportgenerator -targetdir:C:\reportr` para gerar um relatório detalhado de cobertura.
 
 ### Testes mutantes
 Entre na pasta de testes, execute `cd .\ScrumPoker.Tests\` \

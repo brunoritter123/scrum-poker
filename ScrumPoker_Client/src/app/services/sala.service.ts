@@ -31,7 +31,12 @@ export class SalaService {
   public gerarSalaPadrao(salaId: string): Promise<Sala> {
     const body = new GerarSalaPadraoInput();
     body.id = salaId;
-    body.salaConfiguracao = this.pegarConfigSalaNoLocalStorage(salaId);
+
+    //Se houver configuração guardada, busca usa essa configuracao
+    let salaConfigLS = this.pegarConfigSalaNoLocalStorage(salaId)
+    if (!!salaConfigLS) {
+      body.configuracao = salaConfigLS;
+    }
 
     return this.http.post<Sala>(`${this.url}/sala/gerar-sala-padrao`, body)
       .toPromise()

@@ -48,6 +48,7 @@ namespace ScrumPoker.Application.Configurations
                 .ForMember(dest => dest.SalaId, opt => {
                     opt.MapFrom(src => src.SalaId);
                 });
+            profile.CreateMap<GerarSalaPadraoInputModel, Sala>().ReverseMap();
 
             return profile;
         }
