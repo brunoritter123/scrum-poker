@@ -22,6 +22,8 @@ namespace ScrumPoker.Application.Services
         public async Task<PerfilViewModel> AlterarAsync(PerfilAlteracaoInputModel perfilAlteracao)
         {
             var perfil = await _repo.BuscarPorIdAsync(perfilAlteracao.Id);
+            if (perfil is null)
+                throw new ApplicationException($"Perfil '{perfilAlteracao.Id}' não foi encontrado");
 
             _mapper.Map(perfilAlteracao, perfil);
             var novoPerfil = await _repo.AlterarAsync(perfil);

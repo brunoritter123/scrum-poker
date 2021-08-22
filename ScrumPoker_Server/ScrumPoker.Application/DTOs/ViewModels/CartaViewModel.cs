@@ -9,6 +9,5 @@ namespace ScrumPoker.Application.DTOs.ViewModels
         public int Ordem { get; set; }
         public string Value { get; set; }
         public bool Especial { get; set; }
-        public string SalaId { get; set; }
     }
 }
