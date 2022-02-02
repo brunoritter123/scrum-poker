@@ -5,6 +5,7 @@ import { Sala } from '../models/sala.model';
 import { PoNotificationService } from '@po-ui/ng-components';
 import { SalaConfiguracao } from '../models/sala-configuracao.model';
 import { GerarSalaPadraoInput } from '../models/gerar-sala-padrao-input.model';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,8 @@ export class SalaService {
   ) { }
 
   public buscarSala(salaId: string): Promise<Sala> {
-    return this.http.get<Sala>(`${this.url}/sala/${salaId}`)
-      .toPromise()
+    const request = this.http.get<Sala>(`${this.url}/sala/${salaId}`)
+    return lastValueFrom(request)
       .catch( erro => {
           this.poNotification.error('Houve um erro ao tentar buscar a sala.');
           console.log(erro);
@@ -38,8 +39,8 @@ export class SalaService {
       body.configuracao = salaConfigLS;
     }
 
-    return this.http.post<Sala>(`${this.url}/sala/gerar-sala-padrao`, body)
-      .toPromise()
+    const request = this.http.post<Sala>(`${this.url}/sala/gerar-sala-padrao`, body)
+    return lastValueFrom(request)
       .catch( erro => {
           this.poNotification.error('Houve um erro ao tentar buscar a sala.');
           console.log(erro);

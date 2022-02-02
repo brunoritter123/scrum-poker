@@ -482,3 +482,5 @@ $RECYCLE.BIN/
 .vscode/launch.json
 ScrumPoker_Server/ScrumPoker.Tests/coverage.json
 ScrumPoker_Server/ScrumPoker.Tests/coverage.cobertura.xml
+
+.angular

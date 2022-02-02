@@ -9,7 +9,7 @@ import { AuthLogin } from '../interfaces/authLogin.interface';
 import { TokenJwt } from '../interfaces/tokenJwt.interface';
 import { AuthResetarSenha } from '../interfaces/authResetarSenha.interface';
 import { Perfil } from '../interfaces/perfil.interface';
-import { Observable, OperatorFunction } from 'rxjs';
+import { Observable, OperatorFunction, lastValueFrom} from 'rxjs';
 import jwtDecode, { JwtDecodeOptions, JwtPayload } from 'jwt-decode';
 import { ConfirmarEmail } from '../models/confirmar-email.model';
 
@@ -175,8 +175,8 @@ export class AuthService {
 
   public getProfile(): void {
 
-    this.http.get<Perfil>(`${this.url}/perfil/${this.userNameLogin}`)
-      .toPromise()
+    const request = this.http.get<Perfil>(`${this.url}/perfil/${this.userNameLogin}`)
+    lastValueFrom(request)
       .then((perfil) => {
 
         const profile: PoToolbarProfile = {

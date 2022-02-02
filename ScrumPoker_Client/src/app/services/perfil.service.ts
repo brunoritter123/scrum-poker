@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Perfil } from '../interfaces/perfil.interface';
 import { PoNotificationService } from '@po-ui/ng-components';
 import { AuthService } from './auth.service';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,9 @@ export class PerfilService {
   ) { }
 
   public buscarPerfil(userName: string): Promise<Perfil> {
-      return this.http.get<Perfil>(`${this.url}/perfil/${userName}`)
-      .toPromise();
+      const request = this.http.get<Perfil>(`${this.url}/perfil/${userName}`)
+
+      return lastValueFrom(request);
   }
 
   public alterarPerfil(perfil: Perfil): Promise<any> {
