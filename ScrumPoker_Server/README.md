@@ -1,9 +1,9 @@
 # ScrumPoker_Server
 
-Esse projeto foi gerado com  [.Net Core](https://dotnet.microsoft.com/download/dotnet-core/5.0) versão 5.0
+Esse projeto foi gerado com  [.Net Core](https://dotnet.microsoft.com/download/dotnet-core/6.0) versão 6.0
 
 ## Instalação
-- **dotnet** - Fazer a instalção do [.NET Core 5.0](https://dotnet.microsoft.com/download/dotnet-core/5.0)
+- **dotnet** - Fazer a instalção do [.NET Core 6.0](https://dotnet.microsoft.com/download/dotnet-core/6.0)
 
 ## Ferramentas
 Execute `dotnet tool restore` para instalar as ferramentas.

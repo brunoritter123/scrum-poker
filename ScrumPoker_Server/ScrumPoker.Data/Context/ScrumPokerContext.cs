@@ -14,7 +14,10 @@ namespace ScrumPoker.Data.Context
         IdentityUserClaim<Guid>, UserRole, IdentityUserLogin<Guid>,
         IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>
     {
-        public ScrumPokerContext(DbContextOptions<ScrumPokerContext> options) : base(options) { }
+        public ScrumPokerContext(DbContextOptions<ScrumPokerContext> options) : base(options) 
+        {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+        }
 
         public DbSet<Sala> Sala { get; set; }
         public DbSet<SalaConfiguracao> SalaConfiguracao { get; set; }

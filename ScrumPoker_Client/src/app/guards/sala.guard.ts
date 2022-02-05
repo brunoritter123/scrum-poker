@@ -1,9 +1,6 @@
-import { Route } from '@angular/compiler/src/core';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { PoNotificationService } from '@po-ui/ng-components';
-import { promise } from 'protractor';
-import { Observable } from 'rxjs';
 import { SalaParticipante } from '../models/sala-participante.model';
 import { AuthService } from '../services/auth.service';
 import { LoadPageService } from '../services/load-page.service';
