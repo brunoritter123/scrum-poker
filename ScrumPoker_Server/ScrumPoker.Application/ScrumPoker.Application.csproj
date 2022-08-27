@@ -5,11 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ScrumPoker.CrossCutting\ScrumPoker.CrossCutting.csproj" />
     <ProjectReference Include="..\ScrumPoker.Domain\ScrumPoker.Domain.csproj" />
+    <ProjectReference Include="..\ScrumPoker.Identity\ScrumPoker.Identity.csproj" />
   </ItemGroup>
 
 </Project>

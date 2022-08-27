@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using ScrumPoker.Data.Context;
-using ScrumPoker.Domain.Identity;
+using ScrumPoker.Identity.Entities;
 using System;
 using System.Text;
 

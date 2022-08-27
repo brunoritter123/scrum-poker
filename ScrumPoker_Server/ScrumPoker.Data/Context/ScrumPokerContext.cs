@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ScrumPoker.Data.Maps;
-using ScrumPoker.Domain.Entities.SalaEntity;
-using ScrumPoker.Domain.Entities.UsuarioEntity;
-using ScrumPoker.Domain.Identity;
+using ScrumPoker.Domain.Entities.Perfis;
+using ScrumPoker.Domain.Entities.Salas;
+using ScrumPoker.Domain.Entities.Salas.Cartas;
+using ScrumPoker.Domain.Entities.Salas.Configuracoes;
+using ScrumPoker.Identity.Entities;
 using System;
 
 namespace ScrumPoker.Data.Context
@@ -14,7 +16,7 @@ namespace ScrumPoker.Data.Context
         IdentityUserClaim<Guid>, UserRole, IdentityUserLogin<Guid>,
         IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>
     {
-        public ScrumPokerContext(DbContextOptions<ScrumPokerContext> options) : base(options) 
+        public ScrumPokerContext(DbContextOptions<ScrumPokerContext> options) : base(options)
         {
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }

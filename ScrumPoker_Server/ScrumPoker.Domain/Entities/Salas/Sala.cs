@@ -1,7 +1,9 @@
+using ScrumPoker.Domain.Entities.Salas.Configuracoes;
+using ScrumPoker.Domain.Entities.Salas.Participantes;
 using System;
 using System.Collections.Generic;
 
-namespace ScrumPoker.Domain.Entities.SalaEntity
+namespace ScrumPoker.Domain.Entities.Salas
 {
     public class Sala
     {

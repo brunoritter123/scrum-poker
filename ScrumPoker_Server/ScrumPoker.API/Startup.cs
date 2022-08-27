@@ -66,7 +66,6 @@ namespace ScrumPoker.API
                 .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling =
                 Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-            services.AddApplicationServicesConfig();
             services.AddDependencyDbContext(Configuration);
 
             services.Configure<EmailConfig>(Configuration.GetSection("EmailConfig"));
@@ -83,6 +82,7 @@ namespace ScrumPoker.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                System.Console.WriteLine("Ambiente de DESENVOLVIMENTO!!!!!!!");
             }
 
             app.UseCors("CorsPolicy");

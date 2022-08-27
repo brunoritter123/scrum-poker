@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ScrumPoker.API.Dtos;
 using ScrumPoker.Application.DTOs.InputModels;
 using ScrumPoker.Application.DTOs.ViewModels;
 using ScrumPoker.Application.Interfaces.ApplicationServices;

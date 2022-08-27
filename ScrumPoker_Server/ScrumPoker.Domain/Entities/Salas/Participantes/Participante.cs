@@ -1,4 +1,4 @@
-namespace ScrumPoker.Domain.Entities.SalaEntity
+namespace ScrumPoker.Domain.Entities.Salas.Participantes
 {
     public class Participante
     {

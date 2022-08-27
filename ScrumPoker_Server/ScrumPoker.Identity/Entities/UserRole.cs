@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using System;
 
-namespace ScrumPoker.Domain.Identity
+namespace ScrumPoker.Identity.Entities
 {
     public class UserRole : IdentityUserRole<Guid>
     {

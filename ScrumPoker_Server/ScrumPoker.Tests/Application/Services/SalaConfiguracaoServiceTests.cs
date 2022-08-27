@@ -1,18 +1,16 @@
-﻿using Xunit;
-
+﻿using AutoMapper;
+using Moq;
+using ScrumPoker.Application.Configurations;
+using ScrumPoker.Application.DTOs.InputModels;
+using ScrumPoker.Application.DTOs.ViewModels;
+using ScrumPoker.Application.Services;
+using ScrumPoker.Domain.Entities.Salas.Cartas;
+using ScrumPoker.Domain.Entities.Salas.Configuracoes;
+using ScrumPoker.Domain.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Moq;
-using ScrumPoker.Domain.Interfaces.Repositories;
-using ScrumPoker.Domain.Entities.SalaEntity;
-using ScrumPoker.Application.Services;
-using AutoMapper;
-using ScrumPoker.Application.Configurations;
-using ScrumPoker.Application.DTOs.ViewModels;
-using ScrumPoker.Application.DTOs.InputModels;
+using Xunit;
 
 namespace ScrumPoker.Tests.Application.Services
 {

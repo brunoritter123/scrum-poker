@@ -1,14 +1,14 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace ScrumPoker.API.Dtos
+namespace ScrumPoker.Domain.Entities.Usuarios.Requests
 {
-    public class UserResetarSenhaDto
+    public class UserResetarSenhaRequest
     {
         [Required]
         public string UserName { get; set; }
 
         [Required]
-        [StringLength(10,MinimumLength=4)]
+        [StringLength(10, MinimumLength = 4)]
         public string Password { get; set; }
 
         [Required]

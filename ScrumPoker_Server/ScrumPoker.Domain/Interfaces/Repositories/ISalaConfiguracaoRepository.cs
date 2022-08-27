@@ -1,4 +1,4 @@
-using ScrumPoker.Domain.Entities.SalaEntity;
+using ScrumPoker.Domain.Entities.Salas.Configuracoes;
 using System.Threading.Tasks;
 
 namespace ScrumPoker.Domain.Interfaces.Repositories

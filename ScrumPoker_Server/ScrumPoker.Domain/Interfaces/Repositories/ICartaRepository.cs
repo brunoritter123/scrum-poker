@@ -1,5 +1,3 @@
-using ScrumPoker.Domain.Entities.SalaEntity;
-
 namespace ScrumPoker.Domain.Interfaces.Repositories
 {
     public interface ICartaRepository

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ScrumPoker.Data.Context;
-using ScrumPoker.Domain.Entities.UsuarioEntity;
+using ScrumPoker.Domain.Entities.Perfis;
 using ScrumPoker.Domain.Interfaces.Repositories;
 using System;
 using System.Threading.Tasks;
@@ -15,11 +15,10 @@ namespace ScrumPoker.Data.Repositories
             _context = context;
         }
 
-        public async Task<Perfil> BuscarPorIdAsync(Guid id)
+        public async Task<Perfil> BuscarPorIdAsync(string login)
         {
             return await _context.Set<Perfil>()
-                           .Include(x => x.User)
-                           .FirstOrDefaultAsync(x => x.Id == id);
+                           .FirstOrDefaultAsync(x => x.Login == login);
         }
 
         public async Task<Perfil> IncluirAsync(Perfil perfil)
@@ -38,10 +37,10 @@ namespace ScrumPoker.Data.Repositories
             return perfil;
         }
 
-        public async Task<bool> ExisteEntityAsync(Guid id)
+        public async Task<bool> ExisteEntityAsync(String login)
         {
             return await _context.Set<Perfil>()
-                           .AnyAsync(x => x.Id == id);
+                           .AnyAsync(x => x.Login == login);
         }
     }
 }

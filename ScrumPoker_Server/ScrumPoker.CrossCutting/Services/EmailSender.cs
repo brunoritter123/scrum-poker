@@ -39,7 +39,7 @@ namespace ScrumPoker.CrossCutting.Services
         {
             var emailMessage = new MimeMessage();
             emailMessage.From.Add(new MailboxAddress("ScrumPoker", _emailConfig.From));
-            emailMessage.To.Add(new MailboxAddress(email));
+            emailMessage.To.Add(new MailboxAddress(email, email));
             emailMessage.Subject = subject;
             emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
             {

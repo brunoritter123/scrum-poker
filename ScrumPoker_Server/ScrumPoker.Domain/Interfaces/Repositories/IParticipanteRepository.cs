@@ -1,4 +1,4 @@
-using ScrumPoker.Domain.Entities.SalaEntity;
+using ScrumPoker.Domain.Entities.Salas.Participantes;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

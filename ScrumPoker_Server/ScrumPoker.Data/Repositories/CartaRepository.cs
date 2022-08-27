@@ -1,5 +1,5 @@
 using ScrumPoker.Data.Context;
-using ScrumPoker.Domain.Entities.SalaEntity;
+using ScrumPoker.Domain.Entities.Salas.Cartas;
 using ScrumPoker.Domain.Interfaces.Repositories;
 using System.Linq;
 

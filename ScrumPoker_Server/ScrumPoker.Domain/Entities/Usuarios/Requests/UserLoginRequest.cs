@@ -1,8 +1,8 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace ScrumPoker.API.Dtos
+namespace ScrumPoker.Domain.Entities.Usuarios.Requests
 {
-    public class UserLoginDto
+    public class UserLoginRequest
     {
         [Required]
         public string UserName { get; set; }

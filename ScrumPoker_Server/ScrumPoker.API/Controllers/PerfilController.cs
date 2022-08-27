@@ -1,10 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ScrumPoker.Application.DTOs.InputModels;
 using ScrumPoker.Application.DTOs.ViewModels;
-using ScrumPoker.Domain.Identity;
 using ScrumPoker.Application.Interfaces.ApplicationServices;
 using System.Threading.Tasks;
 
@@ -17,25 +14,20 @@ namespace ScrumPoker.API.Controllers
     public class PerfilController : ControllerBase
     {
         private readonly IPerfilService _perfilService;
-        private readonly UserManager<User> _userManager;
 
         public PerfilController(
-            IPerfilService perfilService,
-            UserManager<User> userManager
+            IPerfilService perfilService
             )
         {
             _perfilService = perfilService;
-            _userManager = userManager;
         }
 
         [HttpGet("{userName}")]
         public async Task<ActionResult<PerfilViewModel>> BuscarPorIdAsync(string userName)
         {
-            var user = await _userManager.FindByNameAsync(userName);
+            var perfil = await _perfilService.BuscarPorLoginAsync(userName);
+            if (perfil is null) return NotFound();
 
-            if (user is null) return NotFound();
-
-            var perfil = await _perfilService.BuscarPorIdAsync(user.PerfilId);
             return Ok(perfil);
         }
 

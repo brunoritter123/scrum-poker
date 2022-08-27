@@ -2,6 +2,7 @@
 using ScrumPoker.Application.DTOs.InputModels;
 using ScrumPoker.Application.DTOs.ViewModels;
 using ScrumPoker.Application.Interfaces.ApplicationServices;
+using ScrumPoker.Domain.DTOs.Application;
 using ScrumPoker.Domain.Interfaces.Repositories;
 using System;
 using System.Threading.Tasks;
@@ -21,9 +22,9 @@ namespace ScrumPoker.Application.Services
 
         public async Task<PerfilViewModel> AlterarAsync(PerfilAlteracaoInputModel perfilAlteracao)
         {
-            var perfil = await _repo.BuscarPorIdAsync(perfilAlteracao.Id);
+            var perfil = await _repo.BuscarPorIdAsync(perfilAlteracao.Login);
             if (perfil is null)
-                throw new ApplicationException($"Perfil '{perfilAlteracao.Id}' não foi encontrado");
+                throw new ApplicationException($"Perfil '{perfilAlteracao.Login}' não foi encontrado");
 
             _mapper.Map(perfilAlteracao, perfil);
             var novoPerfil = await _repo.AlterarAsync(perfil);
@@ -31,9 +32,9 @@ namespace ScrumPoker.Application.Services
             return _mapper.Map<PerfilViewModel>(novoPerfil);
         }
 
-        public async Task<PerfilViewModel> BuscarPorIdAsync(Guid id)
+        public async Task<PerfilViewModel> BuscarPorLoginAsync(string login)
         {
-            var perfil = await _repo.BuscarPorIdAsync(id);
+            var perfil = await _repo.BuscarPorIdAsync(login);
             return _mapper.Map<PerfilViewModel>(perfil);
         }
     }

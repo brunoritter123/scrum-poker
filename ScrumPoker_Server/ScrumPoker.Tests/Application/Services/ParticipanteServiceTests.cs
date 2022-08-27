@@ -4,7 +4,7 @@ using ScrumPoker.Application.Configurations;
 using ScrumPoker.Application.DTOs.InputModels;
 using ScrumPoker.Application.DTOs.ViewModels;
 using ScrumPoker.Application.Services;
-using ScrumPoker.Domain.Entities.SalaEntity;
+using ScrumPoker.Domain.Entities.Salas.Participantes;
 using ScrumPoker.Domain.Interfaces.Repositories;
 using System;
 using System.Threading.Tasks;

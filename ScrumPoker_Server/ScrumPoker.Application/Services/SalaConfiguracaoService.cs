@@ -1,8 +1,8 @@
 using AutoMapper;
 using ScrumPoker.Application.DTOs.InputModels;
 using ScrumPoker.Application.DTOs.ViewModels;
-using ScrumPoker.Domain.Entities.SalaEntity;
 using ScrumPoker.Application.Interfaces.ApplicationServices;
+using ScrumPoker.Domain.Entities.Salas.Configuracoes;
 using ScrumPoker.Domain.Interfaces.Repositories;
 using System;
 using System.Linq;
@@ -34,7 +34,7 @@ namespace ScrumPoker.Application.Services
         public async Task<SalaConfiguracaoViewModel> AlterarAsync(AlterarConfiguracaoSalaInputModel salaConfiguracaoViewModel)
         {
             SalaConfiguracao salaConfig = await _repo.BuscarPorIdAsync(salaConfiguracaoViewModel.Id);
-            if (salaConfig is null) 
+            if (salaConfig is null)
                 throw new ApplicationException($"Configuração Sala Id: '{salaConfiguracaoViewModel.Id}' não foi encontrado");
 
             salaConfig.Cartas = salaConfig.Cartas.ToList();

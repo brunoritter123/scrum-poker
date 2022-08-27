@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 
-namespace ScrumPoker.Domain.Identity
+namespace ScrumPoker.Identity.Entities
 {
     public class Role : IdentityRole<Guid>
     {

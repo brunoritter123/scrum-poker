@@ -4,8 +4,7 @@ using ScrumPoker.Application.Configurations;
 using ScrumPoker.Application.DTOs.InputModels;
 using ScrumPoker.Application.DTOs.ViewModels;
 using ScrumPoker.Application.Services;
-using ScrumPoker.Domain.Entities.SalaEntity;
-using ScrumPoker.Domain.Entities.UsuarioEntity;
+using ScrumPoker.Domain.Entities.Perfis;
 using ScrumPoker.Domain.Interfaces.Repositories;
 using System;
 using System.Threading.Tasks;
@@ -29,9 +28,9 @@ namespace ScrumPoker.Tests.Application.Services
         public async void BuscarParticipantePorIdTest()
         {
             // Arrange
-            Guid perfilId = Guid.NewGuid();
+            string perfilId = "login";
             var perfilBd = PerfilValido();
-            perfilBd.Id = perfilId;
+            perfilBd.Login = perfilId;
 
             var mockRepo = new Mock<IPerfilRepository>();
             mockRepo.Setup(repo => repo.BuscarPorIdAsync(perfilId))
@@ -40,19 +39,19 @@ namespace ScrumPoker.Tests.Application.Services
             var subject = new PerfilService(mockRepo.Object, _mapper);
 
             // Act
-            var result = await subject.BuscarPorIdAsync(perfilId);
+            var result = await subject.BuscarPorLoginAsync(perfilId);
 
             // Assert
             mockRepo.Verify(mock => mock.BuscarPorIdAsync(perfilId), Times.Once());
             Assert.IsType<PerfilViewModel>(result);
-            Assert.Equal(perfilId, result.Id);
+            Assert.Equal(perfilId, result.Login);
         }
 
         [Fact(DisplayName = "Buscar Perfil Por Id Que Não Existe")]
         public async void BuscarParticipantePorIdQueNaoExisteTest()
         {
             // Arrange
-            Guid perfilId = Guid.NewGuid();
+            string perfilId = "login";
 
             var mockRepo = new Mock<IPerfilRepository>();
             mockRepo.Setup(repo => repo.BuscarPorIdAsync(perfilId))
@@ -61,7 +60,7 @@ namespace ScrumPoker.Tests.Application.Services
             var subject = new PerfilService(mockRepo.Object, _mapper);
 
             // Act
-            var result = await subject.BuscarPorIdAsync(perfilId);
+            var result = await subject.BuscarPorLoginAsync(perfilId);
 
             // Assert
             mockRepo.Verify(mock => mock.BuscarPorIdAsync(perfilId), Times.Once());
@@ -72,15 +71,15 @@ namespace ScrumPoker.Tests.Application.Services
         public async void AlterarAsyncTest()
         {
             // Arrange
-            Guid perfilId = Guid.NewGuid();
+            string perfilId = "login";
 
             var inputModel = new PerfilAlteracaoInputModel();
-            inputModel.Id = perfilId;
+            inputModel.Login = perfilId;
             inputModel.Nome = "Nome Alterado";
             inputModel.Email = "emailAlterado@teste.com";
 
             var perfilBd = PerfilValido();
-            perfilBd.Id = perfilId;
+            perfilBd.Login = perfilId;
             perfilBd.Nome = "Nome Original";
 
             var mockRepo = new Mock<IPerfilRepository>();
@@ -97,7 +96,7 @@ namespace ScrumPoker.Tests.Application.Services
 
             // Assert
             Assert.NotNull(result);
-            Assert.Equal(inputModel.Id, result.Id);
+            Assert.Equal(inputModel.Login, result.Login);
             Assert.Equal(inputModel.Nome, result.Nome);
         }
 
@@ -105,9 +104,9 @@ namespace ScrumPoker.Tests.Application.Services
         public async void AlterarAsync_OndeIdNaoExisteTest()
         {
             // Arrange
-            Guid perfilId = Guid.NewGuid();
+            string perfilId = "login";
             var inputModel = new PerfilAlteracaoInputModel();
-            inputModel.Id = perfilId;
+            inputModel.Login = perfilId;
             inputModel.Nome = "Nome Alterado";
 
             var mockRepo = new Mock<IPerfilRepository>();
@@ -121,14 +120,14 @@ namespace ScrumPoker.Tests.Application.Services
 
             // Assert
             var exception = await Assert.ThrowsAsync<ApplicationException>(act);
-            Assert.Contains(inputModel.Id.ToString(), exception.Message);
+            Assert.Contains(inputModel.Login.ToString(), exception.Message);
         }
 
         private Perfil PerfilValido()
         {
             return new Perfil()
             {
-                Id = Guid.NewGuid(),
+                Login = "login",
                 Nome = "Nome Teste"
             };
         }

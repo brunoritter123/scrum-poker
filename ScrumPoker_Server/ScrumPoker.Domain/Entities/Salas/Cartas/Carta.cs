@@ -1,4 +1,6 @@
-namespace ScrumPoker.Domain.Entities.SalaEntity
+using ScrumPoker.Domain.Entities.Salas.Configuracoes;
+
+namespace ScrumPoker.Domain.Entities.Salas.Cartas
 {
     public class Carta
     {

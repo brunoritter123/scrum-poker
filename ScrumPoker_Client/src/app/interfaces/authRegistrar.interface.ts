@@ -1,6 +1,6 @@
 export interface AuthRegistrar {
   nome: string;
-  userName: string;
+  login: string;
   email: string;
-  password: string;
+  senha: string;
 }

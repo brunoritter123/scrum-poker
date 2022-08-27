@@ -49,9 +49,9 @@ export class CadastroContaUsuarioComponent {
 
     const authRegistrar: AuthRegistrar = {
       nome: this.nome?.value,
-      userName: this.login?.value,
+      login: this.login?.value,
       email: this.email?.value,
-      password: this.senha?.value
+      senha: this.senha?.value
     };
 
     this.authService.cadastrarConta(authRegistrar).toPromise()
@@ -64,9 +64,9 @@ export class CadastroContaUsuarioComponent {
 
         if (typeof erro.error === 'object' && Array.isArray(erro.error)) {
           erro.error.forEach((element: any)  => {
-            switch (element.code) {
+            switch (element.codigo) {
               case 'DuplicateUserName':
-                this.poNotification.error('Nome de usuário duplicado!');
+                this.poNotification.error('Nome de usuário já foi cadastrado!');
                 break;
               default:
                 this.poNotification.error(`Erro no cadastro! Code: ${element.code}`);

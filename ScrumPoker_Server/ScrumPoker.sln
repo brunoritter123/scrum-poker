@@ -1,12 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScrumPoker.Domain", "ScrumPoker.Domain\ScrumPoker.Domain.csproj", "{19EACB79-C102-4F8B-AEAD-BD278101FB04}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{09637230-8182-4E5A-9891-BA9F76894256}"
 	ProjectSection(SolutionItems) = preProject
+		.netconfig = .netconfig
+		.config\dotnet-tools.json = .config\dotnet-tools.json
 		global.json = global.json
 		README.md = README.md
 	EndProjectSection
@@ -20,6 +22,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScrumPoker.Data", "ScrumPoker.Data\ScrumPoker.Data.csproj", "{1C33B94C-8F25-4085-8FFC-83B48C15EF1A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScrumPoker.Tests", "ScrumPoker.Tests\ScrumPoker.Tests.csproj", "{33F61C0C-A922-4A35-9ACB-995C79D4A8CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrumPoker.Identity", "ScrumPoker.Identity\ScrumPoker.Identity.csproj", "{01A87430-7EFB-48B7-8681-EDCD4D8E6F67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,6 +107,18 @@ Global
 		{33F61C0C-A922-4A35-9ACB-995C79D4A8CA}.Release|x64.Build.0 = Release|Any CPU
 		{33F61C0C-A922-4A35-9ACB-995C79D4A8CA}.Release|x86.ActiveCfg = Release|Any CPU
 		{33F61C0C-A922-4A35-9ACB-995C79D4A8CA}.Release|x86.Build.0 = Release|Any CPU
+		{01A87430-7EFB-48B7-8681-EDCD4D8E6F67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01A87430-7EFB-48B7-8681-EDCD4D8E6F67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01A87430-7EFB-48B7-8681-EDCD4D8E6F67}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{01A87430-7EFB-48B7-8681-EDCD4D8E6F67}.Debug|x64.Build.0 = Debug|Any CPU
+		{01A87430-7EFB-48B7-8681-EDCD4D8E6F67}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{01A87430-7EFB-48B7-8681-EDCD4D8E6F67}.Debug|x86.Build.0 = Debug|Any CPU
+		{01A87430-7EFB-48B7-8681-EDCD4D8E6F67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01A87430-7EFB-48B7-8681-EDCD4D8E6F67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01A87430-7EFB-48B7-8681-EDCD4D8E6F67}.Release|x64.ActiveCfg = Release|Any CPU
+		{01A87430-7EFB-48B7-8681-EDCD4D8E6F67}.Release|x64.Build.0 = Release|Any CPU
+		{01A87430-7EFB-48B7-8681-EDCD4D8E6F67}.Release|x86.ActiveCfg = Release|Any CPU
+		{01A87430-7EFB-48B7-8681-EDCD4D8E6F67}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

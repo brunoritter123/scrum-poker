@@ -123,7 +123,7 @@ export class AuthService {
   public solicitacaoResetarSenha(userName: string): Observable<any> {
     return this.http.post(`${this.url}/user/solicitacao-resetar-senha/${userName}`, null, {
       params: {
-        urlResetarSenha: `${location.origin}/confirmar-resetar-senha`
+        urlCallback: `${location.origin}/confirmar-resetar-senha`
       }});
   }
 

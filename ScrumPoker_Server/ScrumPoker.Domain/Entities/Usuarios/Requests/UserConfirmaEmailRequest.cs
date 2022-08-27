@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ScrumPoker.API.Dtos
+namespace ScrumPoker.Domain.Entities.Usuarios.Requests
 {
-    public class UserConfirmaEmailDto
+    public class UserConfirmaEmailRequest
     {
         [Required]
         public string UserName { get; set; }

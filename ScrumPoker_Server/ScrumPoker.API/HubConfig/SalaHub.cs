@@ -2,10 +2,7 @@ using Microsoft.AspNetCore.SignalR;
 using ScrumPoker.Application.DTOs.InputModels;
 using ScrumPoker.Application.DTOs.ViewModels;
 using ScrumPoker.Application.Interfaces.ApplicationServices;
-using ScrumPoker.Domain.Entities.SalaEntity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ScrumPoker.API.HubConfig
@@ -34,7 +31,7 @@ namespace ScrumPoker.API.HubConfig
         public override async Task OnDisconnectedAsync(Exception exception)
         {
             var participanteDto = await _participanteService.Desconectar(Context.UserIdentifier);
-            if(participanteDto != null)
+            if (participanteDto != null)
             {
                 string metodo = participanteDto.Jogador ? "RecberJogadorDesconectado" : "RecberAdministradorDesconectado";
                 await Clients.Group(participanteDto.SalaId).SendAsync(metodo, participanteDto.Id);

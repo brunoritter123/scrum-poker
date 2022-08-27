@@ -1,6 +1,6 @@
-using ScrumPoker.Domain.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using ScrumPoker.Identity.Entities;
 
 namespace ScrumPoker.Data.Maps
 {

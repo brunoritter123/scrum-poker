@@ -1,13 +1,11 @@
 using AutoMapper;
+using ScrumPoker.Application.DTOs.InputModels;
 using ScrumPoker.Application.DTOs.ViewModels;
-using ScrumPoker.Domain.Entities.SalaEntity;
 using ScrumPoker.Application.Interfaces.ApplicationServices;
+using ScrumPoker.Domain.Entities.Salas;
 using ScrumPoker.Domain.Interfaces.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using ScrumPoker.Application.DTOs.InputModels;
 
 namespace ScrumPoker.Application.Services
 {
@@ -38,7 +36,7 @@ namespace ScrumPoker.Application.Services
                 return _mapper.Map<SalaViewModel>(sala);
 
             await _repo.LimparSalasNaoUsadas();
-            sala =_mapper.Map<Sala>(gerarSalaInput);
+            sala = _mapper.Map<Sala>(gerarSalaInput);
             sala = await _repo.IncluirAsync(sala);
 
             return _mapper.Map<SalaViewModel>(sala);

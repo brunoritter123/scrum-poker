@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ScrumPoker.Domain.Entities.UsuarioEntity;
-using ScrumPoker.Domain.Identity;
+using ScrumPoker.Domain.Entities.Perfis;
 
 namespace ScrumPoker.Data.Maps
 {
@@ -11,15 +10,11 @@ namespace ScrumPoker.Data.Maps
         {
             builder.ToTable(nameof(Perfil));
 
-            builder.HasKey(x => x.Id);
+            builder.HasKey(x => x.Login);
 
             builder
                 .Property(x => x.Nome)
                 .IsRequired();
-
-            builder.HasOne(x => x.User)
-                .WithOne(x => x.Perfil)
-                .HasForeignKey<User>(u => u.PerfilId);
         }
     }
 }

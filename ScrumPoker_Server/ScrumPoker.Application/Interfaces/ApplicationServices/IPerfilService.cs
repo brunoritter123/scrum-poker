@@ -7,7 +7,7 @@ namespace ScrumPoker.Application.Interfaces.ApplicationServices
 {
     public interface IPerfilService
     {
-        Task<PerfilViewModel> BuscarPorIdAsync(Guid id);
+        Task<PerfilViewModel> BuscarPorLoginAsync(string login);
         Task<PerfilViewModel> AlterarAsync(PerfilAlteracaoInputModel perfilAlteracao);
     }   
 }

@@ -1,12 +1,11 @@
 using AutoMapper;
 using ScrumPoker.Application.DTOs.InputModels;
 using ScrumPoker.Application.DTOs.ViewModels;
-using ScrumPoker.Domain.Entities.SalaEntity;
 using ScrumPoker.Application.Interfaces.ApplicationServices;
+using ScrumPoker.Domain.Entities.Salas.Participantes;
 using ScrumPoker.Domain.Interfaces.Repositories;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using System;
+using System.Threading.Tasks;
 
 namespace ScrumPoker.Application.Services
 {
@@ -40,7 +39,7 @@ namespace ScrumPoker.Application.Services
 
         public async Task<ParticipanteViewModel> Desconectar(string participanteId)
         {
-            var participante =  await _repo.BuscarPorIdAsync(participanteId);
+            var participante = await _repo.BuscarPorIdAsync(participanteId);
             if (participante != null)
             {
                 participante.ConexaoId = null;
@@ -85,6 +84,6 @@ namespace ScrumPoker.Application.Services
             participante = await _repo.AlterarAsync(participante);
 
             return _mapper.Map<VotoViewModel>(participante);
-        }      
+        }
     }
 }

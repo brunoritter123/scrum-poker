@@ -1,5 +1,4 @@
-using ScrumPoker.Domain.Entities.UsuarioEntity;
-using System;
+using ScrumPoker.Domain.Entities.Perfis;
 using System.Threading.Tasks;
 
 namespace ScrumPoker.Domain.Interfaces.Repositories
@@ -8,8 +7,8 @@ namespace ScrumPoker.Domain.Interfaces.Repositories
     {
         //Task<Perfil> BuscarPorIdAsync(Guid id);
         //Task<bool> ExisteEntityAsync(Guid id);
-        //Task<Perfil> IncluirAsync(Perfil perfil);
         Task<Perfil> AlterarAsync(Perfil perfil);
-        Task<Perfil> BuscarPorIdAsync(Guid id);
+        Task<Perfil> BuscarPorIdAsync(string login);
+        Task<Perfil> IncluirAsync(Perfil perfil);
     }
 }
