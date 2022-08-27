@@ -4,11 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using ScrumPoker.Data.Context;
 using ScrumPoker.Data.Repositories;
 using ScrumPoker.Domain.Interfaces.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ScrumPoker.Data
 {
@@ -18,8 +13,7 @@ namespace ScrumPoker.Data
             IConfiguration configuration)
         {
             service.AddDbContext<ScrumPokerContext>(options =>
-                options.UseNpgsql(configuration.GetSection("ConnectionStrings:Npgsql").Value));
-
+                options.UseInMemoryDatabase("ScrumPoker"));
 
             service.AddScoped<ISalaRepository, SalaRepository>();
             service.AddScoped<IParticipanteRepository, ParticipanteRepository>();
