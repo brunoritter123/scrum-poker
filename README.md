@@ -2,6 +2,7 @@
     <img src="https://github.com/brunoritter123/scrum-poker/blob/master/logo.png"  title="#Scrum Poker" height="250" width="250" alt="Scrum Poker"/>
 </h1>
 
+
 <h4 align="center">🚀 Planning poker online fácil e simples de participar 🐱‍👤</h4>
 <h4 align="center">http://www.scrumpoker.com.br/</h4>
 
@@ -10,7 +11,7 @@
 ✔ ScrumPoker - é uma forma de jogar o planning poker online de forma que cada squad pode customizar suas cartas e facilitar a mensuração de esforço para cada história.
 - [x] As pessoas não precisam se cadastrar para utilizar o ScrumPoker.
 - [x] Nome das salas para planning poker é customizável e aberto a todos entrarem.
-- [x] As pessoas podem acessar como um jogador e mensurar as histórias 
+- [x] As pessoas podem acessar como um jogador e mensurar as histórias
 - [x] As pessoas podem acessar como administrador para ser um facilitador da planning ou apenas observar o andamento.
 - [x] As pessoas podem customizar as cartas que normalmente elas usam no planning poker.
 - [x] As pessoas podem escolher as permissões dos jogadores e administradores.
@@ -54,7 +55,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 ## 🚀 Como executar o projeto
 
 Podemos considerar este projeto como sendo divido em duas partes:
-1. Back End (pasta ScrumPoker_Server) 
+1. Back End (pasta ScrumPoker_Server)
 2. Front End (pasta ScrumPoker_Client)
 
 💡Front End precisa que o Back End esteja sendo executado para funcionar.
@@ -77,4 +78,3 @@ Feito com ❤️ por Bruno Ritter 👋🏽 [Entre em contato!](https://www.linke
 [po-ui]: https://po-ui.io/
 [angular]: https://angular.io/guide/language-service
 [typescript]: https://www.typescriptlang.org/
-
